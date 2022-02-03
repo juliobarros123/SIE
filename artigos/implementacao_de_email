@@ -1,0 +1,27 @@
+Acesse a documentação do laravel na secção de email:https://laravel.com/docs/8.x/mail
+
+O laravel tem um monte de mailers que podem ser usados para o envio de emails como o:smtp,postmark, mailgun, etc.
+Cada mailer tem a sua configuração. No arquivo: config/mail.php é encontrado um vector com os mailers disponiveis e
+é lá tambem onde podemos definir o nosso mailer padrão, alteramos o mailer padrão dentro do default. O mailer que vem 
+no laravel como default é o smtp.
+Acesse:https://laravel.com/docs/8.x/mail#configuration.
+
+Para se usar outra drive mailer baseada em API, primeiro precisa-se instalar a biblioteca Guzzle HTTP
+com o comando:composer require guzzlehttp/guzzle. Alguns deles precisam de outros pacotes, após a instalação dos
+pacotes necessários precisa-se verificar se o arquivo: config.services bate com a o que está na documentação.
+Acesse:https://laravel.com/docs/8.x/mail#driver-prerequisites.
+
+É necessário criar uma classe de correspondência (mailable) que será usada quando
+enviarmos o email pela nossa aplicação, nela definimos o emissor do email, a view que será
+responsavel pela apresentação do email, etc. Para criar uma mailable usamos o comando:php artisan make:mail NomeDaMailable /* parametros opcionais*/[ [-m|-f|-n|...] [valor_para_um_paramatro_que_exija_valo] ]
+As mailables ficam detro da pasta app/Mail.
+Acesse:https://laravel.com/docs/8.x/mail#generating-mailables
+
+As configurações inerentes ao remitente, view, etc dentro de uma mailable é feita dentro
+do método build da mailable. Alguns dos métodos mais importantes que podem ser usados por uma
+mailable são o: from (email_do_emissor|['email_do_emissor' => 'exemplo@exemplo.com', 'nome' => 'App_Name']),subject(),text e o view.
+Acesse:https://laravel.com/docs/8.x/mail#writing-mailables.
+
+
+
+
