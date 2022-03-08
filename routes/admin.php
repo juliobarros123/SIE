@@ -2,12 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Mail\MensagemXilonga;
-use App\Mail\EmailXilonga;
-use Illuminate\Support\Facades\Mail;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +11,12 @@ use Illuminate\Support\Facades\Mail;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*///Tarefas_Submetidas/cadastrar
+ *///Tarefas_Submetidas/cadastrar
 
 /*Route::get('/', ['as' => 'raiz', 'uses' => 'Admin\HomeController@raiz']);*/
 //Route::get('/tt', ['as' => 't1', 'uses' => 'Admin\NotificacaoController@notificacarMateria']);
 
-
-
-// 
+//
 
 Route::get('{id_educando}/disciplinas', ['as' => 'encarregado.educando.disciplinas', 'uses' => 'Ajax\MateriaFilhoEducandoController@disciplinas']);
 Route::get('getUnidades', ['as' => 'encarregado.educando.materia.getUnidades', 'uses' => 'Ajax\MateriaFilhoEducandoController@getUnidades']);
@@ -39,8 +31,7 @@ Route::group(['prefix' => 'quizz'], function () {
     Route::get('{id_pergunta}/proxima', ['as' => 'quizz.proxima', 'uses' => 'Site\QuizController@proxima']);
 });
 
-
-Route::group(['prefix' => 'quizz/jogadores' ], function () {
+Route::group(['prefix' => 'quizz/jogadores'], function () {
     Route::get('', ['as' => 'jogadores', 'uses' => 'Site\JogadorController@criar']);
     Route::get('criar', ['as' => 'jogadores.criar', 'uses' => 'Site\JogadorController@criar']);
     Route::post('cadastrar', ['as' => 'jogadores.cadastrar', 'uses' => 'Site\JogadorController@cadastrar']);
@@ -52,12 +43,11 @@ Route::group(['prefix' => 'quizz/jogadores' ], function () {
 Route::post('/correspondencia', ['as' => 'correspondencia', 'uses' => 'Email\CorrespondenciaXilongaController@enviar']);
 Route::get('/enviar_email', ['as' => 'enviar_email', 'uses' => 'Email\CorrespondenciaXilongaController@trazerFormulario']);
 
-
 //['as' => 'home', 'uses' => 'Admin\HomeController@raiz']
 
 Route::get('/tt', ['as' => 'verNotificacao', 'uses' => 'Admin\NotificacaoController@verNotificacoes']);
 //Route::get('/tt', ['as' => 'verNotificacao', 'uses' => 'Admin\NotificacaoController@tt']);
- //User-Start SITE
+//User-Start SITE
 Route::get('/painel', ['as' => 'home', 'uses' => 'Admin\HomeController@painel']);
 Route::get('users/cadastrar', ['as' => 'encarregado', 'uses' => 'Site\UserController@create']);
 Route::get('encarregado/{id}/verMateria/', ['as' => 'encarregado.verMateria', 'uses' => 'Admin\EncarregadoController@verMateria']);
@@ -67,7 +57,7 @@ Route::get('admin/buscar-usuario/{usuario}', ['as' => 'admin.buscarUsuario', 'us
 
 Route::post('users/salvar', ['as' => 'encarregado.salvar', 'uses' => 'Site\UserController@salvar']);
 // Route::get('admin/users/cadastrar', ['as' => 'admin.users.cadastrar', 'uses' => 'Admin\UserController@create']);
- //User-End SITE
+//User-End SITE
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin/'], function () {
@@ -96,11 +86,38 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('atualizar/{id}', ['as' => 'admin.empresas.atualizar', 'uses' => 'Admin\EmpresaController@atualizar'])->middleware('access.controll.administrador');
             Route::put('atualizar2/{id}/{campo}/{valor}', ['as' => 'admin.empresas.atualizar2', 'uses' => 'Admin\EmpresaController@atualizar2'])->middleware('access.controll.administrador');
             Route::get('ver/{id}', ['as' => 'empresas', 'uses' => 'Admin\EmpresaController@ver'])->middleware('access.controll.administrador');
-          
+
             Route::get('eliminar/{slug}', ['as' => 'admin.empresas.eliminar', 'uses' => 'Admin\EmpresaController@eliminar'])->middleware('access.controll.administrador');
             Route::get('editar/{slug}', ['as' => 'admin.empresas.editar', 'uses' => 'Admin\EmpresaController@editar'])->middleware('access.controll.administrador');
             Route::put('atualizar/{slug}', ['as' => 'admin.empresas.atualizar', 'uses' => 'Admin\EmpresaController@atualizar'])->middleware('access.controll.administrador');
         });
+
+        Route::group(['prefix' => 'vagas/'], function () {
+            Route::get('/', ['as' => 'admin.vagas', 'uses' => 'admin\VagaController@index']);
+            Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
+            Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
+            Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
+            Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
+            Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
+            Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
+
+         
+            Route::group(['prefix' => 'candidatos/'], function () {
+                Route::get('/{slug_vaga}', ['as' => 'admin.vagas.candidatos', 'uses' => 'admin\CandidatoController@index']);
+                // Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
+                // Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
+                // Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
+                // Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
+                // Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
+                // Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
+    
+             
+    
+            });
+        });
+
+        
+
     });
 
     // Horario de Estudo editar
@@ -135,8 +152,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     //Fim escola
 
-
-    Route::get('/users/escrever', ['as' => 'user.escrever',  'uses' => 'Admin\UserController@escrever'])->middleware('access.controll.encarregado');
+    Route::get('/users/escrever', ['as' => 'user.escrever', 'uses' => 'Admin\UserController@escrever'])->middleware('access.controll.encarregado');
     Route::post('{id_user}/users/escreverFilho', ['as' => 'users.escreverFilho', 'uses' => 'Admin\UserController@escreverFilho'])->middleware('access.controll.encarregado');
     Route::get('admin/users/ver/{id}', ['as' => 'users', 'uses' => 'Admin\UserController@ver'])->middleware('access.controll.encarregado');
 
@@ -179,7 +195,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('TarefasSumbmetidas', ['as' => 'ver_quantidade_tarefas_submetidas', 'uses' => 'TarefasSubmetidasController@quantidadeTarefasSubmetidas']);
     });
 
-
     Route::group(['prefix' => 'classes', 'middleware' => 'access.controll.administrador'], function () {
         Route::get('', ['as' => 'classes', 'uses' => 'Admin\ClasseController@listar']);
         Route::get('criar', ['as' => 'classes.criar', 'uses' => 'Admin\ClasseController@criar']);
@@ -188,7 +203,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{id}/editar', ['as' => 'classes.editar', 'uses' => 'Admin\ClasseController@editar']);
         Route::put('{id}/actualizar', ['as' => 'classes.actualizar', 'uses' => 'Admin\ClasseController@actualizar']);
     });
-
 
     Route::group(['prefix' => 'tarefas'], function () {
         Route::get('', ['as' => 'tarefas', 'uses' => 'Admin\TarefaController@listar'])->middleware('access.controll.professor');
@@ -202,7 +216,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{id}/respostas', ['as' => 'tarefas.respostas', 'uses' => 'Admin\TarefaController@respostas'])->middleware('access.controll.professor');
     });
 
-
     Route::group(['prefix' => 'alunos'], function () {
         Route::get('{id_classe_disciplina}/minhaTarefa', ['as' => 'alunos.minhaTarefa', 'uses' => 'Admin\TarefaController@minhaTarefa'])->middleware('access.controll.Aluno');
         Route::get('criar', ['as' => 'tarefas.criar', 'uses' => 'Admin\TarefaController@criar'])->middleware('access.controll.administrador');
@@ -212,7 +225,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('{id}/actualizar', ['as' => 'tarefas.actualizar', 'uses' => 'Admin\TarefaController@actualizar'])->middleware('access.controll.administrador');
         Route::get('{id}/respostas', ['as' => 'tarefas.respostas', 'uses' => 'Admin\TarefaController@respostas']);
     });
-
 
     Route::group(['prefix' => 'classesDisciplinas', 'middleware' => 'access.controll.administrador'], function () {
         Route::get('', ['as' => 'classesDisciplinas', 'uses' => 'Admin\ClasseDisciplinaController@listar']);
@@ -249,7 +261,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{id}/editar', ['as' => 'termos.editar', 'uses' => 'Admin\TermoController@editar']);
         Route::put('{id}/actualizar', ['as' => 'termos.actualizar', 'uses' => 'Admin\TermoController@actualizar']);
     });
-
 
     // Start Ano Lectivo
     Route::get('/admin/anolectivo', ['as' => 'admin/anolectivo', 'uses' => 'Admin\AnoLectivoController@index'])->middleware('access.controll.administrador');
@@ -292,7 +303,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/matricula/{id}/verClasse', ['as' => 'matricula.verClasse', 'uses' => 'Admin\MatriculaController@verClasse']);
     Route::post('/matricula/mudarClasse/classe/{id}/{classe}/', ['as' => 'matricula.mudarClasse', 'uses' => 'Admin\MatriculaController@mudarClasse']);
     //Matrícula end
-
 
     // //Tarefas Submetidas start
     // route::get('/Tarefas_Submetidas/{id_user}', ['as' => 'Tarefas_Submetidas.index', 'uses' => 'Admin\TarefasSubmetidasController@index'])->middleware('access.controll.administrador');
@@ -349,7 +359,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/materia/video_youtube/{id}eliminar/', ['as' => 'materia.adicionar_video_youtube_eliminar', 'uses' => 'Admin\VideoYoutubeController@eliminar'])->middleware('access.controll.Aluno');
     Route::put('/materia/video_youtube/{id}/actualizar/', ['as' => 'materia.adicionar_video_youtube_actualizar', 'uses' => 'Admin\VideoYoutubeController@actualizar'])->middleware('access.controll.Aluno');
     //end Materia
-
 
     Route::get('/video', ['as' => 'video', 'uses' => 'Admin\VideoController@create'])->middleware('access.controll.administrador');
     Route::post('/video/cadastrar', ['as' => 'video', 'uses' => 'Admin\VideoController@uploadVideo'])->middleware('access.controll.administrador');
@@ -445,17 +454,16 @@ Route::middleware('auth:sanctum')->group(function () {
     //     Route::get('{id_disciplina}/escolherTemaDeQuiz', ['as' => 'quizzes.escolherTemaDeQuiz', 'uses' => 'Admin\QuizController@escolherTemaDeQuiz']);
     //     Route::get('{id_tema}/iniciarJogo', ['as' => 'quizzes.iniciarJogo', 'uses' => 'Admin\QuizController@iniciarJogo']);
     //     Route::get('{id_afirmacao}/{id_pergunta_quizzes}/verificarResposta', ['as' => 'quizzes.verificarResposta', 'uses' => 'Admin\QuizController@verificarResposta']);
-       
+
     //     Route::get('listar', ['as' => 'quizzes.listar', 'uses' => 'Admin\QuizController@listar']);
     //     Route::get('{id_tema}/perguntas_listar', ['as' => 'quizzes.perguntas_listar', 'uses' => 'Admin\QuizController@perguntas_listar']);
     //     Route::get('{id_pergunta}/perguntas_editar', ['as' => 'quizzes.perguntas_editar', 'uses' => 'Admin\QuizController@perguntas_editar']);
     //     Route::put('{id_pergunta}/actualizar_pergunta', ['as' => 'quizzes.actualizar_pergunta', 'uses' => 'Admin\PerguntaQuizController@actualizar_pergunta']);
     //     Route::get('{id_pergunta}/perguntas_eliminar', ['as' => 'quizzes.perguntas_eliminar', 'uses' => 'Admin\PerguntaQuizController@perguntas_eliminar']);
-        
-   
+
     // });
 
-    Route::group(['prefix' => 'quizzes','middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'quizzes', 'middleware' => 'auth'], function () {
         Route::get('criar', ['as' => 'quizzes.criar', 'uses' => 'Admin\QuestaoController@criar']);
         // Route::get('{id_disciplina}/materias', ['as' => 'quizzes.materias', 'uses' => 'Admin\QuestaoController@verTemas']);
         // Route::get('{id_tema}/pergunta/criar', ['as' => 'quizzes.criarPeguntas', 'uses' => 'Admin\QuestaoController@criarPeguntas']);
@@ -464,13 +472,13 @@ Route::middleware('auth:sanctum')->group(function () {
         // Route::get('{id_disciplina}/escolherTemaDeQuiz', ['as' => 'quizzes.escolherTemaDeQuiz', 'uses' => 'Admin\QuizController@escolherTemaDeQuiz']);
         // Route::get('{id_tema}/iniciarJogo', ['as' => 'quizzes.iniciarJogo', 'uses' => 'Admin\QuizController@iniciarJogo']);
         // Route::get('{id_afirmacao}/{id_pergunta_quizzes}/verificarResposta', ['as' => 'quizzes.verificarResposta', 'uses' => 'Admin\QuizController@verificarResposta']);
-       
+
         Route::get('listar', ['as' => 'quizzes.listar', 'uses' => 'Admin\QuizController@listar']);
         // Route::get('{id_tema}/perguntas_listar', ['as' => 'quizzes.perguntas_listar', 'uses' => 'Admin\QuizController@perguntas_listar']);
         // Route::get('{id_pergunta}/perguntas_editar', ['as' => 'quizzes.perguntas_editar', 'uses' => 'Admin\QuizController@perguntas_editar']);
         // Route::put('{id_pergunta}/actualizar_pergunta', ['as' => 'quizzes.actualizar_pergunta', 'uses' => 'Admin\QuestaoController@actualizar_pergunta']);
         // Route::get('{id_pergunta}/perguntas_eliminar', ['as' => 'quizzes.perguntas_eliminar', 'uses' => 'Admin\QuestaoController@perguntas_eliminar']);
-        
+
         Route::group(['prefix' => '/niveis'], function () {
             Route::get('criar', ['as' => 'quizzes.niveis.criar', 'uses' => 'Admin\NivelQuestaoController@criar']);
             Route::post('cadastrar', ['as' => 'quizzes.niveis.cadastrar', 'uses' => 'Admin\NivelQuestaoController@cadastrar']);
@@ -490,8 +498,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('{slug}/editar', ['as' => 'quizzes.categorias.editar', 'uses' => 'Admin\CategoriaQuizController@editar']);
             Route::put('{slug}/actualizar', ['as' => 'quizzes.categorias.actualizar', 'uses' => 'Admin\CategoriaQuizController@actualizar']);
             Route::get('{slug}/eliminar', ['as' => 'quizzes.categorias.eliminar', 'uses' => 'Admin\CategoriaQuizController@eliminar']);
-        
-        
+
             // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
             // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
         });
@@ -505,22 +512,21 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('{slug}/eliminar', ['as' => 'quizzes.questoes.eliminar', 'uses' => 'Admin\QuestaoController@eliminar']);
             // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
             // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
-      
+
             Route::group(['prefix' => 'respostas'], function () {
                 Route::get('{slug}/', ['as' => 'quizzes.questoes.respostas', 'uses' => 'Admin\RespostaQuestaoQuiz@respostas']);
                 Route::get('{slug}/editar', ['as' => 'quizzes.questoes.respostas.editar', 'uses' => 'Admin\RespostaQuestaoQuiz@editar']);
                 Route::put('{slug}/actualizar', ['as' => 'quizzes.questoes.respostas.actualizar', 'uses' => 'Admin\RespostaQuestaoQuiz@actualizar']);
-                
+
                 Route::get('{slug}/editar_file', ['as' => 'quizzes.questoes.respostas.editar_file', 'uses' => 'Admin\RespostaQuestaoQuiz@editar_file']);
                 // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
                 // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
-                
+
                 Route::put('{slug}/editar_actualizar', ['as' => 'quizzes.questoes.respostas.actualizar_file', 'uses' => 'Admin\RespostaQuestaoQuiz@actualizar_file']);
             });
-      
+
         });
-        
-   
+
     });
 
     Route::group(['prefix' => 'materia/supervisionar/reacoes_video'], function () {
@@ -528,31 +534,31 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('{id_video}/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
         // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
         // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
-       
+
     });
-   
+
     Route::group(['prefix' => 'materia/supervisionar/reacoes_video'], function () {
         Route::post('{id_video}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
         Route::post('{id_video}/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
         // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
         // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
-       
+
     });
-   
+
     Route::group(['prefix' => '/materia/aluno/ver/reacoes_video/'], function () {
         Route::post('{id_video}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
         Route::post('{id_video}/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
         // Route::post('{id_vido}/gostei', ['as' => 'reacoes_video.gostei', 'uses' => 'Admin\ReacaoVideoController@gostei']);
         // Route::post('/nao_gostei', ['as' => 'reacoes_video.nao_gostei', 'uses' => 'Admin\ReacaoVideoController@nao_gostei']);
-       
+
     });
-    Route::group(['prefix' => 'tempo_sessao','middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'tempo_sessao', 'middleware' => 'auth'], function () {
         Route::get('/', ['as' => 'tempo_sessao', 'uses' => 'Admin\TempoSessaoController@listar']);
         Route::get('/criar', ['as' => 'tempo_sessao.criar', 'uses' => 'Admin\TempoSessaoController@criar']);
         Route::post('/cadastrar', ['as' => 'tempo_sessao.cadastrar', 'uses' => 'Admin\TempoSessaoController@cadastrar']);
         Route::get('{id}/editar', ['as' => 'tempo_sessao.editar', 'uses' => 'Admin\TempoSessaoController@editar']);
         Route::put('{id}/actualizar', ['as' => 'tempo_sessao.actualizar', 'uses' => 'Admin\TempoSessaoController@actualizar']);
-        Route::get('{id}/eliminar', ['as' => 'tempo_sessao.eliminar', 'uses' => 'Admin\TempoSessaoController@eliminar']);   
+        Route::get('{id}/eliminar', ['as' => 'tempo_sessao.eliminar', 'uses' => 'Admin\TempoSessaoController@eliminar']);
     });
-    
+
 });

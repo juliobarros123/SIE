@@ -128,7 +128,8 @@
                                         @foreach($empresas as $empresa)
                                         <tr>
                                             <td >
-                                                {{$empresa->logotipo}}
+                                                {{-- {{$empresa->logotipo}} --}}
+                                                <img src="{{ url("storage/{$empresa->logotipo}") }}" alt=" {{$empresa->nome}}"/>
                                             </td>
                                             <td > 
                                                 {{$empresa->nome}}

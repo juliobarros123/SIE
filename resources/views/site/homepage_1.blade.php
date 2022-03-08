@@ -328,8 +328,11 @@
 </div>
 
 
-<section id="vaga" class="blog-area">
-  <div class="blog-shape shape-1"></div>
+
+
+
+<section id="blog" class="blog-area">
+  
 
   <div class="container">
       <div class="row justify-content-center">
@@ -342,26 +345,57 @@
       </div>
       <div class="blog-wrapper">
           <div class="row">
-              <div class="col-lg-4 blog-col">
+
+            {{-- @foreach (vagas_disponiveis() as $vaga)
+                
+        
+            <div class="col-lg-4 blog-col">
+                <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
+                    <div class="blog-image">
+                        <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt=" {{$vaga->funcao}}" ></a>
+                        <span class="date">{{$vaga->created_at  }} até {{$vaga->datalimite  }} </span>
+                    </div>
+                    <div class="blog-content">
+                        <ul class="meta">
+                            <li><a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}">{{$vaga->nome  }}</a></li>
+                            <li><a href="#">{{$vaga->quantidade  }} Funcinários</a></li>
+                        </ul>
+                        <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach --}}
+         
+            @foreach (vagas_disponiveis() as $vaga)
+              <div class="col-lg-4 blog-col pt-4">
                   <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
                       <div class="blog-image">
-                          <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
-                          <span class="date">30 Ago, 2021</span>
+                          <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt="{{$vaga->funcao}}"></a>
+                          <span class="date">{{$vaga->created_at  }} disponível até {{$vaga->datalimite  }}</span>
                       </div>
-                      <div class="blog-content">
+                      <div class="blog-content ">
                           <ul class="meta">
-                              <li><a href="#">Nosso Super</a></li>
-                              <li><a href="#">2 Funcinários</a></li>
+                              <li class="d-inline"><a href="#">{{$vaga->nome  }}</a></li>
+                              <li class="d-inline"><a href="#">{{$vaga->quantidade  }} Funcinários</a></li>
+                              <li class="d-inline"><a href="{{ url("storage/{$vaga->caminho_discricao}") }}" class="text-primary" download><i class="fa-solid fa-download"></i> Baixar requisitos</a></li>
                           </ul>
-                          <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
+                          <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
+
+                          <a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}" class="main-btn main-btn-2 w-100" >Candidatar-se</a>
+                          
+                          <!-- <div class="down-content">
+                            <div class="border-first-button" ><a href="#">Discover More</a></div>
+                          </div> -->
+
                       </div>
                   </div>
               </div>
-              <div class="col-lg-4 blog-col">
+              @endforeach
+              {{-- <div class="col-lg-4 blog-col pt-4">
                 <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
                     <div class="blog-image">
-                        <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
+                        <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                         <span class="date">30 Ago, 2021</span>
                     </div>
                     <div class="blog-content">
@@ -374,10 +408,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 blog-col">
+            <div class="col-lg-4 blog-col  pt-4">
               <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
                   <div class="blog-image">
-                      <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
+                      <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                       <span class="date">30 Ago, 2021</span>
                   </div>
                   <div class="blog-content">
@@ -390,10 +424,10 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-4 blog-col">
+          <div class="col-lg-4 blog-col  pt-4">
             <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
                 <div class="blog-image">
-                    <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
+                    <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                     <span class="date">30 Ago, 2021</span>
                 </div>
                 <div class="blog-content">
@@ -405,11 +439,11 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 blog-col">
+        </div> --}}
+        {{-- <div class="col-lg-4 blog-col  pt-4">
           <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
               <div class="blog-image">
-                  <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
+                  <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                   <span class="date">30 Ago, 2021</span>
               </div>
               <div class="blog-content">
@@ -425,7 +459,7 @@
       <div class="col-lg-4 blog-col">
         <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
             <div class="blog-image">
-                <a href="vagas-details.html"><img src="/site/assets/images/blog/blog-1.jpg" alt=""></a>
+                <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                 <span class="date">30 Ago, 2021</span>
             </div>
             <div class="blog-content">
@@ -437,12 +471,11 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
             </div>
         </div>
-    </div>
+    </div> --}}
           </div>
       </div>
   </div>
 </section>
-
 <div   id="noticia">
   <div class="container">
     <div class="row">

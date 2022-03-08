@@ -39,7 +39,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <nav class="main-nav">
+          <nav class="main-nav" style="margin-top: -25px">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
               <img src="/site/assets/images/logo-v1.png" alt="">

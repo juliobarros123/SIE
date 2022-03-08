@@ -43,20 +43,20 @@
               <span class="menu-title">Empresas</span>
             </a>
           </li>
-
+          
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+            <a class="nav-link" href="{{ route('admin.vagas') }}">
               <i class="ti-pie-chart menu-icon"></i>
               <span class="menu-title">Vagas</span>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+          {{-- <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.vagas.candidatos') }}">
               <i class="ti-pie-chart menu-icon"></i>
-              <span class="menu-title">Funcionários</span>
+              <span class="menu-title">Candidatos</span>
             </a>
-          </li>
+          </li> --}}
 
           <li class="nav-item">
             <a class="nav-link" href="../../pages/charts/chartjs.html">

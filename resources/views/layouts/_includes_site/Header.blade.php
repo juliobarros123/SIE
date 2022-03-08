@@ -16,12 +16,13 @@
     <!-- Bootstrap core CSS -->
     <link href="/site/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
+    <link href="/site/assets/css/style.css" rel="stylesheet">
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="/site/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/site/assets/css/templatemo-digimedia-v1.css">
     <link rel="stylesheet" href="/site/assets/css/animated.css">
     <link rel="stylesheet" href="/site/assets/css/owl.css">
+    
 <!--
 
 TemplateMo 568 DigiMedia
@@ -29,6 +30,8 @@ TemplateMo 568 DigiMedia
 https://templatemo.com/tm-568-digimedia
 
 -->
+<script src="/js/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   </head>
 
 <body>

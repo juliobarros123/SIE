@@ -81,7 +81,8 @@ class EmpresaRepository
         $caminho = 'empresa/logotipo';
         $array = $request->all();
         $img = $this->file->upload_fileArray($request, $input, $caminho);
-    return    Empresa::where('slug',$slug)->update([
+        
+          return    Empresa::where('slug',$slug)->update([
         'logotipo' => isset($img) ? $img : null,
         'nome' => isset($array['nome']) ? $array['nome'] : null,
         'telefone' => isset($array['telefone']) ? $array['telefone'] : null,

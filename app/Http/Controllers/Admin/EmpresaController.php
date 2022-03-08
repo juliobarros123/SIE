@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Repositories\Eloquent\Empresa\EmpresaRepository;
 use App\Models\Logger;
+
 use Illuminate\Support\Facades\Auth;
 class EmpresaController extends Controller
 {
@@ -29,7 +30,7 @@ class EmpresaController extends Controller
         
             $empresa =$this->empresa->salvar($request, Auth::user()->id);
        
-            $this->loggerData("Adicionou empresa");
+            $this->loggerData("Adicionou vaga");
             return redirect()->back()->with('status', '1');
 
             return response()->json($user);

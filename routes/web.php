@@ -21,7 +21,7 @@ use App\Http\Controllers\admin\controllerTurma;
 //     return view('site.index');
 // });
 //Tela Inicial
-Route::get('/bem vindo', ['as' => 'xilonga', 'uses' => 'Site\HomeController@index']);
+Route::get('/bem-vindo', ['as' => 'sie', 'uses' => 'Site\HomeController@index']);
 
 
 
@@ -48,11 +48,23 @@ Route::get('anos-lectivo/', ['as' => 'site.anos-lectivo', 'uses' => 'Site\AnoLec
 //Manuais Escolares
 Route::get('manuais-escolares/', ['as' => 'site.manuais-escolares', 'uses' => 'Site\ManuaisController@index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// 
+Route::middleware('auth:sanctum')->group(function () {
+Route::group(['prefix' => 'vagas/candidatos/'], function () {
+    Route::get('{slug_vaga}/inscrever-se', ['as' => 'site.vagas.candidatos.inscrever-se', 'uses' => 'Site\CandidatoController@inscrever_se']);
+  Route::post('{slug_vaga}/inscrever-se-agora', ['as' => 'site.vagas.candidatos.inscrever-se-agora', 'uses' => 'Site\CandidatoController@inscrever_se_agora']);
 
+    Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
+    Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
+    Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
+    Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
+    Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
+    Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
 
+    
+
+});
+});
 //site inicial inicio
 Route::get('/', ['as' => 'site.site', 'uses' => 'SiteController@index']);
 //site inicial fim

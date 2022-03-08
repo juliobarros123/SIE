@@ -11,10 +11,9 @@ class HomeController extends Controller
     public function index(ClasseDisciplina $data)
     {
     
- 
-        $response['cds'] = $data->classes_disciplinas()->get();
-   
+
+    
         $response['uri'] = 'ops';
-        return view('site.index', $response);
+        return view('site.homepage_1', $response);
     }
 }
