@@ -18,11 +18,13 @@ class CreateVagasTable extends Migration
             $table->integer('quantidade');
             $table->string('capa')->nullable();
             $table->string('remuneracao');
+            $table->string('tipo_vaga');
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')->references('id')->on('empresas')->onDelete('CASCADE')->onUpgrade('CASCADE');
             $table->string('funcao');
             $table->date('datalimite');
             $table->text('caminho_discricao');
+            
             $table->text('slug')->nullable();
             $table->timestamps();
             $table->softDeletes();

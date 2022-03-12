@@ -75,6 +75,9 @@
                                                 Quantidade
                                             </th>
                                             <th>
+                                                Tipo de vaga
+                                            </th>
+                                            <th>
                                                 Remuneração
                                             </th>
                                             <th>
@@ -96,11 +99,14 @@
                                                 <td>
                                                     {{ $vaga->funcao }}
                                                 </td>
+                                               
                                                 <td>
                                                     {{ $vaga->quantidade }}
                                                 </td>
 
-
+                                                <td>
+                                                    {{ $vaga->tipo_vaga }}
+                                                </td>
                                                 <td>
                                                     {{ $vaga->remuneracao }}
                                                 </td>

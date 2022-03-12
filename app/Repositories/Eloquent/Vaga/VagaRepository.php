@@ -57,6 +57,7 @@ class VagaRepository
             'remuneracao' => isset($array['remuneracao']) ? $array['remuneracao'] : null,
             // 'id_empresa' => isset($array['id_empresa']) ? $array['id_empresa'] : null,
             'id_empresa' => 1,
+            'tipo_vaga'=>isset($array['tipo_vaga']) ? $array['tipo_vaga'] : null,
             'funcao' => isset($array['funcao']) ? $array['funcao'] : null,
             'datalimite' => isset($array['datalimite']) ? $array['datalimite'] : null,
             
@@ -100,11 +101,11 @@ class VagaRepository
             'capa' => isset($capa) ? $capa : null,
             'caminho_discricao' => isset($caminho) ? $caminho : null,
             'remuneracao' => isset($array['remuneracao']) ? $array['remuneracao'] : null,
-            // 'id_empresa' => isset($array['id_empresa']) ? $array['id_empresa'] : null,
-            'id_empresa' => 1,
+            'id_empresa' => isset($array['id_empresa']) ? $array['id_empresa'] : null,
+            // 'id_empresa' => 1,
             'funcao' => isset($array['funcao']) ? $array['funcao'] : null,
             'datalimite' => isset($array['datalimite']) ? $array['datalimite'] : null,
-            
+            'tipo_vaga'=>isset($array['tipo_vaga']) ? $array['tipo_vaga'] : null,
            
             'quantidade' => isset($array['quantidade']) ? $array['quantidade'] : null,
      

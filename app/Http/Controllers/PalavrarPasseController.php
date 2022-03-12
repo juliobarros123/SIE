@@ -78,8 +78,7 @@ try{
    }catch(Exception $ex){
 
    }
-        
-          }
+    }
     public function gerar_codigo(){
       return  Keygen::numeric(8)->generate();
     }

@@ -93,17 +93,19 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         Route::group(['prefix' => 'vagas/'], function () {
-            Route::get('/', ['as' => 'admin.vagas', 'uses' => 'admin\VagaController@index']);
-            Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
-            Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
-            Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
-            Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
-            Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
-            Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
+            Route::get('/', ['as' => 'admin.vagas', 'uses' => 'Admin\VagaController@index']);
+            Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'Admin\VagaController@criar']);
+            Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'Admin\VagaController@cadastrar']);
+            Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'Admin\VagaController@actualizar']);
+            Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'Admin\VagaController@editar']);
+            Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'Admin\VagaController@eliminar']);
+            Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'Admin\VagaController@purgar']);
 
          
             Route::group(['prefix' => 'candidatos/'], function () {
-                Route::get('/{slug_vaga}', ['as' => 'admin.vagas.candidatos', 'uses' => 'admin\CandidatoController@index']);
+                Route::get('/{slug_vaga}', ['as' => 'admin.vagas.candidatos', 'uses' => 'Admin\CandidatoController@index']);
+                Route::get('/{slug_candidato}/aprovar', ['as' => 'admin.vagas.candidatos.aprovar', 'uses' => 'Admin\CandidatoController@aprovar']);
+                Route::get('/{slug_candidato}/reprovar', ['as' => 'admin.vagas.candidatos.reprovar', 'uses' => 'Admin\CandidatoController@reprovar']);
                 // Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
                 // Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
                 // Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);

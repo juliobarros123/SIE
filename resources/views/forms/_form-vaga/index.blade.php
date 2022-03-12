@@ -24,7 +24,23 @@
        
     </select>
 </div>
+<div class="form-group">
+    <label for="exampleSelectGender">Tipo de vaga:</label>
+    <select class="form-control" id="exampleSelectGender" name="tipo_vaga">
+        
+        <option selected value="{{ isset($vaga) ? $vaga->tipo_vaga : '' }}">
+            {{ isset($vaga) ? $vaga->tipo_vaga : 'Seleciona um tipo de vaga:' }}
+        </option>
+        <option value="efetiva">Efetiva</option>
+        <option value="estagio">Estágio</option>
+        <option value="empresario">Empresário</option>
+        <option value="freelancer">Freelancer</option>
 
+        <option value="voluntaria">Voluntária</option>
+
+       
+    </select>
+</div>
 
 <div class="form-group">
     <label>Capa:</label>

@@ -12,7 +12,9 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Candidatos da vaga <strong>{{ $vaga->funcao }}</strong> </h4>
+                            <h4 class="card-title">Candidatos  <strong>
+                                {{-- {{ $vaga->funcao }} --}}
+                            </strong> </h4>
                             {{-- <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
                                 <i class="ti-plus" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
                             </div> --}}
@@ -34,11 +36,15 @@
                                               Telefone
                                             </th>
                                             <th>
+                                                Estado
+                                              </th>
+                                            <th>
                                                 Açções
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                       
                                         @foreach ($candidatos as $candidato)
                                             <tr>
                                                 <td>
@@ -58,7 +64,19 @@
                                                     {{ $candidato->telefone }}
                                                 </td>
                                               
-
+                                                <td>
+                                                    @if ($candidato->estado==0)
+                                                    <label class="badge badge-danger">Pendente</label>
+                                                    @endif
+                                                    @if($candidato->estado==1)
+                                                    <label class="badge badge-info">Reprovado</label>
+                                                    @endif
+                                                    @if($candidato->estado==2)
+                                                    <label class="badge badge-success">Aprovado </label>
+                                                    @endif
+                                                   
+                                                
+                                                </td>
 
                                                 <td>
                                                     <div class="btn-group-vertical" role="group" aria-label="Basic example">
@@ -69,9 +87,14 @@
                                                                 data-toggle="dropdown">Dropdown</button>
                                                             <div class="dropdown-menu">
                                                                
-                                                                {{-- <a class="dropdown-item"
-                                                                    data-confirm="Tem certeza que deseja eliminar?"
-                                                                    href="{{ route('admin.candidatos.eliminar', ['slug' => $vaga->slug]) }}">Eliminar</a> --}}
+                                                                @if($candidato->estado!=1)
+                                                                <a class="dropdown-item" href="{{ route('admin.vagas.candidatos.reprovar', ['slug_candidato' => $candidato->slug]) }}">Reprovar</a>
+                                                              @endif
+                                                                
+                                                              @if($candidato->estado!=2)
+                                                              <a class="dropdown-item" href="{{ route('admin.vagas.candidatos.aprovar', ['slug_candidato' => $candidato->slug]) }}">Aprovar</a> 
+                                                              @endif
+                                                              
                                                             </div>
                                                         </div>
 
@@ -102,6 +125,26 @@
             </div>
 
         </footer>
+        @if (session('aprovado'))
+        <script>
+            Swal.fire(
+                'Candidato aprovado com sucesso!',
+                '',
+                'success'
+            )
+        </script>
+    @endif
+
+    @if (session('reprovado'))
+    <script>
+        Swal.fire(
+            'Candidato reprovado com sucesso!',
+            '',
+            'success'
+        )
+    </script>
+@endif
+    
 
         @if (session('status'))
             <script>
@@ -112,6 +155,7 @@
                 )
             </script>
         @endif
+        
 
         @if (session('update'))
             <script>

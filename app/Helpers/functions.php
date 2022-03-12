@@ -2,6 +2,7 @@
 use Keygen\Keygen;
 use App\Repositories\Eloquent\Vaga\VagaRepository;
 use App\Repositories\Eloquent\File\FileRepository;
+use Illuminate\Support\Facades\Mail;
   function slug_gerar()
 {
     
@@ -16,4 +17,7 @@ function vagas_disponiveis()
       return  $vaga->all()->whereDate('vagas.datalimite','>=',now())->get();
 
 }
+
+
+ 
 ?>

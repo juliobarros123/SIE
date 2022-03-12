@@ -65,7 +65,7 @@ class FileRepository
             }
         } else {
         
-            return 'semFile';
+            return 'userPhoto/userPadrao.jpg';
         }
     }
     public function upload_file($request, $input, $caminho)
@@ -101,7 +101,7 @@ class FileRepository
             }
         } else {
 
-            return 'semFile';
+            return 'userPhoto/userPadrao.jpg';
         }
     }
 

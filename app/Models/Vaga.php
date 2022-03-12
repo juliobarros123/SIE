@@ -18,7 +18,7 @@ class Vaga extends Model
         'funcao',
         'capa',
         'datalimite',
-
+        'tipo_vaga',
         'caminho_discricao',
         'slug'
     ];
