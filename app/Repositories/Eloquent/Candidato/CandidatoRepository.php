@@ -39,6 +39,7 @@ class CandidatoRepository
 
     public function salvar(array $dados, $id_candidato)
     {
+    
         $candidato = Candidato::create([
             'curriculo'=>$dados['caminho_curriculo'],
             'id_canditado'=>$id_candidato,

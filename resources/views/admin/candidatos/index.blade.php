@@ -94,7 +94,7 @@
                                                               @if($candidato->estado!=2)
                                                               <a class="dropdown-item" href="{{ route('admin.vagas.candidatos.aprovar', ['slug_candidato' => $candidato->slug]) }}">Aprovar</a> 
                                                               @endif
-                                                              
+                                                              <a class="dropdown-item" target="_blanck" href="{{ url("storage/{$candidato->curriculo}") }}">Ver currículo</a> 
                                                             </div>
                                                         </div>
 

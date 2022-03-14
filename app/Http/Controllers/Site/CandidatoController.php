@@ -43,7 +43,8 @@ class CandidatoController extends Controller
         $caminho = 'vaga/candidato/curriculos';
         $vaga = Vaga::where('slug', $slug_vaga)->first();
         $curriculo = $this->file->upload_fileArray($request, $input, $caminho);
-        $dados['caminho_curriculo'] = $caminho;
+      
+        $dados['caminho_curriculo'] = $curriculo;
   
         $dados['id_vaga'] = $vaga->id;
 
