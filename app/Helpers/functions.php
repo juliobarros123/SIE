@@ -17,6 +17,10 @@ function vagas_disponiveis()
       return  $vaga->all()->whereDate('vagas.datalimite','>=',now())->get();
 
 }
+function anos(){
+  $years = range(1900, strftime("%Y", time())); 
+  return $years;
+}
 
 
  

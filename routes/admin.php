@@ -90,14 +90,9 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('eliminar/{slug}', ['as' => 'admin.empresas.eliminar', 'uses' => 'Admin\EmpresaController@eliminar'])->middleware('access.controll.administrador');
             Route::get('editar/{slug}', ['as' => 'admin.empresas.editar', 'uses' => 'Admin\EmpresaController@editar'])->middleware('access.controll.administrador');
             Route::put('atualizar/{slug}', ['as' => 'admin.empresas.atualizar', 'uses' => 'Admin\EmpresaController@atualizar'])->middleware('access.controll.administrador');
-            Route::group(['prefix' => 'retatorios/vagas'], function () {
-                Route::get('gerar/', ['as' => 'admin.empresas.retatorios.vagas.gerar', 'uses' => 'Admin\EmpresaController@gerar'])->middleware('access.controll.administrador');
-                Route::post('relatorio', ['as' => 'admin.empresas.retatorios.vagas.relatorio', 'uses' => 'Admin\EmpresaController@relatorio'])->middleware('access.controll.administrador');
-            });
-      
+
         });
 
-    
         Route::group(['prefix' => 'vagas/'], function () {
             Route::get('/', ['as' => 'admin.vagas', 'uses' => 'Admin\VagaController@index']);
             Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'Admin\VagaController@criar']);
@@ -107,7 +102,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'Admin\VagaController@eliminar']);
             Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'Admin\VagaController@purgar']);
 
-         
             Route::group(['prefix' => 'candidatos/'], function () {
                 Route::get('/{slug_vaga}', ['as' => 'admin.vagas.candidatos', 'uses' => 'Admin\CandidatoController@index']);
                 Route::get('/{slug_candidato}/aprovar', ['as' => 'admin.vagas.candidatos.aprovar', 'uses' => 'Admin\CandidatoController@aprovar']);
@@ -118,13 +112,19 @@ Route::middleware('auth:sanctum')->group(function () {
                 // Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
                 // Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
                 // Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
-    
-             
-    
+
             });
         });
 
-        
+        Route::group(['prefix' => 'retatorios'], function () {
+
+            Route::group(['prefix' => 'empresas'], function () {
+                Route::group(['prefix' => 'vagas'], function () {
+                    Route::get('gerar/', ['as' => 'admin.retatorios.empresas.vagas.gerar', 'uses' => 'Admin\RelatorioEmpresaController@gerar'])->middleware('access.controll.administrador');
+                    Route::post('relatorio', ['as' => 'admin.empresas.retatorios.vagas.relatorio', 'uses' => 'Admin\RelatorioEmpresaController@relatorio'])->middleware('access.controll.administrador');
+                });
+            });
+        });
 
     });
 
