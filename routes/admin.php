@@ -124,6 +124,13 @@ Route::middleware('auth:sanctum')->group(function () {
                     Route::post('relatorio', ['as' => 'admin.empresas.retatorios.vagas.relatorio', 'uses' => 'Admin\RelatorioEmpresaController@relatorio'])->middleware('access.controll.administrador');
                 });
             });
+
+            Route::group(['prefix' => 'candidatos'], function () {
+                Route::group(['prefix' => 'vagas'], function () {
+                    Route::get('gerar/', ['as' => 'admin.retatorios.candidatos.vagas.gerar', 'uses' => 'Admin\relatorios\RelatorioCandidatoVaga@gerar'])->middleware('access.controll.administrador');
+                    Route::post('relatorio', ['as' => 'admin.retatorios.candidatos.vagas.relatorio', 'uses' => 'Admin\relatorios\RelatorioCandidatoVaga@relatorio'])->middleware('access.controll.administrador');
+                });
+            });
         });
 
     });

@@ -6,7 +6,7 @@ use App\Models\Empresa;
 use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class EmpresaRepository
 // interface UtilizadorRepository extends UtilizadorInterface
 
@@ -64,6 +64,12 @@ class EmpresaRepository
     public function all()
     {
     return    Empresa::join('users','users.id','empresas.propreitario')->select('users.primeiro_nome','users.ultimo_nome','empresas.*');
+       
+    }
+    public function vagaPorEmpresaContabilizado()
+    {
+       
+    return    Empresa::join('vagas','vagas.id_empresa','empresas.id')->groupBy('empresas.id')->select('empresas.*',DB::raw('count(vagas.id) as vagas'));
        
     }
 

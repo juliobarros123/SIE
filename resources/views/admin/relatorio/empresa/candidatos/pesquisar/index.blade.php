@@ -1,5 +1,5 @@
 @extends('layouts._includes.Header')
-@section('titulo', 'Relatório de vagas por empresa')
+@section('titulo', 'Relatório de candidatos por vaga')
 @section('conteudo')
     <!-- partial -->
     <div class="main-panel">
@@ -8,11 +8,11 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Relatório de vagas por empresa</h4>
+                            <h4 class="card-title">Relatório de candidatos por vaga</h4>
                             <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
                                 <i class="ti-plus" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
                             </div>
-                            <form action="{{ route('admin.empresas.retatorios.vagas.relatorio')}}" method="post">
+                            <form action="{{ route('admin.retatorios.candidatos.vagas.relatorio')}}" method="post">
 
                                 @method('post')
                                 @csrf
@@ -21,29 +21,19 @@
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="exampleSelectGender">Empresa:</label>
-                                        <select class="form-control" id="exampleSelectGender" name="id_empresa">
-                                            <option selected disabled>Seleciona a empresa:</option>
+                                        <label for="exampleSelectGender">Vagas:</label>
+                                        <select class="form-control" id="exampleSelectGender" name="id_vaga">
+                                            <option selected disabled>Seleciona a vaga:</option>
                                             <option value="Todas" >Todas</option>
 
-                                            @foreach ($empresas as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                                            @foreach ($vagas as $item)
+                                                <option value="{{ $item->id }}">{{ $item->funcao }}</option>
                                             @endforeach
 
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleSelectGender">Ano:</label>
-                                        <select class="form-control" id="exampleSelectGender" name="ano">
-                                            <option selected disabled>Seleciona o ano:</option>
-                                            <option value="Todos" >Todos:</option>
-                                            <?php foreach(anos() as $year) : ?>
-                                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                          <?php endforeach; ?>
-                                        </select>
-                                       
-                                    </div>
+                                 
 {{-- 
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelectGender">Tipo:</label>

@@ -6,6 +6,7 @@ use App\Models\Vaga;
 use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VagaRepository
 // interface UtilizadorRepository extends UtilizadorInterface
@@ -71,7 +72,16 @@ class VagaRepository
         return $vaga;
     }
 
+public function vagasMinhasEmpresas($id_propreitario){
+    if (Auth::User()->tipoUtilizador == 'Empresario'){
+        $this->all()->where('empresas.propreitario',$id_propreitario)->select('vagas.*');
+    }else{
+       return $this->all()->select('vagas.*');;
+    }
+                   
+            
 
+}
     public function all()
     {
     return  Vaga::join('empresas','vagas.id_empresa','empresas.id')->select('vagas.*','empresas.nome','empresas.id','empresas.propreitario');

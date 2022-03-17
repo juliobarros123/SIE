@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('primeiro_nome')->nullable();
             $table->string('ultimo_nome')->nullable();
             $table->string('password');
-            $table->string('tipoUtilizador')->default('aluno');
+            $table->string('tipoUtilizador')->default('Visitante');
             $table->integer('telefone')->nullable();    
             $table->string('genero')->nullable();  
             $table->foreignId('current_team_id')->nullable();

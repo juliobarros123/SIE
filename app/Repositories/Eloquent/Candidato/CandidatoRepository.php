@@ -6,7 +6,7 @@ use App\Models\Candidato;
 use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CandidatoRepository
 // interface UtilizadorRepository extends UtilizadorInterface
 
@@ -86,6 +86,11 @@ class CandidatoRepository
         return    Candidato::join('users','users.id','candidatos.id_canditado')
         ->join('vagas','vagas.id','candidatos.id_vaga')
         ->select('users.profile_photo_path','users.primeiro_nome','users.ultimo_nome','users.email','users.telefone','candidatos.*');
+    }
+
+    public function candidatoPorVagaContabilizado(){
+ return $this->all()->groupBy('vagas.id')->select('vagas.funcao','vagas.tipo_vaga',DB::raw('count(candidatos.id) as candidatos'));
+
     }
 
 }

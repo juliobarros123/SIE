@@ -92,6 +92,8 @@
             <div class="collapse" id="relatorio">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.retatorios.empresas.vagas.gerar') }}"> Vagas por empresa </a></li>
+               
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin.retatorios.candidatos.vagas.gerar') }}"> Candidatos por vagas </a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login-2.html"> Login 2 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register-2.html"> Register 2 </a></li>
