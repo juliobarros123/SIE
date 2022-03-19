@@ -39,6 +39,15 @@ class RelatorioEmpresaController extends Controller
         }
        
         $response['empresasVagas']=$result->get();
-        return view('admin.relatorio.empresa.vaga.relatorio.index',$response);
+    
+        $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");
+        $html = view("admin.relatorio.empresa.vaga.relatorio.index",$response);
+       
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($response["css"] , \Mpdf\HTMLParserMode::HEADER_CSS);
+            $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+            $mpdf->Output("alunos por municípios.pdf", "I");
+       
+          
     }
 }

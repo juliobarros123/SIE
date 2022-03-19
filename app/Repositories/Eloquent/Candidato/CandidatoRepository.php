@@ -84,12 +84,12 @@ class CandidatoRepository
     public function all()
     {
         return    Candidato::join('users','users.id','candidatos.id_canditado')
-        ->join('vagas','vagas.id','candidatos.id_vaga')
+        ->leftJoin('vagas','vagas.id','candidatos.id_vaga')
         ->select('users.profile_photo_path','users.primeiro_nome','users.ultimo_nome','users.email','users.telefone','candidatos.*');
     }
 
     public function candidatoPorVagaContabilizado(){
- return $this->all()->groupBy('vagas.id')->select('vagas.funcao','vagas.tipo_vaga',DB::raw('count(candidatos.id) as candidatos'));
+ return $this->all()->groupBy('vagas.id')->select('vagas.funcao','vagas.tipo_vaga','candidatos.estado',DB::raw('count(candidatos.id) as candidatos'));
 
     }
 

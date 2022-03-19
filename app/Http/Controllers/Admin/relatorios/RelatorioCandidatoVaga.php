@@ -40,9 +40,19 @@ class RelatorioCandidatoVaga extends Controller
         if($request->id_vaga!="Todas"){
             $result=$result->where('vagas.id',$request->id_vaga);
         }
-       dd( $result->get());
-       
-        // $response['empresasVagas']=$result->get();
-        // return view('admin.relatorio.empresa.vaga.relatorio.index',$response);
-    }
+        $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");
+  
+        $response['candidatosVagas']=$result->get();
+     
+        $mpdf = new \Mpdf\Mpdf();
+        $html = view("admin/relatorio/empresa/candidatos/relatorio/index",$response);
+        $mpdf->WriteHTML($response["css"] , \Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+
+       //  $html = view("admin/pdfs/alunos_municipio/index", $response);
+       //  $mpdf->writeHTML($html);
+        $mpdf->Output("alunos por municípios.pdf", "I");
+
+    
+}
 }

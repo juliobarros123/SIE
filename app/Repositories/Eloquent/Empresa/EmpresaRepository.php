@@ -69,10 +69,16 @@ class EmpresaRepository
     public function vagaPorEmpresaContabilizado()
     {
        
-    return    Empresa::join('vagas','vagas.id_empresa','empresas.id')->groupBy('empresas.id')->select('empresas.*',DB::raw('count(vagas.id) as vagas'));
+    return    Empresa::leftJoin('vagas','vagas.id_empresa','empresas.id')->groupBy('empresas.id')->select('empresas.*',DB::raw('sum(vagas.quantidade) as vagas'));
        
     }
-
+public function candidatoAceitePorEmpresasContabilizado(){
+  return  Empresa::leftJoin('vagas','vagas.id_empresa','empresas.id')
+         ->leftJoin('candidatos','candidatos.id_vaga','vagas.id')
+    //   ->join('users','users.id','candidatos.id_canditado')
+     ->groupBy('empresas.id')->where('candidatos.estado',2)->select('empresas.*','candidatos.estado',DB::raw('count(candidatos.id) as candidatos'))
+    ;
+}
     /**
      * Create a personal team for the user.
      *

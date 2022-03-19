@@ -58,7 +58,9 @@ Route::get('admin/buscar-usuario/{usuario}', ['as' => 'admin.buscarUsuario', 'us
 Route::post('users/salvar', ['as' => 'encarregado.salvar', 'uses' => 'Site\UserController@salvar']);
 // Route::get('admin/users/cadastrar', ['as' => 'admin.users.cadastrar', 'uses' => 'Admin\UserController@create']);
 //User-End SITE
-
+Route::get('/vagas-por-empresas', ['as' => 'vagas.por.empresas', 'uses' => 'Ajax\GraficoController@vagaPorEmpresas']);
+Route::get('/candidatos-por-vaga', ['as' => 'candidatos.por.vaga', 'uses' => 'Ajax\GraficoController@candidatosPorVaga']);
+Route::get('/candidatos-aceite-por-empresa', ['as' => 'candidatos.aceite.por.empresa', 'uses' => 'Ajax\GraficoController@candidatosAceitePorEmpresa']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'admin/'], function () {
         Route::group(['prefix' => 'utilizadores/'], function () {

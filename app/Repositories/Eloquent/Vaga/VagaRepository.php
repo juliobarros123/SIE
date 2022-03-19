@@ -7,7 +7,7 @@ use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 class VagaRepository
 // interface UtilizadorRepository extends UtilizadorInterface
 
@@ -56,8 +56,8 @@ class VagaRepository
             'capa' => isset($capa) ? $capa : null,
             'caminho_discricao' => isset($caminho) ? $caminho : null,
             'remuneracao' => isset($array['remuneracao']) ? $array['remuneracao'] : null,
-            // 'id_empresa' => isset($array['id_empresa']) ? $array['id_empresa'] : null,
-            'id_empresa' => 1,
+            'id_empresa' => isset($array['id_empresa']) ? $array['id_empresa'] : null,
+   
             'tipo_vaga'=>isset($array['tipo_vaga']) ? $array['tipo_vaga'] : null,
             'funcao' => isset($array['funcao']) ? $array['funcao'] : null,
             'datalimite' => isset($array['datalimite']) ? $array['datalimite'] : null,
@@ -125,4 +125,17 @@ public function vagasMinhasEmpresas($id_propreitario){
         ]);
         return   $vaga ;
     }
+    
+    public function candidatoPorVagaContabilizado(){
+     return   Vaga::leftJoin('candidatos','candidatos.id_vaga','vagas.id')
+        ->join('users','users.id','candidatos.id_canditado')
+       ->groupBy('vagas.id')->select('vagas.funcao','vagas.tipo_vaga','candidatos.estado',DB::raw('count(candidatos.id) as candidatos'));
+       
+    }
+    // public function candidatoAceitePorEmpresasContabilizado(){
+    //     return   Vaga::leftJoin('candidatos','candidatos.id_vaga','vagas.id')
+    //        ->join('users','users.id','candidatos.id_canditado')
+    //       ->groupBy('vagas.id')->where('candidatos.estado',2)->select('vagas.funcao','vagas.tipo_vaga','candidatos.estado',DB::raw('count(candidatos.id) as candidatos'));
+          
+    //    }
 }

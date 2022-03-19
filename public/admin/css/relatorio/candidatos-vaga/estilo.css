@@ -1,0 +1,55 @@
+
+    table,
+    
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th
+ {
+        height: 50px;
+        background-color: hsl(0, 0%, 90%);
+    }
+    td{
+        height: 50px;
+     text-align: center;
+        background-color: hsl(0, 0%, 90%);
+    }
+.cabecalho{
+/* display: flex;
+flex-direction: column;
+align-items: center; */
+
+
+}
+.mt{
+    margin-top: 1000px;
+}
+#logo{
+    height: 50px;
+    margin-left: 300px;
+}
+.titulo{
+   
+    font-weight: 900;
+    margin:1px;
+    text-align: center;
+
+}
+#section{
+    
+width: 100%;
+display: flex;
+justify-content: center
+;
+}
+.table{
+    width: 90%;
+    margin-top: 60px;
+}
