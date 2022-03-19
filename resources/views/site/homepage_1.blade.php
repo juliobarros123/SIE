@@ -344,135 +344,38 @@
           </div>
       </div>
       <div class="blog-wrapper">
-          <div class="container-fluid wow fadeIn row">
+          <div class="container-fluid wow fadeIn ">
 
-           {{-- @foreach (vagas_disponiveis() as $vaga)
-                
-        
-            <div class="col-lg-4 blog-col">
-                <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                    <div class="blog-image">
-                        <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt=" {{$vaga->funcao}}" ></a>
-                        <span class="date">{{$vaga->created_at  }} até {{$vaga->datalimite  }} </span>
-                    </div>
-                    <div class="blog-content">
-                        <ul class="meta">
-                            <li><a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}">{{$vaga->nome  }}</a></li>
-                            <li><a href="#">{{$vaga->quantidade  }} Funcinários</a></li>
-                        </ul>
-                        <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach --}}
+            <div class="row">
+
          
-            @foreach (vagas_disponiveis() as $vaga)
-              <div class="col-lg-4 blog-col pt-4">
-                  <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                      <div class="blog-image">
-                          <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt="{{$vaga->funcao}}"></a>
-                          <span class="date">{{$vaga->created_at  }} Até {{$vaga->datalimite  }}</span>
-                      </div>
-                      <div class="blog-content ">
-                          <ul class="meta">
-                              <li class="d-inline"><a href="#">{{$vaga->nome  }}</a></li>
-                              <li class="d-inline"><a href="#">{{$vaga->tipo_vaga  }}</a></li>
-                              <li class="d-inline"><a href="#">{{$vaga->quantidade  }} Vagas</a></li>
-                              <li class="d-inline"><a href="{{ url("storage/{$vaga->caminho_discricao}") }}" class="text-primary" download><i class="fa-solid fa-download"></i> Baixar Requisitos</a></li>
-                          </ul>
-                          <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
- 
-                          <a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}" class="main-btn main-btn-2 w-100" >Candidatar-se</a>
-                          
-                          <!-- <div class="down-content">
-                            <div class="border-first-button" ><a href="#">Discover More</a></div>
-                          </div> -->
-
-                      </div>
-                  </div>
-              </div>
-              @endforeach
-              {{-- <div class="col-lg-4 blog-col pt-4">
-                <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                    <div class="blog-image">
-                        <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                        <span class="date">30 Ago, 2021</span>
-                    </div>
-                    <div class="blog-content">
-                        <ul class="meta">
-                            <li><a href="#">Nosso Super</a></li>
-                            <li><a href="#">2 Funcinários</a></li>
-                        </ul>
-                        <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
+              @foreach (vagas_disponiveis() as $vaga)
+                <div class="col-lg-4 blog-col pt-4">
+                    <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
+                        <div class="blog-image">
+                            <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt="{{$vaga->funcao}}"></a>
+                            <span class="date">{{$vaga->created_at  }} disponível até {{$vaga->datalimite  }}</span>
+                        </div>
+                        <div class="blog-content ">
+                            <ul class="meta">
+                                <li class="d-inline"><a href="#">{{$vaga->nome  }}</a></li>
+                                <li class="d-inline"><a href="#">{{$vaga->quantidade  }} Funcinários</a></li>
+                                <li class="d-inline"><a href="{{ url("storage/{$vaga->caminho_discricao}") }}" class="text-primary" download><i class="fa-solid fa-download"></i> Baixar requisitos</a></li>
+                            </ul>
+                            <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
+  
+                            <a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}" class="main-btn main-btn-2 w-100" >Candidatar-se</a>
+                            
+                            <!-- <div class="down-content">
+                              <div class="border-first-button" ><a href="#">Discover More</a></div>
+                            </div> -->
+  
+                        </div>
                     </div>
                 </div>
+                @endforeach
+       
             </div>
-            <div class="col-lg-4 blog-col  pt-4">
-              <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                  <div class="blog-image">
-                      <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                      <span class="date">30 Ago, 2021</span>
-                  </div>
-                  <div class="blog-content">
-                      <ul class="meta">
-                          <li><a href="#">Nosso Super</a></li>
-                          <li><a href="#">2 Funcinários</a></li>
-                      </ul>
-                      <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 blog-col  pt-4">
-            <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-                <div class="blog-image">
-                    <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                    <span class="date">30 Ago, 2021</span>
-                </div>
-                <div class="blog-content">
-                    <ul class="meta">
-                        <li><a href="#">Nosso Super</a></li>
-                        <li><a href="#">2 Funcinários</a></li>
-                    </ul>
-                    <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
-                </div>
-            </div>
-        </div> --}}
-        {{-- <div class="col-lg-4 blog-col  pt-4">
-          <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-              <div class="blog-image">
-                  <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                  <span class="date">30 Ago, 2021</span>
-              </div>
-              <div class="blog-content">
-                  <ul class="meta">
-                      <li><a href="#">Nosso Super</a></li>
-                      <li><a href="#">2 Funcinários</a></li>
-                  </ul>
-                  <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
-              </div>
-          </div>
-      </div>
-      <div class="col-lg-4 blog-col">
-        <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
-            <div class="blog-image">
-                <a href="vagas-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                <span class="date">30 Ago, 2021</span>
-            </div>
-            <div class="blog-content">
-                <ul class="meta">
-                    <li><a href="#">Nosso Super</a></li>
-                    <li><a href="#">2 Funcinários</a></li>
-                </ul>
-                <h4 class="blog-title"><a href="vagas-details.html">Desenvolvedor de Sistemas</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra, augue eget tempor auctors.</p>
-            </div>
-        </div>
-    </div> --}}
           </div>
       </div>
   </div>
