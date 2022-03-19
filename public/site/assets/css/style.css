@@ -2089,7 +2089,7 @@ p {
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background-color: #ff8257;
+        /* background-color: #ff8257; */
         bottom: 4px;
         left: -18px; }
     .single-blog .blog-content .meta li a {
@@ -3082,5 +3082,10 @@ p {
         transition: all 0.3s linear; }
         .sidebar .sidebar-tags .sidebar-tags-list li a:hover {
           color: #ff8257; }
+
+          .item-vaga{
+            color: #ff8257;
+            font-weight: 600;
+          }
 
 /*# sourceMappingURL=style.css.map */
