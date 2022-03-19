@@ -25,7 +25,7 @@
  <div class="container">
    <div class="row">
      <div class="col-lg-12">
-       <p>Copyright © 2022 S:I:E, All Rights Reserved. 
+       <p>Copyright © 2022 S.I.E, All Rights Reserved. 
        <br><a href="https://templatemo.com" target="_parent" title="free css templates"></a>
        <br> <a href="https://themewagon.com" target="_blank" title="free css templates"></a> 
      </p>
