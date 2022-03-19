@@ -47,7 +47,7 @@
             <div class="about-right-content">
               <div class="section-heading">
                 <h6>Sobre</h6>
-                <h4>O que é o  <em>S.I.E</em></h4>
+                <h4>O QUE É O  <em>S.I.E</em></h4>
                 <div class="line-dec"></div>
               </div>
               <p>O S.I.E é um Sitema Incubador de Empresas. Este tem como finalidade divulgar <a rel="nofollow" href="#portfolio" target="_blank">vagas</a> de emprego e estágios, assim comos os <a rel="nofollow" href="#services" target="_blank">serviços</a> das empresas alocadas neste sistema.</p>
@@ -134,7 +134,7 @@
                   <div class="first-thumb active">
                     <div class="thumb">
                       <span class="icon"><img src="/site/assets/images/service-icon-01.png" alt=""></span>
-                      Tecnologias de Informação
+                      Tecnologias
                     </div>
                   </div>
                   <div>
@@ -331,7 +331,7 @@
 
 
 
-<section id="blog" class="blog-area">
+<section id="blog" class="our-portfolio section">
   
 
   <div class="container">
@@ -344,9 +344,9 @@
           </div>
       </div>
       <div class="blog-wrapper">
-          <div class="row">
+          <div class="container-fluid wow fadeIn">
 
-            {{-- @foreach (vagas_disponiveis() as $vaga)
+           {{-- @foreach (vagas_disponiveis() as $vaga)
                 
         
             <div class="col-lg-4 blog-col">
@@ -372,16 +372,17 @@
                   <div class="single-blog mt-55 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.4s">
                       <div class="blog-image">
                           <a href="{{ url("storage/{$vaga->capa}") }}"><img src="{{ url("storage/{$vaga->capa}") }}" alt="{{$vaga->funcao}}"></a>
-                          <span class="date">{{$vaga->created_at  }} disponível até {{$vaga->datalimite  }}</span>
+                          <span class="date">{{$vaga->created_at  }} Até {{$vaga->datalimite  }}</span>
                       </div>
                       <div class="blog-content ">
                           <ul class="meta">
                               <li class="d-inline"><a href="#">{{$vaga->nome  }}</a></li>
-                              <li class="d-inline"><a href="#">{{$vaga->quantidade  }} Funcinários</a></li>
-                              <li class="d-inline"><a href="{{ url("storage/{$vaga->caminho_discricao}") }}" class="text-primary" download><i class="fa-solid fa-download"></i> Baixar requisitos</a></li>
+                              <li class="d-inline"><a href="#">{{$vaga->tipo_vaga  }}</a></li>
+                              <li class="d-inline"><a href="#">{{$vaga->quantidade  }} Vagas</a></li>
+                              <li class="d-inline"><a href="{{ url("storage/{$vaga->caminho_discricao}") }}" class="text-primary" download><i class="fa-solid fa-download"></i> Baixar Requisitos</a></li>
                           </ul>
                           <h4 class="blog-title"><a href="vagas-details.html">{{$vaga->funcao  }}</a></h4>
-
+ 
                           <a href="{{ route('site.vagas.candidatos.inscrever-se',['slug_vaga'=>$vaga->slug]) }}" class="main-btn main-btn-2 w-100" >Candidatar-se</a>
                           
                           <!-- <div class="down-content">
@@ -475,21 +476,23 @@
           </div>
       </div>
   </div>
-</section>
+</section >
 <div   id="noticia">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 offset-lg-4  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.3s">
-        <div class="section-heading">
-          <h6>Notíocias Novas</h6>
-          <h4>Fique actualizado <em>Posts</em></h4>
-          <div class="line-dec"></div>
-        </div>
+
+      <div class="section-title text-center pt-5">
+                  <p class="sub-title">Notícias</p>
+                  <h2 class="title">Fique actualizado</h2>
+                
+              </div>
       </div>
-      <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+
+      <div class="col-lg-6 show-up wow fadeInUp pt-4" data-wow-duration="1s" data-wow-delay="0.3s">
         <div class="blog-post">
           <div class="thumb">
-            <a href="#"><img src="/site/assets/images/blog-post-01.jpg" alt=""></a>
+            <a href="#"><img src="/site/assets/images/blog-post-00.jpg" alt=""></a>
           </div>
           <div class="down-content">
             <span class="category">SEO Analysis</span>
@@ -502,7 +505,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+      <div class="col-lg-6 wow fadeInUp pt-4" data-wow-duration="1s" data-wow-delay="0.3s">
         <div class="blog-posts">
           <div class="row">
             <div class="col-lg-12">
@@ -523,6 +526,7 @@
                 <div class="thumb">
                   <a href="#"><img src="/site/assets/images/blog-post-03.jpg" alt=""></a>
                 </div>
+               
                 <div class="right-content">
                   <span class="category">SIE</span>
                   <span class="date">24 Setembro 2021</span>
@@ -531,19 +535,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-12">
-              <div class="post-item last-post-item">
-                <div class="thumb">
-                  <a href="#"><img src="/site/assets/images/blog-post-04.jpg" alt=""></a>
-                </div>
-                <div class="right-content">
-                  <span class="category">SIE</span>
-                  <span class="date">24 Setembro 2021</span>
-                  <a href="#"><h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4></a>
-                  <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -571,7 +563,8 @@
             </div>
             <div class="col-lg-5">
               <div id="map">
-                <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="636px" frameborder="0" style="border:0" allowfullscreen></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.650263070718!2d13.264887615139505!3d-8.818888493666758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f18003d4bac3%3A0x2568aa7432e71445!2sInstituto%20de%20Telecomunica%C3%A7%C3%B5es!5e0!3m2!1spt-PT!2sao!4v1647694446838!5m2!1spt-PT!2sao" width="100%" height="636px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          
               </div>
             </div>
             <div class="col-lg-7">
@@ -603,18 +596,18 @@
                   </div>
                   <div class="col-lg-6">
                     <fieldset>
-                      <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                      <input type="name" name="name" id="name" placeholder="Nome" autocomplete="on" required>
                     </fieldset>
                     <fieldset>
-                      <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+                      <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Email" required="">
                     </fieldset>
                     <fieldset>
-                      <input type="subject" name="subject" id="subject" placeholder="Subject" autocomplete="on">
+                      <input type="subject" name="subject" id="subject" placeholder="Assunto" autocomplete="on">
                     </fieldset>
                   </div>
                   <div class="col-lg-6">
                     <fieldset>
-                      <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>  
+                      <textarea name="message" type="text" class="form-control" id="message" placeholder="Mensagem" required=""></textarea>  
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
