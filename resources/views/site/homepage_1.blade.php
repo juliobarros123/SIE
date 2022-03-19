@@ -344,7 +344,7 @@
           </div>
       </div>
       <div class="blog-wrapper">
-          <div class="container-fluid wow fadeIn">
+          <div class="container-fluid wow fadeIn row">
 
            {{-- @foreach (vagas_disponiveis() as $vaga)
                 
