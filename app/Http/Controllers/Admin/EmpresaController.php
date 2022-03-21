@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Repositories\Eloquent\Empresa\EmpresaRepository;
 use App\Models\Logger;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 class EmpresaController extends Controller
@@ -29,11 +30,18 @@ class EmpresaController extends Controller
         try {
         
             $empresa =$this->empresa->salvar($request, Auth::user()->id);
+       if(  $empresa && Auth::User()->tipoUtilizador == 'Visitante' ){
+           User::find(Auth::User()->id)->update([
+               'tipoUtilizador'=>'Empresario'
+           ]
+           );
+       }
+
        
-            $this->loggerData("Adicionou vaga");
+            $this->loggerData("Cadastrou uma nova empresa");
             return redirect()->back()->with('status', '1');
 
-            return response()->json($user);
+            // return response()->json($user);
 
         } catch (\Exception $exception) {
             return response()->json($exception);
@@ -46,7 +54,13 @@ class EmpresaController extends Controller
         return view('admin.empresa.editar.index',compact('empresa'));
     }
     public function index(){
-     $empresas=$this->empresa->all()->get();
+        $empresas=array();
+        if(Auth::User()->tipoUtilizador == 'Administrador'){
+            $empresas=$this->empresa->all()->get();
+        }else if(Auth::User()->tipoUtilizador == 'Empresario'){
+            $empresas=$this->empresa->all()->where('empresas.propreitario',Auth::id())->get();
+        }
+   
  
      return view('admin.empresa.index', compact('empresas'));
     }
@@ -61,6 +75,8 @@ class EmpresaController extends Controller
            $estado= $this->empresa->update($input, $slug);
      
            if($estado){
+            $this->loggerData("Editou uma  empresa");
+            return redirect()->back()->with('status', '1');
          return redirect()->route('admin.empresas')->with('update', '1');
            }
             

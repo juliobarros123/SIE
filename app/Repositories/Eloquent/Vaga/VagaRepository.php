@@ -74,9 +74,9 @@ class VagaRepository
 
 public function vagasMinhasEmpresas($id_propreitario){
     if (Auth::User()->tipoUtilizador == 'Empresario'){
-        $this->all()->where('empresas.propreitario',$id_propreitario)->select('vagas.*');
+        return   $this->all()->where('empresas.propreitario',$id_propreitario)->select('vagas.*');
     }else{
-       return $this->all()->select('vagas.*');;
+       return $this->all()->select('vagas.*');
     }
                    
             

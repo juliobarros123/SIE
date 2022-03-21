@@ -25,7 +25,9 @@ class VagaController extends Controller
     }
 
     public function  index(){
-     $vagas=   Vaga::join('empresas','empresas.id','vagas.id_empresa')->select('vagas.*')->get();
+        $vagas=   $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->get();
+
+ 
      $empresas=Empresa::where('propreitario',Auth::User()->id)->get();
 
      return view('admin.vaga.index', compact('vagas'),compact('empresas'));
