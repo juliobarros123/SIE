@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\controllerTurma;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,18 +11,15 @@ use App\Http\Controllers\admin\controllerTurma;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 // ['as' => 'admin.listar', 'uses' => 'Admin\CandidaturaController@index']
-
 
 // Route::get('/', function () {
 //     return view('site.index');
 // });
 //Tela Inicial
 Route::get('/bem-vindo', ['as' => 'sie', 'uses' => 'Site\HomeController@index']);
-
-
 
 //Route::get('/t1   ', ['as' => , 'uses' => 'SiteController@s1']);
 
@@ -48,22 +44,20 @@ Route::get('anos-lectivo/', ['as' => 'site.anos-lectivo', 'uses' => 'Site\AnoLec
 //Manuais Escolares
 Route::get('manuais-escolares/', ['as' => 'site.manuais-escolares', 'uses' => 'Site\ManuaisController@index']);
 
-// 
+//
 Route::middleware('auth:sanctum')->group(function () {
-Route::group(['prefix' => 'vagas/candidatos/'], function () {
-    Route::get('{slug_vaga}/inscrever-se', ['as' => 'site.vagas.candidatos.inscrever-se', 'uses' => 'Site\CandidatoController@inscrever_se']);
-  Route::post('{slug_vaga}/inscrever-se-agora', ['as' => 'site.vagas.candidatos.inscrever-se-agora', 'uses' => 'Site\CandidatoController@inscrever_se_agora']);
-
-    Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
-    Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
-    Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
-    Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
-    Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
-    Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
-
-    
-
-});
+    Route::group(['prefix' => 'vagas/candidatos/'], function () {
+        Route::get('{slug_vaga}/inscrever-se', ['as' => 'site.vagas.candidatos.inscrever-se', 'uses' => 'Site\CandidatoController@inscrever_se']);
+        Route::post('{slug_vaga}/inscrever-se-agora', ['as' => 'site.vagas.candidatos.inscrever-se-agora', 'uses' => 'Site\CandidatoController@inscrever_se_agora']);
+        Route::get('/minhas-vagas/{slug_candidato}', ['as' => 'admin.vagas.candidatos.minhas.vagas', 'uses' => 'Site\CandidatoController@minhas_vagas']);
+        Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
+        Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
+        Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
+        Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
+        Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
+        Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
+      
+    });
 });
 //site inicial inicio
 Route::get('/', ['as' => 'site.site', 'uses' => 'SiteController@index']);
@@ -72,7 +66,7 @@ Route::get('/', ['as' => 'site.site', 'uses' => 'SiteController@index']);
 //User-Start
 // Route::get('utilizador/cadastrar  ', ['as' => 'site.users.cadastrar', 'uses' => 'Site\UserController@create']);
 Route::post('site/users/salvar', ['as' => 'users.salvar', 'uses' => 'Site\UserController@salvar']);
-Route::get('encarregado', function(){
+Route::get('encarregado', function () {
     return view('site.encarregado.index');
 });
 Route::get('encarregado/increver-se', ['as' => 'encarregado.increver_se', 'uses' => 'Site\UserController@increver_se']);
@@ -102,6 +96,6 @@ Route::group(['prefix' => 'palavra_passe'], function () {
     // route::post('nova_pa',['as' => 'email.vrf_codigo_confirme', 'uses' => 'PalavrarPasseController@vrf_codigo_confirme']);
     route::get('nova_palavra_passe/', ['as' => 'palavra_passe.nova_palavra_passe', 'uses' => 'PalavrarPasseController@nova_palavra_passe']);
     route::post('registar_palavra_passe/', ['as' => 'palavra_passe.registar_palavra_passe', 'uses' => 'PalavrarPasseController@registar_palavra_passe']);
-  
+
     route::get('confirmar_codigo', ['as' => 'palavra_passe.confirmar_codigo', 'uses' => 'PalavrarPasseController@confirmar_codigo']);
-  });
+});

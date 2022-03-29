@@ -23,9 +23,12 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelectGender">Empresa:</label>
                                         <select class="form-control" id="exampleSelectGender" name="id_empresa">
+                                           
                                             <option selected disabled>Seleciona a empresa:</option>
-                                            <option value="Todas" >Todas</option>
-
+                                       
+                                            @if (Auth::User()->tipoUtilizador == 'Administrador')
+                                            <option value="Todas" >Todas</option> 
+                                            @endif
                                             @foreach ($empresas as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                             @endforeach

@@ -56,13 +56,13 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Empresas</h4>
+                            <h4 class="card-title">Vagas</h4>
                             <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
                                 <i class="ti-plus" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
                             </div>
 
                             <div class="table-responsive ">
-                                <table class="table table-striped " id="dataTable-1">
+                                <table class="table table-striped " id="myTable">
                                     <thead>
                                         <tr>
                                             <th>

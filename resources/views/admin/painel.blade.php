@@ -27,7 +27,7 @@
                     <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ ttl_utilizadores() }}</h3>
                     <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-danger">0.47% <span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  {{-- <p class="mb-0 mt-2 text-danger">0.47% <span class="text-black ml-1"><small>(30 days)</small></span></p> --}}
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@
                     <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ ttl_candidatos_aceites() }}</h3>
                     <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                   </div>  
-                  <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  {{-- <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p> --}}
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Estatística de candidatos aceites por vagas</h4>
+                    <h4 class="card-title">Estatística de candidatos aceites por empresas</h4>
                     <canvas id="doughnutChart"></canvas>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
               <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Estatística de candidatos aceites por vagas  </h4>
+                    <h4 class="card-title">Estatística de candidatos aceites por empresas  </h4>
                     <canvas id="pieChart"></canvas>
                   </div>
                 </div>

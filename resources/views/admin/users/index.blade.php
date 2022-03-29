@@ -63,7 +63,7 @@
                             <form id="form_tr_editar" >
                                 @method('PUT')
                             <div class="table-responsive">
-                                <table class="table table-striped" id="dataTable-1">
+                                <table class="table table-striped" id="myTable">
                                     <thead>
 
                                         <th>

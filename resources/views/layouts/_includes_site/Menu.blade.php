@@ -20,7 +20,7 @@
         <div class="col-12">
           <nav class="main-nav" style="margin-top: -25px">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="{{ url('bem-vindo') }}" class="logo">
               <img src="/site/assets/images/logo-v1.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
@@ -30,9 +30,17 @@
               <li class="scroll-to-section"><a href="#about">Sobre</a></li>
               <li class="scroll-to-section"><a href="#services">Serviços</a></li>
               <li class="scroll-to-section"><a href="#blog">Vagas</a></li>
+              @if (Auth::check())
+              <li class="scroll-to-section"><a href="{{ route('admin.vagas.candidatos.minhas.vagas',['slug_candidato'=>Auth::User()->slug]) }}">Minhas Vagas</a></li>
+                   @endif
               <li class="scroll-to-section"><a href="#noticia">Notícias</a></li>
               <li class="scroll-to-section"><a href="#contact">Contacto</a></li> 
+              @if (!Auth::check())
               <li class="scroll-to-section"><div class="border-first-button"><a href="{{ route('login') }}">Entrar</a></div></li> 
+              @else
+              <li class="scroll-to-section"><div class="border-first-button"><a href="{{ url('painel') }}">Painel</a></div></li> 
+              @endif
+             
               {{-- <li class="scroll-to-section"><div class=""><a href="{{ route('register') }}">Inscrever-se</a></div></li>  --}}
             </ul>        
             <a class='menu-trigger'>

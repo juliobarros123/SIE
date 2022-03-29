@@ -9,7 +9,7 @@
     <table class="table">
         <tr>
             <th>Vaga</th>
-            <th>Inscrito</th>
+            <th>Inscritos</th>
             {{-- <th>Pendentes</th>
             <th>Aceites</th>
             <th>Não eceites</th> --}}

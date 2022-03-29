@@ -340,7 +340,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //logs
     Route::get('admin/logs/pesquisar', ['as' => 'admin.logs.pesquisar.index', 'uses' => 'Admin\LogUserController@pesquisar'])->middleware('access.controll.administrador');
     Route::post('admin/logs/recebelogs', ['as' => 'admin.logs.recebelogs', 'uses' => 'Admin\LogUserController@recebelogs'])->middleware('access.controll.administrador');
-    Route::get('admin/logs/visualizar/index/{anoLectivo}/{utilizador}', ['as' => 'admin.logs.listar', 'uses' => 'Admin\LogUserController@index'])->middleware('access.controll.administrador');
+    Route::post('admin/logs/visualizar/', ['as' => 'admin.logs.visualizar', 'uses' => 'Admin\LogUserController@visualizar'])->middleware('access.controll.administrador');
     //
 
     //materia

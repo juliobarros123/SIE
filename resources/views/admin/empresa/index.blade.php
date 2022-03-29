@@ -93,7 +93,7 @@
                             </div>
                           
                             <div class="table-responsive ">
-                                <table class="table table-striped "    id="dataTable-1">
+                                <table class="table table-striped " id="myTable">
                                     <thead>
                                         <tr>
                                         <th>
@@ -182,6 +182,7 @@
 
             </div>
         </div>
+     
         <!-- content-wrapper ends -->
         <!-- partial:/admin/imagespartials/_footer.html -->
         <footer class="footer">

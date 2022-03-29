@@ -29,7 +29,9 @@ class RelatorioCandidatoVaga extends Controller
     }
   
     public function gerar(){
-       $response['vagas']= $this->vaga->vagasMinhasEmpresas( Auth::user()->id)->get();
+       $response['vagas']=         $vagas=   $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->get();
+    //    dd(       $response['vagas']);
+    //    $this->vaga->vagasMinhasEmpresas( Auth::user()->id)->get();
   
         return view('admin.relatorio.empresa.candidatos.pesquisar.index',$response);
     }

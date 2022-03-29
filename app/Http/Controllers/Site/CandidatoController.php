@@ -58,4 +58,10 @@ class CandidatoController extends Controller
         }
 
     }
+
+    public function minhas_vagas($slug_candidato){
+        $vagas =$this->candidato->minhas_vagas($slug_candidato)->get();
+        // dd( $vagas);
+        return view('site.candidatos.minhas-vagas.index', compact('vagas'));
+    }
 }

@@ -1,26 +1,7 @@
- <!-- container-scroller -->
- <!-- plugins:js -->
 
- <!-- endinject -->
- <!-- Plugin js for this page-->
-
-
- <script src="/js/datatables/jquery-3.5.1.js"></script>
  <script src="/js/sweetalert2.all.min.js"></script>
- <script src='/js/datatables/jquery.dataTables.min.js'></script>
- <script src='/js/datatables/dataTables.bootstrap4.min.js'></script>
- <script>
-     $('#dataTable-1').DataTable({
-         autoWidth: true,
-         "lengthMenu": [
-             [16, 32, 64, -1],
-             [16, 32, 64, "All"]
-         ]
-     });
- </script>
 
 
- {{-- <script src="/admin/js/chart.js"></script> --}}
  <script src="/admin/vendors/base/vendor.bundle.base.js"></script>
 
  <!-- endinject -->
@@ -436,7 +417,13 @@ function dados(){
 }
 
 dados();
-  
+
 
  
+ </script>
+ <script src="/js/datatables/datatable.js"></script>
+ <script>
+     $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
  </script>

@@ -25,7 +25,12 @@ class RelatorioEmpresaController extends Controller
     }
   
     public function gerar(){
-       $response['empresas']= $this->empresa->all()->get();
+       $response['empresas']="";
+       if(Auth::User()->tipoUtilizador == 'Administrador'){
+       $response['empresas']=$this->empresa->all()->get();
+    }else if(Auth::User()->tipoUtilizador == 'Empresario'){
+       $response['empresas']=$this->empresa->all()->where('empresas.propreitario',Auth::id())->get();
+    }
    
         return view('admin.relatorio.empresa.vaga.pesquisar.index',$response);
     }

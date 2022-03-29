@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LogUser;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class LogUserController extends Controller
@@ -14,13 +15,11 @@ class LogUserController extends Controller
   public function pesquisar()
   {
     
-      $response['anos'] =  $response['logs'] =DB::table('logs')
-      ->selectRaw('YEAR(created_at) as ano')->distinct('YEAR(created_at)')->get();
+      // $response['anos'] =  $response['logs'] =DB::table('logs')
+      // ->selectRaw('YEAR(created_at) as ano')->distinct('YEAR(created_at)')->get();
 
-      $response['utilizadores'] =  $response['logs'] =DB::table('logs')
-      ->join('users', 'users.id', '=', 'logs.it_idUser')
-      ->select('users.vc_primemiroNome' ,'users.vc_apelido')->DISTINCT ('logs.it_idUser')
-          ->get();
+      $response['utilizadores'] =  User::all();
+          // dd($response['utilizadores']);
       return view('admin/logs/pesquisar/index', $response);
   }
   public function recebelogs(Request $request)
@@ -29,12 +28,21 @@ class LogUserController extends Controller
       $utilizador = $request->vc_nome;
       return redirect("admin/logs/visualizar/index/$anoLectivo/$utilizador");
   }
-  public function index( LogUser $logPesquisa,$anoLectivo,$utilizador)
+  public function visualizar(Request $request)
   {
-    $response['anoLectivo'] = $anoLectivo;
-    $response['utilizador'] = $utilizador;
-    $response['logs'] =  $logPesquisa->LogsForSearch($anoLectivo,$utilizador);
-    return view('admin/logs/visualizar/index', $response);
+    // dd($request);
+    $logs=LogUser::join('users', 'users.id', '=', 'logs.it_idUser');
+     
+        if($request->id_utilizador!="Todos"){
+          $logs=$logs->where('logs.it_idUser',$request->id_utilizador);
+      }
+      if($request->ano!="Todos"){
+          $logs=$logs->whereYear('logs.created_at',$request->ano);
+      }
+     
+      $response['logs']=$logs->select('logs.*','users.primeiro_nome','users.ultimo_nome')->get();
+  return view('admin.logs.visualizar.index',$response);
+     
   }
 
 }

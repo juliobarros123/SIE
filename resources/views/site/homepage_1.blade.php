@@ -428,7 +428,7 @@
 
                         @foreach (vagas_disponiveis() as $vaga)
                             <div class="col-lg-4 blog-col pt-4 ">
-                                <div class="single-blog mt-55 wow fadeInLeftBig blog-post" data-wow-duration="1.3s"
+                                <div class="single-blog mt-55 wow fadeInLeftBig blog-post h-100" data-wow-duration="1.3s"
                                     data-wow-delay="0.4s">
                                     <div class="blog-image">
                                         <a href="{{ url("storage/{$vaga->capa}") }}"><img

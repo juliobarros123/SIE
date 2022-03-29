@@ -34,35 +34,9 @@
                                     </div>
 
                                  
-{{-- 
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleSelectGender">Tipo:</label>
-                                        <select class="form-control" id="exampleSelectGender" name="tipo">
-                                            <option selected disabled>Seleciona o tipo de relatório:</option>
-
-
-                                         
-                                                <option value="Contabilizado">Contabilizado</option>
-                                                <option value="Nao_contabilizado">Não Contabilizado</option>
-
-                                        </select>
-                                    </div> --}}
 
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="exampleSelectGender">Remuneração:</label>
-                                    <select class="form-control" id="exampleSelectGender" name="remuneracao">
-                                       
-                                        <option selected value="{{ isset($vaga) ? $vaga->remuneracao : '' }}">
-                                            {{ isset($vaga) ? $vaga->remuneracao : 'Seleciona um opção:' }}
-                                        </option>
-                                        <option value="Remunerado">Remunerado</option>
-                                        <option value="Nao-remunerado">Não remunerado</option>
-                                
-                                        
-                                       
-                                    </select>
-                                </div> --}}
+                     
 
 
 

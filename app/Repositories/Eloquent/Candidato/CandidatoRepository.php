@@ -3,10 +3,10 @@
 namespace App\Repositories\Eloquent\Candidato;
 
 use App\Models\Candidato;
-use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class CandidatoRepository
 // interface UtilizadorRepository extends UtilizadorInterface
 
@@ -39,19 +39,19 @@ class CandidatoRepository
 
     public function salvar(array $dados, $id_candidato)
     {
-    
+
         $candidato = Candidato::create([
-            'curriculo'=>$dados['caminho_curriculo'],
-            'id_canditado'=>$id_candidato,
-            'id_vaga'=>$dados['id_vaga'],
-            'slug'=>slug_gerar()
+            'curriculo' => $dados['caminho_curriculo'],
+            'id_canditado' => $id_candidato,
+            'id_vaga' => $dados['id_vaga'],
+            'slug' => slug_gerar(),
         ]);
         return $candidato;
     }
 
     public function update(Request $request, $slug)
     {
-        
+
         $array = $request->all();
         $input = 'caminho_discricao';
         $caminho = 'Candidato/caminho_discricao';
@@ -61,7 +61,7 @@ class CandidatoRepository
         $input_capa = 'capa';
         $capa_caminho = 'Candidato/capa';
         $capa = $this->file->upload_fileArray($request, $input_capa, $capa_caminho);
-        $Candidato = Candidato::where('slug',$slug)->update([
+        $Candidato = Candidato::where('slug', $slug)->update([
             'capa' => isset($capa) ? $capa : null,
             'caminho_discricao' => isset($caminho) ? $caminho : null,
             'remuneracao' => isset($array['remuneracao']) ? $array['remuneracao'] : null,
@@ -69,28 +69,39 @@ class CandidatoRepository
             'id_empresa' => 1,
             'funcao' => isset($array['funcao']) ? $array['funcao'] : null,
             'datalimite' => isset($array['datalimite']) ? $array['datalimite'] : null,
-            
-           
+
             'quantidade' => isset($array['quantidade']) ? $array['quantidade'] : null,
-     
 
-
-           
         ]);
-        return   $Candidato ;
+        return $Candidato;
     }
 
-    
     public function all()
     {
-        return    Candidato::join('users','users.id','candidatos.id_canditado')
-        ->leftJoin('vagas','vagas.id','candidatos.id_vaga')
-        ->select('users.profile_photo_path','users.primeiro_nome','users.ultimo_nome','users.email','users.telefone','candidatos.*');
+        // 'quantidade',
+        // 'remuneracao',
+        // 'id_empresa',
+        // 'funcao',
+        // 'capa',
+        // 'datalimite',
+        // 'tipo_vaga',
+        // 'caminho_discricao',
+        // 'slug'
+        return Candidato::join('users', 'users.id', 'candidatos.id_canditado')
+            ->leftJoin('vagas', 'vagas.id', 'candidatos.id_vaga')
+            ->leftJoin('empresas', 'empresas.id', 'vagas.id_empresa')
+            ->select('users.profile_photo_path', 'users.primeiro_nome',
+             'users.ultimo_nome', 'users.email', 'users.telefone', 'candidatos.*',
+             'vagas.quantidade',    'vagas.funcao',    'vagas.datalimite',    'vagas.capa','empresas.nome','vagas.tipo_vaga');
     }
 
-    public function candidatoPorVagaContabilizado(){
- return $this->all()->groupBy('vagas.id')->select('vagas.funcao','vagas.tipo_vaga','candidatos.estado',DB::raw('count(candidatos.id) as candidatos'));
+    public function candidatoPorVagaContabilizado()
+    {
+        return $this->all()->groupBy('vagas.id')->select('vagas.funcao', 'vagas.tipo_vaga', 'candidatos.estado', DB::raw('count(candidatos.id) as candidatos'));
 
     }
-
+    public function minhas_vagas($slug_candidato){
+     return    $this->all()->where('users.slug',$slug_candidato);
+    
+    }
 }
