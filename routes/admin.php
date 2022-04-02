@@ -71,10 +71,13 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('cadastrar', ['as' => 'admin.utilizadores.cadastrar', 'uses' => 'Admin\UserController@create'])->middleware('access.controll.administrador');
             Route::get('excluir/{id}', ['as' => 'admin.utilizadores.excluir', 'uses' => 'Admin\UserController@excluir'])->middleware('access.controll.administrador');
             Route::put('atualizar/{slug}', ['as' => 'admin.utilizadores.atualizar', 'uses' => 'Admin\UserController@atualizar'])->middleware('access.controll.administrador');
+            Route::put('atualizarPerfil', ['as' => 'admin.utilizadores.atualizarPerfil', 'uses' => 'Admin\UserController@atualizarPerfil']);
+            
             // Route::put('atualizar2/{id}/{campo}/{valor}', ['as' => 'admin.utilizadores.atualizar2', 'uses' => 'Admin\UserController@atualizar2'])->middleware('access.controll.administrador');
             Route::get('ver/{id}', ['as' => 'utilizadores', 'uses' => 'Admin\UserController@ver'])->middleware('access.controll.administrador');
             Route::get('editar/{slug}', ['as' => 'admin.utilizadores.editar', 'uses' => 'Admin\UserController@editar'])->middleware('access.controll.administrador');
             Route::get('eliminar/{slug}', ['as' => 'admin.utilizadores.eliminar', 'uses' => 'Admin\UserController@eliminar'])->middleware('access.controll.administrador');
+            Route::put('atualizar-passe', ['as' => 'admin.utilizadores.atualizar.passe', 'uses' => 'Admin\UserController@atualizarPasse']);
         });
 
         Route::group(['prefix' => 'empresas/'], function () {
@@ -106,8 +109,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
             Route::group(['prefix' => 'candidatos/'], function () {
                 Route::get('/{slug_vaga}', ['as' => 'admin.vagas.candidatos', 'uses' => 'Admin\CandidatoController@index']);
+                Route::get('/{slug_vaga}/candidatos-pdf', ['as' => 'admin.vagas.candidatos.pdf', 'uses' => 'Admin\CandidatoController@listaPdf']);
+                Route::get('/{slug_vaga}/candidatosaprovados-aprovados-pdf', ['as' => 'admin.vagas.candidatos.aprovados.pdf', 'uses' => 'Admin\CandidatoController@listaPdfaprovados']);
+                
+                Route::get('/{slug_vaga}/candidatos-não-aprovados-pdf', ['as' => 'admin.vagas.candidatos.nao.aprovados.pdf', 'uses' => 'Admin\CandidatoController@listaPdfNaoAprovados']);
                 Route::get('/{slug_candidato}/aprovar', ['as' => 'admin.vagas.candidatos.aprovar', 'uses' => 'Admin\CandidatoController@aprovar']);
                 Route::get('/{slug_candidato}/reprovar', ['as' => 'admin.vagas.candidatos.reprovar', 'uses' => 'Admin\CandidatoController@reprovar']);
+                
                 // Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
                 // Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
                 // Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);

@@ -54,7 +54,7 @@ protected $slug_controller;
      
     public function salvar(Request $request)
     {
-        
+        // dd($request);
         try {
 if($request->password==$request->password_confirm){
             // $path = Storage::putFile('userPhoto', $request->file('foto'));
@@ -74,7 +74,6 @@ if($request->password==$request->password_confirm){
             // ])->validate();
             // dd(     $dados);
            
-
             $user = $this->user->store( $dados);
 
             // if ($user && $dados['termo'] == 'on') {
@@ -95,7 +94,7 @@ if($request->password==$request->password_confirm){
              return redirect()->back()->with('senha', '1');
             }
         } catch (\Exception $exception) {
-
+dd( $exception);
             return redirect()->back()->with('error', '1');
         }
 

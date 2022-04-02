@@ -23,6 +23,7 @@ use App\Models\User;
 use App\Repositories\Eloquent\UtilizadorRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\SlugController;
 
 class UserController extends Controller
@@ -80,6 +81,7 @@ class UserController extends Controller
     public function salvar(Request $request)
     {
         try {
+     
 
             $slug = $this->slug_controller->gerar();
             dd( $slug);
@@ -141,6 +143,23 @@ try {
         }
     }
 
+        public function atualizarPerfil(Request $input)
+    {
+
+        try {
+            $dados = $input->all();
+     
+        $estado= $this->user->update($dados, Auth::User()->slug);
+        
+           if($estado){
+         return redirect()->back()->with('perfil-editato', '1');
+           }
+            
+        } catch (\Exception $exception) {
+            return response()->json($exception->getMessage());
+            // return redirect()->back()->with('aviso', '1');
+        }
+    }
     public function eliminar($slug)
     {
     
@@ -154,5 +173,40 @@ try {
     {
         $user = User::find($id)->update(['tipoUtilizador' => $nivel]);
         return response()->json($user);
+    }
+    public function perfil($slug)
+    {
+        $user =$response= User::where('slug',$slug)->first();
+        return view('admin.users.editar.index', compact('user'));
+    }
+    public function atualizarPasse(Request $input)
+    {
+
+        // if (!$this->validar_autoria($id)) {
+        //     return redirect()->back()->with('acao_nao_autorizado', 1);
+        // }
+        // dd($input);
+
+        try {
+            $user = User::where('slug',Auth::User()->slug)->first();
+            if (Hash::check($input->password_actual, $user->password)) {
+                if ($input->password_nova == $input->password_confirm) {
+
+                    $dados = $input->all();
+                    $this->user->update_senha($dados,Auth::User()->slug);
+                    $this->Logger->Log('info', 'Actualizou sua palavra passe ' );
+                    return redirect()->back()->with('passe_editada', 1);
+                } else {
+                    return redirect()->back()->with('passe_nao_bate', 1);
+                }
+            } else {
+                return redirect()->back()->with('passe_nao_existe', 1);
+            }
+        } catch (\Exception $exception) {
+
+//            dd($exception);
+
+            return redirect()->back()->with('error', 1);
+        }
     }
 }

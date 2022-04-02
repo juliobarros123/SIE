@@ -421,6 +421,12 @@ dados();
 
  
  </script>
+   <script>
+    $("#btn-upload").click(function() {
+    $(".file-upload-default").click();
+
+    });
+</script>
  <script src="/js/datatables/datatable.js"></script>
  <script>
      $(document).ready( function () {

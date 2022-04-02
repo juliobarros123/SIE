@@ -131,6 +131,15 @@
                                                                     <a class="dropdown-item"
                                                                    
                                                                     href="{{ route('admin.vagas.candidatos', ['slug_vaga' => $vaga->slug]) }}">Candidatos</a>
+                                                                    <a class="dropdown-item"
+                                                                   
+                                                                    href="{{ route('admin.vagas.candidatos.pdf', ['slug_vaga' => $vaga->slug]) }}">Lista pdf</a>
+                                                                    <a class="dropdown-item"
+                                                                   
+                                                                    href="{{ route('admin.vagas.candidatos.aprovados.pdf', ['slug_vaga' => $vaga->slug]) }}">Candidatos aprovados </a>
+                                                                    <a class="dropdown-item"
+                                                                   
+                                                                    href="{{ route('admin.vagas.candidatos.nao.aprovados.pdf', ['slug_vaga' => $vaga->slug]) }}">Candidatos não aprovados </a>
                                                                    
                                                         </div>
 

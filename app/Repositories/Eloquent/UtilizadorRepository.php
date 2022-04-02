@@ -4,13 +4,20 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Eloquent\File\FileRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UtilizadorRepository implements UtilizadorInterface
 // interface UtilizadorRepository extends UtilizadorInterface
 
 {
+    protected $file;
+    public function __construct()
+    {
+        $this->file = new FileRepository;
+
+    }
 
     // use PasswordValidationRules;
 
@@ -30,30 +37,28 @@ class UtilizadorRepository implements UtilizadorInterface
 
     // }
 
-    public function store(array $input)
+    public function store(array $request)
     {
+        $array = $request;
+        $input = 'profile_photo_path';
+        $caminho = 'userPhoto';
 
-        return DB::transaction(function () use ($input) {
-            return tap(
-                User::create([
+        $caminho = $this->file->upload_fileArray($array, $input, $caminho);
+// dd(  $caminho);
+        return User::create([
 
-                    'nome' => isset($input['nome']) ? $input['nome'] : null,
-                    'primeiro_nome' => isset($input['primeiro_nome']) ? $input['primeiro_nome'] : null,
-                    'ultimo_nome' => isset($input['ultimo_nome']) ? $input['ultimo_nome'] : null,
-                    'email' => isset($input['email']) ? $input['email'] : null,
-                    'password' => isset($input['password']) ? Hash::make($input['password']) : null,
-                    'tipoUtilizador' => isset($input['tipoUtilizador']) ? $input['tipoUtilizador'] : null,
-                    'telefone' => isset($input['telefone']) ? $input['telefone'] : null,
-                    'genero' => isset($input['genero']) ? $input['genero'] : null,
-                    'profile_photo_path' => isset($input['profile_photo_path']) ? $input['profile_photo_path'] : null,
-                    'slug'=>slug_gerar()
-                ]),
-                function (User $user) {
+            'nome' => isset($request['nome']) ? $request['nome'] : null,
+            'primeiro_nome' => isset($request['primeiro_nome']) ? $request['primeiro_nome'] : null,
+            'ultimo_nome' => isset($request['ultimo_nome']) ? $request['ultimo_nome'] : null,
+            'email' => isset($request['email']) ? $request['email'] : null,
+            'password' => isset($request['password']) ? Hash::make($request['password']) : null,
+            'tipoUtilizador' => isset($request['tipoUtilizador']) ? $request['tipoUtilizador'] : null,
+            'telefone' => isset($request['telefone']) ? $request['telefone'] : null,
+            'genero' => isset($request['genero']) ? $request['genero'] : null,
+            'profile_photo_path' => isset($caminho) ? $caminho : null,
+            'slug' => slug_gerar(),
+        ]);
 
-                    return $this->createTeam($user);
-                }
-            );
-        });
     }
 
     /**
@@ -72,21 +77,71 @@ class UtilizadorRepository implements UtilizadorInterface
         ]));
     }
 
-    public function update(array $input, $slug)
+    public function update(array $request, $slug)
     {
 
-        return User::where('slug',$slug)->update([
-            'nome' => isset($input['nome']) ? $input['nome'] : null,
-            'primeiro_nome' => isset($input['primeiro_nome']) ? $input['primeiro_nome'] : null,
-            'ultimo_nome' => isset($input['ultimo_nome']) ? $input['ultimo_nome'] : null,
-            'email' => isset($input['email']) ? $input['email'] : null,
-            'password' => isset($input['password']) ? Hash::make($input['password']) : null,
-            'tipoUtilizador' => isset($input['tipoUtilizador']) ? $input['tipoUtilizador'] : null,
-            'telefone' => isset($input['telefone']) ? $input['telefone'] : null,
-            'genero' => isset($input['genero']) ? $input['genero'] : null,
-            'profile_photo_path' => isset($input['profile_photo_path']) ? $input['profile_photo_path'] : null,
+
+        $input = 'profile_photo_path';
+        $caminho = 'userPhoto';
+        if (isset($request['profile_photo_path'])) {
+            $caminho = $this->file->upload_fileArray($request, $input, $caminho);
+        }
+
+        return User::where('slug', $slug)->update([
+            'nome' => isset($request['nome']) ? $request['nome'] : null,
+            'primeiro_nome' => isset($request['primeiro_nome']) ? $request['primeiro_nome'] : null,
+            'ultimo_nome' => isset($request['ultimo_nome']) ? $request['ultimo_nome'] : null,
+            'email' => isset($request['email']) ? $request['email'] : null,
          
+           
+            'telefone' => isset($request['telefone']) ? $request['telefone'] : null,
+            'genero' => isset($request['genero']) ? $request['genero'] : null,
+            'profile_photo_path' => isset($request['profile_photo_path']) ? $caminho : User::find(Auth::User()->id)->profile_photo_path,
+
         ]);
 
+    }
+
+    
+    public function atualizarPasse(Request $input, $id)
+    {
+
+        // if (!$this->validar_autoria($id)) {
+        //     return redirect()->back()->with('acao_nao_autorizado', 1);
+        // }
+
+        try {
+            $user = User::find($id);
+            if (Hash::check($input->password, $user->password)) {
+                if ($input->nova_passe == $input->password_confirmation) {
+
+                    $dados = $input->all();
+                    $this->user->update_senha($dados, $id);
+                    $this->Logger->Log('info', 'Actualizou o utilizador de id ' . $id);
+                    return redirect('admin/users/listar')->with('editado', 1);
+                } else {
+                    return redirect()->back()->with('passe_nao_bate', 1);
+                }
+            } else {
+                return redirect()->back()->with('passe_nao_existe', 1);
+            }
+        } catch (\Exception $exception) {
+
+//            dd($exception);
+
+            return redirect()->back()->with('error', 1);
+        }
+    }
+
+    public function update_senha(array $input, $slug)
+    {
+
+//        $input = $input[0];
+
+        User::where('slug',$slug)->update([
+
+            'password' => Hash::make($input['password_nova']),
+
+        ]);
     }
 }
