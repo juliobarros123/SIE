@@ -36,7 +36,7 @@
 
 
               <li class="nav-item">
-                  <a class="nav-link" href="../../pages/charts/chartjs.html">
+                  <a class="nav-link" href="{{ route('admin.comentarios') }}">
                       <i class="ti-pie-chart menu-icon"></i>
                       <span class="menu-title">Feedback</span>
                   </a>

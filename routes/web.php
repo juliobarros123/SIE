@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('site.index');
 // });
 //Tela Inicial
-Route::get('/bem-vindo', ['as' => 'sie', 'uses' => 'Site\HomeController@index']);
+Route::get('/bem-vindo', ['as' => 'sie.bemVindo', 'uses' => 'Site\HomeController@bemVindo']);
 
 //Route::get('/t1   ', ['as' => , 'uses' => 'SiteController@s1']);
 
@@ -60,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 //site inicial inicio
-Route::get('/', ['as' => 'site.site', 'uses' => 'SiteController@index']);
+Route::get('/', ['as' => 'site.site', 'uses' => 'Site\HomeController@index']);
 //site inicial fim
 
 //User-Start
@@ -98,4 +98,14 @@ Route::group(['prefix' => 'palavra_passe'], function () {
     route::post('registar_palavra_passe/', ['as' => 'palavra_passe.registar_palavra_passe', 'uses' => 'PalavrarPasseController@registar_palavra_passe']);
 
     route::get('confirmar_codigo', ['as' => 'palavra_passe.confirmar_codigo', 'uses' => 'PalavrarPasseController@confirmar_codigo']);
+});
+
+Route::group(['prefix' => 'vagas'], function () {
+    route::get('', ['as' => 'site.vagas', 'uses' => 'Site\VagaController@vagas']);
+
+});
+
+Route::group(['prefix' => 'comentarios'], function () {
+    route::post('cadastrar', ['as' => 'site.comentarios.cadastrar', 'uses' => 'Site\ComentarioController@cadastrar']);
+
 });

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/site/assets/css/templatemo-digimedia-v1.css">
     <link rel="stylesheet" href="/site/assets/css/animated.css">
     <link rel="stylesheet" href="/site/assets/css/owl.css">
-    
+    <script src="/js/sweetalert2.all.min.js"></script>
 <!--
 
 TemplateMo 568 DigiMedia
@@ -31,7 +31,7 @@ https://templatemo.com/tm-568-digimedia
 
 -->
 <script src="/js/sweetalert2.all.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
 
 <body>

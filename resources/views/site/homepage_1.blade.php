@@ -59,9 +59,9 @@
                                     empresas alocadas neste sistema.</p>
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4">
-                                        <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s"
+                                        <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s"
                                             data-wow-delay="0s">
-                                            <div class="progress" data-percentage="90">
+                                            <div class="progress" data-percentage="{{ ttl_utilizadores() }}">
                                                 <span class="progress-left">
                                                     <span class="progress-bar"></span>
                                                 </span>
@@ -70,17 +70,37 @@
                                                 </span>
                                                 <div class="progress-value">
                                                     <div>
-                                                        90<br>
+                                                        {{ ttl_utilizadores() }}<br>
+                                                        <span>Utilizadores</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4">
+                                        <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s"
+                                            data-wow-delay="0s">
+                                            <div class="progress" data-percentage="{{ ttl_empresas() }}">
+                                                <span class="progress-left">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div class="progress-value">
+                                                    <div>
+                                                        {{ ttl_empresas() }}<br>
                                                         <span>Empresas</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s"
                                             data-wow-delay="0s">
-                                            <div class="progress" data-percentage="80">
+                                            <div class="progress" data-percentage="{{ ttl_vagas() }}">
                                                 <span class="progress-left">
                                                     <span class="progress-bar"></span>
                                                 </span>
@@ -89,32 +109,14 @@
                                                 </span>
                                                 <div class="progress-value">
                                                     <div>
-                                                        800<br>
+                                                        {{ ttl_vagas() }}<br>
                                                         <span>Vagas</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-sm-4">
-                                        <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s"
-                                            data-wow-delay="0s">
-                                            <div class="progress" data-percentage="80">
-                                                <span class="progress-left">
-                                                    <span class="progress-bar"></span>
-                                                </span>
-                                                <span class="progress-right">
-                                                    <span class="progress-bar"></span>
-                                                </span>
-                                                <div class="progress-value">
-                                                    <div>
-                                                        80<br>
-                                                        <span>Estágios</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -139,15 +141,18 @@
                         <div class="grid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="menu">
-                                        <div class="first-thumb active">
-                                            <div class="thumb">
-                                                <span class="icon"><img
-                                                        src="/site/assets/images/service-icon-01.png" alt=""></span>
-                                                Tecnologias
+                                    <div class="menu row">
+                                        @foreach ($empresas as $item)
+                                            <div class="first-thumb active col-md-4">
+                                                <div class="thumb">
+                                                    <span class="icon"><img height="50" class="border-rounded"
+                                                            src="{{ url("storage/{$item->logotipo}") }}" alt=""></span>
+                                                    {{ $item->nome }}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
+                                        @endforeach
+
+                                        {{-- <div>
                                             <div class="thumb">
                                                 <span class="icon"><img
                                                         src="/site/assets/images/service-icon-02.png" alt=""></span>
@@ -175,10 +180,10 @@
                                                         src="/site/assets/images/service-icon-01.png" alt=""></span>
                                                 Ciências Sociais
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <ul class="nacc">
                                         <li class="active">
                                             <div>
@@ -357,7 +362,7 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -367,43 +372,65 @@
     </div>
 
 
-    <div id="free-quote" class="free-quote">
+    <div id="portfolio" class="our-portfolio section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 offset-lg-4">
-                    <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-                        <h6>Contacta-te nos Agora</h6>
-                        <h4>Preencha os campos abaixo</h4>
+                <div class="col-lg-5">
+                    <div class="section-heading wow fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.3s"
+                        style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
+                        <h6>Our Portofolio</h6>
+                        <h4>See Our Recent <em>Projects</em></h4>
                         <div class="line-dec"></div>
                     </div>
                 </div>
-                <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
-                    <form id="search" action="#" method="GET">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4">
-                                <fieldset>
-                                    <input type="web" name="web" class="website" placeholder="Your website URL..."
-                                        autocomplete="on" required>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
-                                <fieldset>
-                                    <input type="address" name="address" class="email"
-                                        placeholder="Email Address..." autocomplete="on" required>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
-                                <fieldset>
-                                    <button type="submit" class="main-button">Enviar</button>
-                                </fieldset>
+            </div>
+        </div>
+        <div class="container-fluid wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.7s"
+            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.7s; -moz-animation-delay: 0.7s; animation-delay: 0.7s;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="loop owl-carousel owl-loaded owl-drag">
+
+
+
+
+
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage"
+                                style="transition: all 0.25s ease 0s; width: 3795px; transform: translate3d(-1380px, 0px, 0px);">
+                                @foreach ($empresas as $item)
+                                <div class="owl-item cloned" style="width: 345px;">
+                                    <div class="item">
+                                        <a href="#">
+                                            <div class="portfolio-item">
+                                                <div class="thumb ">
+                                                    <img src="{{ url("storage/{$item->logotipo}") }}" height="200" width="20"  alt="">
+                                                </div>
+                                                <div class="down-content">
+                                                    <h4>{{ $item->nome }}</h4>
+                                                    <span>Marketing</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                             </div>
                         </div>
-                    </form>
+                        <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span
+                                    aria-label="Previous">‹</span></button><button type="button" role="presentation"
+                                class="owl-next"><span aria-label="Next">›</span></button></div>
+                        <div class="owl-dots"><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot active"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 
@@ -426,7 +453,8 @@
                     <div class="row">
 
 
-                        @foreach (vagas_disponiveis() as $vaga)
+                        @foreach (vagas_disponiveis()->limit(6)->get()
+        as $vaga)
                             <div class="col-lg-4 blog-col pt-4 ">
                                 <div class="single-blog mt-55 wow fadeInLeftBig blog-post h-100" data-wow-duration="1.3s"
                                     data-wow-delay="0.4s">
@@ -441,14 +469,14 @@
                                             <li class="d-inline item-vaga">{{ $vaga->nome }}</a></li>
                                             <li class="d-inline item-vaga ">{{ $vaga->tipo_vaga }}</a></li>
                                             <li class="d-inline item-vaga">{{ $vaga->quantidade }}
-                                                    Funcinários</a></li>
+                                                Candidatos</a></li>
 
                                         </ul>
                                         <ul class="meta">
 
                                             <li class="d-inline"><a
                                                     href="{{ url("storage/{$vaga->caminho_discricao}") }}"
-                                                    class="text-primary" download><i class="fa-solid fa-download"></i>
+                                                    class="text-primary" download><i class="fas fa-download"></i>
                                                     Baixar requisitos</a></li>
                                         </ul>
                                         <h4 class="blog-title"><a href="vagas-details.html">{{ $vaga->funcao }}</a>
@@ -458,8 +486,8 @@
                                             class="main-btn main-btn-2 w-100">Candidatar-se</a>
 
                                         <!-- <div class="down-content">
-                                      <div class="border-first-button" >Discover More</a></div>
-                                    </div> -->
+                                                  <div class="border-first-button" >Discover More</a></div>
+                                                </div> -->
 
                                     </div>
                                 </div>
@@ -471,80 +499,93 @@
             </div>
         </div>
     </section>
-    <div id="noticia">
+
+
+    <div id="portfolio" class="our-portfolio section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 offset-lg-4  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.3s">
+                <div class="col-lg-5">
+                    <div class="section-heading wow fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.3s"
+                        style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
 
-                    <div class="section-title text-center pt-5">
-                        <p class="sub-title">Notícias</p>
-                        <h2 class="title">Fique actualizado</h2>
-
+                        <h4>FeedBacks</h4>
+                        <div class="line-dec"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.7s"
+            style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.7s; -moz-animation-delay: 0.7s; animation-delay: 0.7s;">
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="loop owl-carousel owl-loaded owl-drag ">
 
-                <div class="col-lg-6 show-up wow fadeInUp pt-4" data-wow-duration="1s" data-wow-delay="0.3s">
-                    <div class="blog-post">
-                        <div class="thumb">
-                            <a href="#"><img src="/site/assets/images/blog-post-00.jpg" alt=""></a>
-                        </div>
-                        <div class="down-content">
-                            <span class="category">SEO Analysis</span>
-                            <span class="date">03 August 2021</span>
-                            <a href="#">
-                                <h4>Lorem Ipsum Dolor Sit Amet, Consectetur Adelore
-                                    Eiusmod Tempor Incididunt</h4>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doers itii eiumod deis tempor
-                                incididunt ut labore.</p>
-                            <span class="author"><img src="/site/assets/images/author-post.jpg" alt="">By: Andrea
-                                Mentuzi</span>
-                            <div class="border-first-button"><a href="#">Discover More</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp pt-4" data-wow-duration="1s" data-wow-delay="0.3s">
-                    <div class="blog-posts">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="post-item">
-                                    <div class="thumb">
-                                        <a href="#"><img src="/site/assets/images/blog-post-02.jpg" alt=""></a>
+
+
+
+
+                        <div class="owl-stage-outer ">
+                            <div class="owl-stage"
+                                style="transition: all 0.25s ease 0s; width: 3750px; transform: translate3d(-1500px, 0px, 0px);">
+                                @foreach ($comentarios as $item)
+                                    <div class="owl-item cloned" style="width:30%">
+                                        <div class="item">
+
+                                            <div class="portfolio-item" data-toggle="modal"
+                                                data-target="#exampleModal{{ $item->id }}">
+                                                <div class="thumb">
+                                                    <img src="assets/images/portfolio-01.jpg" alt="">
+                                                </div>
+                                                <div class="down-content ">
+                                                    <h4>{{ Str::limit($item->mensagem, 70) }}</h4>
+                                                    <span>{{ $item->nome }}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="right-content">
-                                        <span class="category">SIE</span>
-                                        <span class="date">24 Setembro 2021</span>
-                                        <a href="#">
-                                            <h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4>
-                                        </a>
-                                        <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                                    </div>
-                                </div>
+                                @endforeach
+
+
+
                             </div>
-                            <div class="col-lg-12">
-                                <div class="post-item">
-                                    <div class="thumb">
-                                        <a href="#"><img src="/site/assets/images/blog-post-03.jpg" alt=""></a>
-                                    </div>
-
-                                    <div class="right-content">
-                                        <span class="category">SIE</span>
-                                        <span class="date">24 Setembro 2021</span>
-                                        <a href="#">
-                                            <h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4>
-                                        </a>
-                                        <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
+                        <div class="owl-nav disabled"><button type="button" role="presentation"
+                                class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button"
+                                role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+                        <div class="owl-dots disabled"><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button><button role="button"
+                                class="owl-dot active"><span></span></button><button role="button"
+                                class="owl-dot"><span></span></button></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @foreach ($comentarios as $item)
+        <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">FeedBack</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ $item->mensagem }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
     <div id="contact" class="contact-us section">
         <div class="container">
             <div class="row">
@@ -556,7 +597,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-                    <form id="contact" action="" method="post">
+                    <form id="contact" action="{{ route('site.comentarios.cadastrar') }}" method="post">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="contact-dec">
@@ -573,59 +614,63 @@
                                 </div>
                             </div>
                             <div class="col-lg-7">
-                                <div class="fill-form">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="info-post">
-                                                <div class="icon">
-                                                    <img src="/site/assets/images/phone-icon.png" alt="">
-                                                    <a href="#">912-918-091</a>
+                                <form action="{{ route('site.comentarios.cadastrar') }}" method="post">
+                                    @csrf
+                                    <div class="fill-form">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="info-post">
+                                                    <div class="icon">
+                                                        <img src="/site/assets/images/phone-icon.png" alt="">
+                                                        <a href="#">912-918-091</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="info-post">
-                                                <div class="icon">
-                                                    <img src="/site/assets/images/email-icon.png" alt="">
-                                                    <a href="#">sie@gmail.com</a>
+                                            <div class="col-lg-4">
+                                                <div class="info-post">
+                                                    <div class="icon">
+                                                        <img src="/site/assets/images/email-icon.png" alt="">
+                                                        <a href="#">sie@gmail.com</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="info-post">
-                                                <div class="icon">
-                                                    <img src="/site/assets/images/location-icon.png" alt="">
-                                                    <a href="#">Angola Luanda</a>
+                                            <div class="col-lg-4">
+                                                <div class="info-post">
+                                                    <div class="icon">
+                                                        <img src="/site/assets/images/location-icon.png" alt="">
+                                                        <a href="#">Angola Luanda</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset>
-                                                <input type="name" name="name" id="name" placeholder="Nome"
-                                                    autocomplete="on" required>
-                                            </fieldset>
-                                            <fieldset>
-                                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
-                                                    placeholder="Email" required="">
-                                            </fieldset>
-                                            <fieldset>
-                                                <input type="subject" name="subject" id="subject" placeholder="Assunto"
-                                                    autocomplete="on">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <fieldset>
-                                                <textarea name="message" type="text" class="form-control" id="message" placeholder="Mensagem" required=""></textarea>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <fieldset>
-                                                <button type="submit" id="form-submit" class="main-button ">Enviar
-                                                    mensagem Agora</button>
-                                            </fieldset>
+                                            <div class="col-lg-6">
+                                                <fieldset>
+                                                    <input type="name" name="nome" id="name" placeholder="Nome"
+                                                        autocomplete="on" required>
+                                                </fieldset>
+                                                <fieldset>
+                                                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                                        placeholder="Email" required="">
+                                                </fieldset>
+                                                <fieldset>
+                                                    <input type="assunto" name="assunto" id="subject" placeholder="Assunto"
+                                                        autocomplete="on">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset>
+                                                    <textarea name="mensagem" type="text" class="form-control" id="message" placeholder="Mensagem"
+                                                        required=""></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <button type="submit" id="form-submit" class="main-button ">Enviar
+                                                        mensagem Agora</button>
+                                                </fieldset>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -633,6 +678,14 @@
             </div>
         </div>
     </div>
-
+    @if (session('comentario_salvo'))
+        <script>
+            Swal.fire(
+                'Obrigado por dar o seu parecer!',
+                '',
+                'success'
+            )
+        </script>
+    @endif
 
 @endsection

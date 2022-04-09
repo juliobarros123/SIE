@@ -116,14 +116,16 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::get('/{slug_candidato}/aprovar', ['as' => 'admin.vagas.candidatos.aprovar', 'uses' => 'Admin\CandidatoController@aprovar']);
                 Route::get('/{slug_candidato}/reprovar', ['as' => 'admin.vagas.candidatos.reprovar', 'uses' => 'Admin\CandidatoController@reprovar']);
                 
-                // Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
-                // Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
-                // Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);
-                // Route::get('/editar/{slug}', ['as' => 'admin.vagas.editar', 'uses' => 'admin\VagaController@editar']);
-                // Route::get('/eliminar/{slug}', ['as' => 'admin.vagas.eliminar', 'uses' => 'admin\VagaController@eliminar']);
-                // Route::get('/purgar/{slug}', ['as' => 'admin.vagas.purgar', 'uses' => 'admin\VagaController@purgar']);
-
+            
             });
+        });
+
+        Route::group(['prefix' => 'comentarios/'], function () {
+            Route::get('/', ['as' => 'admin.comentarios', 'uses' => 'Admin\ComentarioController@index']);
+            Route::get('/{slug_comentario}/aprovar', ['as' => 'admin.comentarios.aprovar', 'uses' => 'Admin\ComentarioController@aprovar']);
+            Route::get('/{slug_comentario}/reprovar', ['as' => 'admin.comentarios.reprovar', 'uses' => 'Admin\ComentarioController@reprovar']);
+        
+           
         });
 
         Route::group(['prefix' => 'retatorios'], function () {
@@ -155,27 +157,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //
 
-    //Garabrito
-    Route::group(['prefix' => 'gabarito/'], function () {
-        Route::get('{id_tarefa}', ['as' => 'gabarito', 'uses' => 'Admin\GabaritoController@show']);
-        Route::get('{id_tarefa}/cadastrar', ['as' => 'gabarito.criar', 'uses' => 'Admin\GabaritoController@criar'])->middleware('access.controll.administrador');
-        Route::post('{id}/store', ['as' => 'gabarito.store', 'uses' => 'Admin\GabaritoController@store'])->middleware('access.controll.administrador');
-        Route::get('{id}/delete', ['as' => 'gabarito.delete', 'uses' => 'Admin\GabaritoController@delete'])->middleware('access.controll.administrador');
-        Route::get('{id}/editar', ['as' => 'gabarito.editar', 'uses' => 'Admin\GabaritoController@editar'])->middleware('access.controll.administrador');
-        Route::post('{id}/update', ['as' => 'gabarito.update', 'uses' => 'Admin\GabaritoController@update'])->middleware('access.controll.administrador');
-
-    });
-
-    //Início Escola
-    Route::group(['prefix' => 'escolas/', 'middleware' => 'access.controll.administrador'], function () {
-        Route::get('', ['as' => 'escolas', 'uses' => 'Admin\EscolaController@listar']);
-        Route::get('criar', ['as' => 'escolas.criar', 'uses' => 'Admin\EscolaController@criar']);
-        Route::post('{id_user}/cadastrar', ['as' => 'escolas.cadastrar', 'uses' => 'Admin\EscolaController@cadastrar']);
-        Route::get('{id}/eliminar', ['as' => 'escolas.eliminar', 'uses' => 'Admin\EscolaController@eliminar']);
-        Route::get('{id}/editar', ['as' => 'escolas.editar', 'uses' => 'Admin\EscolaController@editar']);
-        Route::put('{id}/{id_user}/actualizar', ['as' => 'escolas.actualizar', 'uses' => 'Admin\EscolaController@actualizar']);
-    });
-    //Fim escola
 
     Route::get('/users/escrever', ['as' => 'user.escrever', 'uses' => 'Admin\UserController@escrever'])->middleware('access.controll.encarregado');
     Route::post('{id_user}/users/escreverFilho', ['as' => 'users.escreverFilho', 'uses' => 'Admin\UserController@escreverFilho'])->middleware('access.controll.encarregado');

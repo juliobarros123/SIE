@@ -18,7 +18,7 @@ use App\Models\Candidato;
 function vagas_disponiveis()
 {
         $vaga=new VagaRepository(new FileRepository);
-      return  $vaga->all()->whereDate('vagas.datalimite','>=',now())->get();
+      return  $vaga->all()->orderBy('vagas.id','desc')->whereDate('vagas.datalimite','>=',now());
 
 }
 function anos(){
@@ -43,4 +43,6 @@ function ttl_vagas(){
 function ttl_candidatos_aceites(){
  return  Candidato::where('estado',2)->count();
 }
+
+
 ?>
