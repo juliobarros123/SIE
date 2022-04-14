@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('site.index');
 // });
 //Tela Inicial
-Route::get('/bem-vindo', ['as' => 'sie.bemVindo', 'uses' => 'Site\HomeController@bemVindo']);
+Route::get('/bem-vindo', ['as' => 'sie', 'uses' => 'Site\HomeController@bemVindo']);
 
 //Route::get('/t1   ', ['as' => , 'uses' => 'SiteController@s1']);
 
