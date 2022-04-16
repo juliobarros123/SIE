@@ -27,7 +27,7 @@ class VagaController extends Controller
     public function  index(){
         $vagas=   $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->get();
 
- 
+
      $empresas=Empresa::where('propreitario',Auth::User()->id)->get();
 
      return view('admin.vaga.index', compact('vagas'),compact('empresas'));
@@ -47,7 +47,7 @@ class VagaController extends Controller
             $this->loggerData("Adicionou uma vaga");
             return redirect()->back()->with('status', '1');
         } catch (\Throwable $th) {
-       
+       dd($th);
             return redirect()->back()
                 ->with('status', 0)
                 ->with('message', 'Vaga')
@@ -69,8 +69,9 @@ class VagaController extends Controller
     public function editar($slug)
     {
     
-        $response['vaga'] =$response= Vaga::join('empresas','vagas.id_empresa','empresas.id')->where('vagas.slug',$slug)
-        ->select('vagas.*','empresas.nome','empresas.id','empresas.propreitario')->first();
+        $response['vaga'] =$response=  $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->where('vagas.slug',$slug)
+       ->first();
+        // dd( $response['vaga']);
         $response['empresas']=Empresa::where('propreitario',Auth::User()->id)->get();
       
 

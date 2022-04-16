@@ -39,12 +39,17 @@ class CandidatoRepository
 
     public function salvar(array $dados, $id_candidato)
     {
-
+// dd( $dados['requisito1']);
         $candidato = Candidato::create([
             'curriculo' => $dados['caminho_curriculo'],
             'id_canditado' => $id_candidato,
             'id_vaga' => $dados['id_vaga'],
             'slug' => slug_gerar(),
+            'requisitoCandidato1' =>isset($dados['requisito1'])?$dados['requisito1']:0,
+            'requisitoCandidato2' =>isset($dados['requisito2'])?$dados['requisito2']:0,
+            'requisitoCandidato3' =>isset($dados['requisito3'])?$dados['requisito3']:0,
+            'requisitoCandidato4' =>isset($dados['requisito4'])?$dados['requisito4']:0
+          
         ]);
         return $candidato;
     }

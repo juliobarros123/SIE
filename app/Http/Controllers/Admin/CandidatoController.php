@@ -9,22 +9,27 @@ use App\Models\User;
 use App\Models\Vaga;
 use App\Repositories\Eloquent\Candidato\CandidatoRepository;
 use Exception;
+use App\Repositories\Eloquent\Vaga\VagaRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CandidatoController extends Controller
 {
     //
-
+    protected $vaga;
+  
     protected $candidato;
 
-    public function __construct(CandidatoRepository $candidato)
+    public function __construct(CandidatoRepository $candidato,VagaRepository $vaga)
     {
         $this->candidato = $candidato;
-
+        $this->vaga = $vaga;
     }
     public function index($slug_vaga)
     {
-        $response['vaga'] = Vaga::where('slug', $slug_vaga)->first();
+        
+        $response['vaga'] = $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->where('vagas.slug',$slug_vaga)
+        ->first();
         $response['candidatos'] = $this->candidato->all()->where('vagas.slug', $slug_vaga)->get();
         return view('admin.candidatos.index', $response);
     }

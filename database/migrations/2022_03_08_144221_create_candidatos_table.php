@@ -20,6 +20,10 @@ class CreateCandidatosTable extends Migration
             $table->foreignId('id_vaga')->constrained('users')->on('vagas')->onDelete('CASCADE')->onUpgrade('CASCADE');
             $table->string('estado')->enum('0','1')->default('0');
             $table->text('slug')->nullable();
+            $table->string('requisitoCandidato1')->default('0');
+            $table->string('requisitoCandidato2')->default('0');
+            $table->string('requisitoCandidato3')->default('0');
+            $table->string('requisitoCandidato4')->default('0');
             $table->softDeletes();
             $table->timestamps();
         });

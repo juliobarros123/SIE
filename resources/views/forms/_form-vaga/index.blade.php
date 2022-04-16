@@ -91,3 +91,24 @@
         
     </select>
 </div>
+
+<div class="form-group">
+    <label for="exampleInputEmail1">Requisito 1:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" 
+        name="requisito1" placeholder="Digita aqui o 1º requisito ou pergunta" value="{{ isset($vaga->requisito1) ? $vaga->requisito1 : '' }}">
+</div>
+
+<div class="form-group">
+    <label for="exampleInputEmail1">Requisito 2:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" 
+        name="requisito2" placeholder="Digita aqui o 2º requisito ou pergunta" value="{{ isset($vaga->requisito2) ? $vaga->requisito2 : '' }}">
+</div>
+<div class="form-group">
+    <label for="exampleInputEmail1">Requisito 3:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" 
+        name="requisito3" placeholder="Digita aqui o 3º requisito ou pergunta"  value="{{ isset($vaga->requisito3) ? $vaga->requisito3 : '' }}">
+</div><div class="form-group">
+    <label for="exampleInputEmail1">Requisito 4:</label>
+    <input type="text" placeholder="Digita aqui o 4º requisito ou pergunta"  class="form-control" id="exampleInputEmail1" 
+        name="requisito4" value="{{ isset($vaga->requisito4) ? $vaga->requisito4 : '' }}">
+</div>

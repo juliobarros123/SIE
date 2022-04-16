@@ -11,6 +11,7 @@ class VagaController extends Controller
   
     public function vagas(){
         $response['vagas']=vagas_disponiveis()->get();
+    
 return view('site.vaga.index',$response);
     }
 }

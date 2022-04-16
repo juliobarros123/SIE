@@ -78,17 +78,19 @@
                                         </ul>
                                         <h4 class="blog-title"><a href="vagas-details.html">{{ $vaga->funcao }}</a>
                                         </h4>
-                                        @if ($vaga->estado==0)
+                                      @if (is_null($vaga->estado))
+                                      <a href="{{ route('site.vagas.candidatos.inscrever-se', ['slug_vaga' => $vaga->slug]) }}"
+                                        class="main-btn main-btn-2 w-100">Candidatar-se</a>
+                                
+                                        @elseif ($vaga->estado==0)
                                    
                                         <button href=""
                                             class="main-btn main-btn-2 w-100">Pendente</button>
-                                        @endif
-                                        @if($vaga->estado==1)
+                                    @elseif($vaga->estado==1)
                                        
                                         <button href=""
                                             class="main-btn main-btn-2 w-100">Reprovado</button>
-                                        @endif
-                                        @if($vaga->estado==2)
+                                            @elseif($vaga->estado==2)
                                        
                                         <button href=""
                                             class="main-btn main-btn-2 w-100">Aprovado</button>

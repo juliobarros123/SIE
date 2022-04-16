@@ -35,6 +35,19 @@
                                             <th>
                                               Telefone
                                             </th>
+                                        
+                                            <th>
+                                              {{$vaga->requisito1=="0"?'Requisito pendente':$vaga->requisito1}}
+                                              </th>
+                                              <th>
+                                                 {{$vaga->requisito2=="0"?'Requisito pendente':$vaga->requisito2}}
+                                              </th>
+                                              <th>
+                                                 {{$vaga->requisito3=="0"?'Requisito pendente':$vaga->requisito3}}
+                                              </th>
+                                              <th>
+                                                 {{$vaga->requisito4=="0"?'Requisito pendente':$vaga->requisito4}}
+                                              </th>
                                             <th>
                                                 Estado
                                               </th>
@@ -59,11 +72,26 @@
                                                     {{ $candidato->email }}
                                                 </td>
 
-
                                                 <td>
                                                     {{ $candidato->telefone }}
                                                 </td>
                                               
+                                                <td >
+                                                    {{ $candidato->requisitoCandidato1?'Sim':'Não' }}
+                                                </td>
+                                                <td >
+                                                    {{ $candidato->requisitoCandidato2?'Sim':'Não'  }}
+                                                </td>
+                                              
+                                                <td >
+                                                    {{ $candidato->requisitoCandidato3?'Sim':'Não'  }}
+                                                </td>
+                                              
+                                                <td >
+                                                     {{ $candidato->requisitoCandidato4?'Sim':'Não'  }}
+                                                </td>
+                                              
+                                             
                                                 <td>
                                                     @if ($candidato->estado==0)
                                                     <label class="badge badge-danger">Pendente</label>

@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent\Vaga;
 
 use App\Models\Vaga;
+use App\Models\RequisitoVaga;
 use App\Models\Team;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
@@ -69,12 +70,24 @@ class VagaRepository
 
            
         ]);
+        // dd($array);
+        RequisitoVaga::create([
+            'requisito1' =>$array['requisito1']?$array['requisito1']:0,
+            'requisito2' =>$array['requisito2']?$array['requisito2']:0,
+            'requisito3' =>$array['requisito3']?$array['requisito3']:0,
+            'requisito4' =>$array['requisito4']?$array['requisito4']:0,
+            'id_vaga'=> $vaga->id,
+            'slug'=>slug_gerar()
+        ]);
         return $vaga;
     }
 
 public function vagasMinhasEmpresas($id_propreitario){
     if (Auth::User()->tipoUtilizador == 'Empresario'){
-        return   $this->all()->where('empresas.propreitario',$id_propreitario)->select('vagas.*');
+        return   $this->all()->where('empresas.propreitario',$id_propreitario)->select('vagas.*','requisito_vagas.requisito1'
+        ,'requisito_vagas.requisito2'
+        ,'requisito_vagas.requisito3'
+        ,'requisito_vagas.requisito4','empresas.nome');
     }else{
        return $this->all()->select('vagas.*');
     }
@@ -84,7 +97,12 @@ public function vagasMinhasEmpresas($id_propreitario){
 }
     public function all()
     {
-    return  Vaga::join('empresas','vagas.id_empresa','empresas.id')->select('vagas.*','empresas.nome','empresas.id','empresas.propreitario');
+    return  Vaga::join('empresas','vagas.id_empresa','empresas.id')
+    ->leftJoin('requisito_vagas','requisito_vagas.id_vaga','vagas.id')
+    ->select('vagas.*','empresas.nome','empresas.id','empresas.propreitario','requisito_vagas.requisito1'
+    ,'requisito_vagas.requisito2'
+    ,'requisito_vagas.requisito3'
+    ,'requisito_vagas.requisito4');
        
     }
 
@@ -107,6 +125,7 @@ public function vagasMinhasEmpresas($id_propreitario){
         $input_capa = 'capa';
         $capa_caminho = 'vaga/capa';
         $capa = $this->file->upload_fileArray($request, $input_capa, $capa_caminho);
+      
         $vaga = Vaga::where('slug',$slug)->update([
             'capa' => isset($capa) ? $capa : null,
             'caminho_discricao' => isset($caminho) ? $caminho : null,
@@ -122,6 +141,13 @@ public function vagasMinhasEmpresas($id_propreitario){
 
 
            
+        ]);
+        $vaga=Vaga::where('slug',$slug)->first();
+        RequisitoVaga::where('id_vaga', $vaga->id)->update([
+            'requisito1' =>$array['requisito1'],
+            'requisito2' =>$array['requisito2'],
+            'requisito3' =>$array['requisito3'],
+            'requisito4' =>$array['requisito4']
         ]);
         return   $vaga ;
     }

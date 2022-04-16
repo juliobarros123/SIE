@@ -13,6 +13,11 @@ class Candidato extends Model
         'curriculo',
         'id_canditado',
         'id_vaga',
+        'requisitoCandidato1',
+        'requisitoCandidato2',
+        'requisitoCandidato3',
+        'requisitoCandidato4',
+
         'slug',
         'estado'
     ];
