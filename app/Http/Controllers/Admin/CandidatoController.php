@@ -30,7 +30,9 @@ class CandidatoController extends Controller
         
         $response['vaga'] = $this->vaga->vagasMinhasEmpresas(Auth::User()->id)->where('vagas.slug',$slug_vaga)
         ->first();
+     
         $response['candidatos'] = $this->candidato->all()->where('vagas.slug', $slug_vaga)->get();
+        
         return view('admin.candidatos.index', $response);
     }
 

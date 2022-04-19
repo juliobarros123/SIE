@@ -1,5 +1,5 @@
 @extends('layouts._includes.Header')
-@section('titulo', 'Empresas')
+@section('titulo', 'Candidatos')
 @section('conteudo')
     <!-- partial -->
     <div class="main-panel">
@@ -35,7 +35,7 @@
                                             <th>
                                               Telefone
                                             </th>
-                                        
+                                  
                                             <th>
                                               {{$vaga->requisito1=="0"?'Requisito pendente':$vaga->requisito1}}
                                               </th>

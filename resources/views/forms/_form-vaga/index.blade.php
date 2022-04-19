@@ -74,7 +74,7 @@
 <div class="form-group">
     <label for="exampleInputEmail1">Data limite:</label>
     <input type="date" class="form-control" id="exampleInputEmail1" required
-        name="datalimite" value="{{ isset($vaga->datalimite) ? $vaga->datalimite : '' }}">
+        name="datalimite" min="{{date('Y-m-d')}}" value="{{ isset($vaga->datalimite) ? $vaga->datalimite : '' }}">
 </div>
 
 <div class="form-group">

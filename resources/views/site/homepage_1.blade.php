@@ -126,260 +126,14 @@
         </div>
     </div>
 
-    <div id="services" class="services section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <h6>Empresas cadastradas</h6>
-                        <h4>Empresas cadastradas no sistemas</h4>
-                        <div class="line-dec"></div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="naccs">
-                        <div class="grid">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="menu row">
-                                        @foreach ($empresas as $item)
-                                            <div class="first-thumb active col-md-4">
-                                                <div class="thumb">
-                                                    <span class="icon"><img height="50" class="border-rounded"
-                                                            src="{{ url("storage/{$item->logotipo}") }}" alt=""></span>
-                                                    {{ $item->nome }}
-                                                </div>
-                                            </div>
-                                        @endforeach
-
-                                        {{-- <div>
-                                            <div class="thumb">
-                                                <span class="icon"><img
-                                                        src="/site/assets/images/service-icon-02.png" alt=""></span>
-                                                Recursos Humanos
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="thumb">
-                                                <span class="icon"><img
-                                                        src="/site/assets/images/service-icon-03.png" alt=""></span>
-                                                Ciências da Saúde
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="thumb">
-                                                <span class="icon"><img
-                                                        src="/site/assets/images/service-icon-04.png" alt=""></span>
-                                                Linguística
-                                                Letras e Artes
-                                            </div>
-                                        </div>
-                                        <div class="last-thumb">
-                                            <div class="thumb">
-                                                <span class="icon"><img
-                                                        src="/site/assets/images/service-icon-01.png" alt=""></span>
-                                                Ciências Sociais
-                                            </div>
-                                        </div> --}}
-                                    </div>
-                                </div>
-                                {{-- <div class="col-lg-12">
-                                    <ul class="nacc">
-                                        <li class="active">
-                                            <div>
-                                                <div class="thumb">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="left-text">
-                                                                <h4>SEO Analysis &amp; Daily Reports</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt ut labore et
-                                                                    dolore kengan darwin doerski token.
-                                                                    dover lipsum lorem and the others.</p>
-                                                                <div class="ticks-list"><span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span> <span><i class="fa fa-check"></i>
-                                                                        Data Info</span> <span><i
-                                                                            class="fa fa-check"></i> SEO Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Optimized
-                                                                        Template</span>
-                                                                </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="right-image">
-                                                                <img src="/site/assets/images/services-image.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <div class="thumb">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="left-text">
-                                                                <h4>Healthy Food &amp; Life</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt ut labore et
-                                                                    dolore kengan darwin doerski token.
-                                                                    dover lipsum lorem and the others.</p>
-                                                                <div class="ticks-list"><span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span> <span><i class="fa fa-check"></i>
-                                                                        Data Info</span> <span><i
-                                                                            class="fa fa-check"></i> SEO Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Optimized
-                                                                        Template</span>
-                                                                </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="right-image">
-                                                                <img src="/site/assets/images/services-image-02.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <div class="thumb">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="left-text">
-                                                                <h4>Car Re-search &amp; Transport</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt ut labore et
-                                                                    dolore kengan darwin doerski token.
-                                                                    dover lipsum lorem and the others.</p>
-                                                                <div class="ticks-list"><span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span> <span><i
-                                                                            class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span> <span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span>
-                                                                </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="right-image">
-                                                                <img src="/site/assets/images/services-image-03.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <div class="thumb">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="left-text">
-                                                                <h4>Online Shopping &amp; Tracking ID</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt ut labore et
-                                                                    dolore kengan darwin doerski token.
-                                                                    dover lipsum lorem and the others.</p>
-                                                                <div class="ticks-list"><span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span> <span><i
-                                                                            class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span> <span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span>
-                                                                </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="right-image">
-                                                                <img src="/site/assets/images/services-image-04.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <div class="thumb">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="left-text">
-                                                                <h4>Enjoy &amp; Travel</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt ut labore et
-                                                                    dolore kengan darwin doerski token.
-                                                                    dover lipsum lorem and the others.</p>
-                                                                <div class="ticks-list"><span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span> <span><i
-                                                                            class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span>
-                                                                    <span><i class="fa fa-check"></i> Data Info</span>
-                                                                    <span><i class="fa fa-check"></i> SEO
-                                                                        Analysis</span> <span><i
-                                                                            class="fa fa-check"></i> Optimized
-                                                                        Template</span>
-                                                                </div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                    sedr do eiusmod deis tempor incididunt.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 align-self-center">
-                                                            <div class="right-image">
-                                                                <img src="/site/assets/images/services-image.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="portfolio" class="our-portfolio section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="section-heading wow fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.3s"
                         style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                        <h6>Our Portofolio</h6>
-                        <h4>See Our Recent <em>Projects</em></h4>
+                 
+                        <h4>Empresas cadastradas no <em>Siistema</em></h4>
                         <div class="line-dec"></div>
                     </div>
                 </div>
@@ -399,19 +153,31 @@
                             <div class="owl-stage"
                                 style="transition: all 0.25s ease 0s; width: 3795px; transform: translate3d(-1380px, 0px, 0px);">
                                 @foreach ($empresas as $item)
-                                <div class="owl-item cloned" style="width: 345px;">
-                                    <div class="item">
-                                        <a href="#">
-                                            <div class="portfolio-item">
+                                <div class="owl-item cloned  " >
+                                    <div class="itemy m-4 ">
+                                      
+                                            <div class="" style="    box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);color: #2a2a2a;
+    margin: 0px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    border-radius: 15px;
+}
+
+">
                                                 <div class="thumb ">
                                                     <img src="{{ url("storage/{$item->logotipo}") }}" height="200" width="20"  alt="">
                                                 </div>
                                                 <div class="down-content">
                                                     <h4>{{ $item->nome }}</h4>
-                                                    <span>Marketing</span>
+                                                    <p>Marketing</p>
                                                 </div>
                                             </div>
-                                        </a>
+                                       
                                     </div>
                                 </div>
                             @endforeach
@@ -432,10 +198,14 @@
         </div>
     </div>
 
+  
+
+  
 
 
 
-    <section id="blog" class="our-portfolio section">
+
+    <!-- <section id="blog" class="our-portfolio section">
 
 
         <div class="container">
@@ -485,9 +255,7 @@
                                         <a href="{{ route('site.vagas.candidatos.inscrever-se', ['slug_vaga' => $vaga->slug]) }}"
                                             class="main-btn main-btn-2 w-100">Candidatar-se</a>
 
-                                        <!-- <div class="down-content">
-                                                  <div class="border-first-button" >Discover More</a></div>
-                                                </div> -->
+                                     
 
                                     </div>
                                 </div>
@@ -498,7 +266,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <div id="portfolio" class="our-portfolio section">

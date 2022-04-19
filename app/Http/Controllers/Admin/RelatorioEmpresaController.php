@@ -42,7 +42,7 @@ class RelatorioEmpresaController extends Controller
         if($request->ano!="Todos"){
             $result=$result->whereYear('vagas.created_at',$request->ano);
         }
-       
+        $response['especificacoes']=$request->all();
         $response['empresasVagas']=$result->get();
     
         $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");

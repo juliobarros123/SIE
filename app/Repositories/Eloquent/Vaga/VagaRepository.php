@@ -89,7 +89,10 @@ public function vagasMinhasEmpresas($id_propreitario){
         ,'requisito_vagas.requisito3'
         ,'requisito_vagas.requisito4','empresas.nome');
     }else{
-       return $this->all()->select('vagas.*');
+       return $this->all()->select('vagas.*','requisito_vagas.requisito1'
+       ,'requisito_vagas.requisito2'
+       ,'requisito_vagas.requisito3'
+       ,'requisito_vagas.requisito4','empresas.nome');;
     }
                    
             
