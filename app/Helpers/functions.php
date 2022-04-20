@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use App\Models\Vaga;
 use App\Models\User;
 use App\Models\Candidato;
+use App\Models\Notificacao;
   function slug_gerar()
 {
     
@@ -44,5 +45,7 @@ function ttl_candidatos_aceites(){
  return  Candidato::where('estado',2)->count();
 }
 
-
+function notificacoes(){
+ return Notificacao::all();
+}
 ?>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Vaga;
 use App\Models\Empresa;
 use App\Repositories\Eloquent\Vaga\VagaRepository;
+use App\Repositories\Eloquent\Notificacao\NotificacaoRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Logger;
@@ -16,10 +17,11 @@ class VagaController extends Controller
 
     private $Logger;
     protected $vaga;
-    public function __construct(VagaRepository $vaga)
+    protected $notificacao;
+    public function __construct(VagaRepository $vaga,NotificacaoRepository $notificacao)
     {
         $this->vaga = $vaga;
-    
+        $this->notificacao= $notificacao;
   
         $this->Logger = new Logger();
     }
@@ -38,13 +40,23 @@ class VagaController extends Controller
         $dados_Auth = Auth::user()->vc_primemiroNome . ' ' . Auth::user()->vc_apelido . ' Com o nivel de ' . Auth::user()->tipoUtilizador . ' ';
         $this->Logger->Log('info', $dados_Auth . $mensagem);
     }
+    public function notificacaoInsert($notificacao,$tipo,$url)
+    {
+  ;
+    
+        $this->notificacao->salvar($notificacao,$tipo,$url,Auth::user()->id,null );
+           
+    }
     public function cadastrar(request $request)
     {
 
 
         try {
+            $empresa= Empresa::find($request->id_empresa);
             $vaga =$this->vaga->salvar($request, Auth::user()->id);
             $this->loggerData("Adicionou uma vaga");
+            $this->notificacaoInsert('A empresa <strong>'.$empresa->nome.'</strong> disponibilizou nova vaga','nova_vaga','vagas');
+           
             return redirect()->back()->with('status', '1');
         } catch (\Throwable $th) {
        dd($th);

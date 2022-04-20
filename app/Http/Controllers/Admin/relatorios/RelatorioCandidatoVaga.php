@@ -38,14 +38,18 @@ class RelatorioCandidatoVaga extends Controller
     public function relatorio(Request $request){
     
         $result=$this->candidato->candidatoPorVagaContabilizado();
-      
+        $vaga=$this->vaga->all()->where('vagas.id',$request->id_vaga)->first();
+     
         if($request->id_vaga!="Todas"){
             $result=$result->where('vagas.id',$request->id_vaga);
         }
+       
         $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");
   
         $response['candidatosVagas']=$result->get();
-     
+    
+        $response['vaga']=$request->id_vaga!="Todas"?$vaga->funcao:$request->id_vaga;
+        $response['nomeEmpresa']=isset($vaga->nome)?$vaga->nome:$request->id_vaga;
         $mpdf = new \Mpdf\Mpdf();
         $html = view("admin/relatorio/empresa/candidatos/relatorio/index",$response);
         $mpdf->WriteHTML($response["css"] , \Mpdf\HTMLParserMode::HEADER_CSS);

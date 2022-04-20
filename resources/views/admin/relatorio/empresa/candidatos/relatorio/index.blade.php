@@ -6,6 +6,7 @@
 
 <div id="section">
     <h3 class="titulo ">Relatório de candidatos inscritos por vagas</h3>
+       <h3 class="titulo ">Empresa: <strong>{{$nomeEmpresa}}</strong>  Vaga: <strong>{{$vaga}}</strong>  </h3>
     <table class="table">
         <tr>
             <th>Vaga</th>

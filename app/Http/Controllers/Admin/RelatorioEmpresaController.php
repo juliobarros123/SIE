@@ -35,6 +35,8 @@ class RelatorioEmpresaController extends Controller
         return view('admin.relatorio.empresa.vaga.pesquisar.index',$response);
     }
     public function relatorio(Request $request){
+        $empresa=$this->empresa->all()->where('empresas.id',$request->id_empresa)->first();
+        $response['nomeEmpresa']=isset($empresa->nome)?$empresa->nome:$request->id_empresa;
         $result=$this->empresa->vagaPorEmpresaContabilizado();
         if($request->id_empresa!="Todas"){
             $result=$result->where('empresas.id',$request->id_empresa);
@@ -42,7 +44,8 @@ class RelatorioEmpresaController extends Controller
         if($request->ano!="Todos"){
             $result=$result->whereYear('vagas.created_at',$request->ano);
         }
-        $response['especificacoes']=$request->all();
+        $response['ano']=$request->ano;
+   
         $response['empresasVagas']=$result->get();
     
         $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");

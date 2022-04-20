@@ -83,12 +83,18 @@
                                 <i class="ti-info-alt mx-0"></i>
                             </div>
                         </div>
-                        <div class="item-content">
-                            <h6 class="font-weight-normal">Application Error</h6>
+                        @foreach (notificacoes() as $notificacao)
+                        
+                            <div class="item-content">
+                            <h6 class="font-weight-normal"> <?php echo $notificacao->notificacao?></h6>
                             <p class="font-weight-light small-text mb-0 text-muted">
-                                Just now
+                                Just now 
                             </p>
-                        </div>
+                        
+                        </div> 
+                        @endforeach
+
+                       
                     </a>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">

@@ -174,7 +174,10 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                            @php
+                            $route="admin/empresas";
+                            @endphp
+                    <a href="{{url($route)}}">fjkf</a>
                     
                         </div>
                     </div>
