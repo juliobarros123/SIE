@@ -12,6 +12,7 @@ use Exception;
 use App\Repositories\Eloquent\Vaga\VagaRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\Eloquent\Notificacao\NotificacaoRepository;
 
 class CandidatoController extends Controller
 {
@@ -19,11 +20,13 @@ class CandidatoController extends Controller
     protected $vaga;
   
     protected $candidato;
+    protected $notificacao;
 
-    public function __construct(CandidatoRepository $candidato,VagaRepository $vaga)
+    public function __construct(CandidatoRepository $candidato,VagaRepository $vaga,NotificacaoRepository $notificacao)
     {
         $this->candidato = $candidato;
         $this->vaga = $vaga;
+        $this->notificacao= $notificacao;
     }
     public function index($slug_vaga)
     {
@@ -43,12 +46,18 @@ class CandidatoController extends Controller
             'estado' => 2,
         ]);
         if ($estado) {
+        
             $candidato = Candidato::where('slug', $slug_candidato)->first();
+      
+         
             $dados['user'] = $user = User::find($candidato->id_canditado);
             $dados['vaga'] = Vaga::find($candidato->id_vaga);
             $dados['empresa'] = Empresa::find($dados['vaga']->id_empresa);
             //    $dados['assunto']="Você foi aprovado";
-            $this->enviarEmail($user->email, $dados, 'emails.candidato.aprovado.index');
+            $url='/vagas/candidatos/minhas-vagas/'.$dados['user'] ->slug;
+      
+            $this->notificacao->notificacaoInsert('A empresa <strong>'.$dados['empresa']->nome.'</strong> aceitou você para uma intrevista de emprego como <strong>'. $dados['vaga']->funcao.'</strong>','CandidatoAceite',$url,Auth::User()->id, $candidato->id_candidato);
+            // $this->enviarEmail($user->email, $dados, 'emails.candidato.aprovado.index');
             return redirect()->back()->with('aprovado', 1);
         }
 
@@ -65,7 +74,9 @@ class CandidatoController extends Controller
         $dados['vaga'] = Vaga::find($candidato->id_vaga);
         $dados['empresa'] = Empresa::find($dados['vaga']->id_empresa);
         //    $dados['assunto']="Você foi aprovado";
-        $this->enviarEmail($user->email, $dados, 'emails.candidato.reprovado.index');
+        $url='/vagas/candidatos/minhas-vagas/'.$dados['user'] ->slug;
+        $this->notificacao->notificacaoInsert('A empresa <strong>'.$dados['empresa']->nome.'</strong> rejeitou você para a vaga como <strong>'. $dados['vaga']->funcao.'</strong>','CandidatoAceite',$url,Auth::User()->id, $candidato->id_candidato);
+        // $this->enviarEmail($user->email, $dados, 'emails.candidato.reprovado.index');
         if ($estado) {
             return redirect()->back()->with('reprovado', 1);
         }

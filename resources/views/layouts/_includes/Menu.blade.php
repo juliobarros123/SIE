@@ -77,13 +77,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                    <a class="dropdown-item">
+                        @foreach (notificacoes() as $notificacao)
+                    <a class="dropdown-item" href="{{url($notificacao->url)}}">
                         <div class="item-thumbnail">
                             <div class="item-icon bg-success">
                                 <i class="ti-info-alt mx-0"></i>
                             </div>
                         </div>
-                        @foreach (notificacoes() as $notificacao)
+                    
                         
                             <div class="item-content">
                             <h6 class="font-weight-normal"> <?php echo $notificacao->notificacao?></h6>
@@ -92,10 +93,11 @@
                             </p>
                         
                         </div> 
-                        @endforeach
+                 
 
                        
                     </a>
+                           @endforeach
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
                             <div class="item-icon bg-warning">

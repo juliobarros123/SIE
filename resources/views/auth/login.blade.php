@@ -41,7 +41,7 @@
                   <input type="text"  name="vc_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Nome de usuário">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password"  class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="password"  class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Palavra passe">
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >Entrar</button>
@@ -55,12 +55,12 @@
                   </div>
                   <a href="{{ route('palavra_passe.recuperar') }}" class="auth-link text-black">Esqueceu a senha?</a>
                 </div>
-                <div class="mb-2">
+                {{-- <div class="mb-2">
                   <button type="submit" class="btn btn-block btn-facebook auth-form-btn">
                     <i class="ti-facebook mr-2"></i>
                     Conecte-se usando o facebook
                   </button>
-                </div>
+                </div> --}}
                 <div class="text-center mt-4 font-weight-light">
                     Não tem uma conta? <a href="{{ route('register') }}" class="text-primary">Criar</a>
                 </div>

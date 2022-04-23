@@ -46,7 +46,13 @@ class NotificacaoRepository
         ]);
         return $notificacao;
     }
-
+    public function notificacaoInsert($notificacao,$tipo,$url,$id_userLogado,$id_remetente)
+    {
+  
+    
+        $this->salvar($notificacao,$tipo,$url,$id_userLogado,$id_remetente );
+           
+    }
     public function update(Request $request, $slug)
     {
 

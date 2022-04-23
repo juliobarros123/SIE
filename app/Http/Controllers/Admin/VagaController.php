@@ -42,7 +42,7 @@ class VagaController extends Controller
     }
     public function notificacaoInsert($notificacao,$tipo,$url)
     {
-  ;
+  
     
         $this->notificacao->salvar($notificacao,$tipo,$url,Auth::user()->id,null );
            
