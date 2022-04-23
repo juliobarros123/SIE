@@ -48,7 +48,7 @@ class CandidatoController extends Controller
         if ($estado) {
         
             $candidato = Candidato::where('slug', $slug_candidato)->first();
-      
+     
          
             $dados['user'] = $user = User::find($candidato->id_canditado);
             $dados['vaga'] = Vaga::find($candidato->id_vaga);
@@ -56,7 +56,7 @@ class CandidatoController extends Controller
             //    $dados['assunto']="Você foi aprovado";
             $url='/vagas/candidatos/minhas-vagas/'.$dados['user'] ->slug;
       
-            $this->notificacao->notificacaoInsert('A empresa <strong>'.$dados['empresa']->nome.'</strong> aceitou você para uma intrevista de emprego como <strong>'. $dados['vaga']->funcao.'</strong>','CandidatoAceite',$url,Auth::User()->id, $candidato->id_candidato);
+            $this->notificacao->notificacaoInsert('A empresa <strong>'.$dados['empresa']->nome.'</strong> aceitou você para uma intrevista de emprego como <strong>'. $dados['vaga']->funcao.'</strong>','CandidatoAceite',$url,Auth::User()->id,$candidato->id_canditado);
             // $this->enviarEmail($user->email, $dados, 'emails.candidato.aprovado.index');
             return redirect()->back()->with('aprovado', 1);
         }

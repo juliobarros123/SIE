@@ -4,23 +4,29 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Vaga;
+use App\Models\Empresa;
 use App\Repositories\Eloquent\File\FileRepository;
 use Illuminate\Http\Request;
 use App\Models\Logger;
 use App\Repositories\Eloquent\Candidato\CandidatoRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Eloquent\Notificacao\NotificacaoRepository;
 class CandidatoController extends Controller
 {
     //
     protected $file;
     protected $candidato;
     protected $Logger;
-    public function __construct(FileRepository $fileVagaRepository ,CandidatoRepository $candidato)
+    protected $notificacao;
+
+    public function __construct(FileRepository $fileVagaRepository ,CandidatoRepository $candidato,NotificacaoRepository $notificacao)
     {
         $this->candidato = $candidato;
         $this->file = $fileVagaRepository;
         $this->Logger = new Logger();
+        $this->notificacao= $notificacao;
     }
+
 
     
     //
@@ -47,13 +53,16 @@ class CandidatoController extends Controller
       
         $dados['caminho_curriculo'] = $curriculo;
   
- 
         $dados['id_vaga'] = $vaga->id;
         $dados['requisito1'] = $request->requisito1;
         $dados['requisito2'] = $request->requisito2;
         $dados['requisito3'] = $request->requisito3;
         $dados['requisito4'] = $request->requisito4;
-            $vaga =$this->candidato->salvar( $dados,Auth::Id());
+           $this->candidato->salvar( $dados,Auth::Id());
+            // dd($vaga->id);
+            $empresa=Empresa::find($vaga->id);
+            $url='admin/vagas/candidatos/'.$vaga->slug;
+            $this->notificacao->notificacaoInsert('<strong>'.Auth::User()->primeiro_nome.' '.Auth::User()->ultimo_nome.'</strong> inscreveu-se na vaga <strong>'. $vaga->funcao.'</strong>','InscricaoVaga',$url,Auth::User()->id, $empresa->propreitario);
             $this->loggerData("Inscreveu-se na vaga ".$vaga->funcao. ' da empresa');
             return redirect()->back()->with('inscrito', '1');
         } catch (\Throwable $th) {

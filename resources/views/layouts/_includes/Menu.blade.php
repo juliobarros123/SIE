@@ -25,10 +25,10 @@
         </ul>
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown mr-1">
-                <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                {{-- <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
                     id="messageDropdown" href="#" data-toggle="dropdown">
                     <i class="ti-email mx-0"></i>
-                </a>
+                </a> --}}
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                     <a class="dropdown-item">
@@ -76,12 +76,13 @@
                     <span class="count"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-                    <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                    <p class="mb-0 font-weight-normal float-left dropdown-header">Notificações</p>
                         @foreach (notificacoes() as $notificacao)
+                        @if($notificacao->tipo=='nova_vaga')
                     <a class="dropdown-item" href="{{url($notificacao->url)}}">
                         <div class="item-thumbnail">
                             <div class="item-icon bg-success">
-                                <i class="ti-info-alt mx-0"></i>
+                                <i class="ti-control-shuffle mx-0 "></i>
                             </div>
                         </div>
                     
@@ -89,7 +90,7 @@
                             <div class="item-content">
                             <h6 class="font-weight-normal"> <?php echo $notificacao->notificacao?></h6>
                             <p class="font-weight-light small-text mb-0 text-muted">
-                                Just now 
+                             {{ quantos_dias($notificacao->created_at) }}
                             </p>
                         
                         </div> 
@@ -97,33 +98,41 @@
 
                        
                     </a>
-                           @endforeach
-                    <a class="dropdown-item">
+                    @endif
+                    @if($notificacao->id_destinatario==Auth::User()->id)
+                    <a class="dropdown-item" href="{{url($notificacao->url)}}">
                         <div class="item-thumbnail">
+                            @if ($notificacao->tipo=='CandidatoAceite')
                             <div class="item-icon bg-warning">
-                                <i class="ti-settings mx-0"></i>
+                                <i class="ti-face-smile mx-0"></i>
                             </div>
+                         @elseif($notificacao->tipo=='nova_vaga')
+                         <div class="item-icon bg-success">
+                            <i class="ti-new-window  mx-0"></i>
                         </div>
-                        <div class="item-content">
-                            <h6 class="font-weight-normal">Conf</h6>
+                        @elseif($notificacao->tipo=='InscricaoVaga')
+                        <div class="item-icon bg-success">
+                            <i class="ti-info-alt mx-0 "></i>
+                        </div>
+                            @endif
+                          
+                        </div>
+                    
+                        
+                            <div class="item-content">
+                            <h6 class="font-weight-normal"> <?php echo $notificacao->notificacao?></h6>
                             <p class="font-weight-light small-text mb-0 text-muted">
-                                Private message
+                             {{ quantos_dias($notificacao->created_at) }}
                             </p>
-                        </div>
+                        
+                        </div> 
+                 
+
+                       
                     </a>
-                    <a class="dropdown-item">
-                        <div class="item-thumbnail">
-                            <div class="item-icon bg-info">
-                                <i class="ti-user mx-0"></i>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <h6 class="font-weight-normal">New user registration</h6>
-                            <p class="font-weight-light small-text mb-0 text-muted">
-                                2 days ago
-                            </p>
-                        </div>
-                    </a>
+                    @endif
+                           @endforeach
+              
                 </div>
             </li>
             <li class="nav-item nav-profile dropdown"> @php
