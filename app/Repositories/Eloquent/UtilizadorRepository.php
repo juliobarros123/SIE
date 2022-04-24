@@ -44,7 +44,7 @@ class UtilizadorRepository implements UtilizadorInterface
         $caminho = 'userPhoto';
 
         $caminho = $this->file->upload_fileArray($array, $input, $caminho);
-// dd(  $caminho);
+//  dd(  $caminho);
         return User::create([
 
             'nome' => isset($request['nome']) ? $request['nome'] : null,

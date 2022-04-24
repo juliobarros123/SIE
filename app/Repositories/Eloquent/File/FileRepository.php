@@ -35,7 +35,7 @@ class FileRepository
     {
 
      
-        if ($request[$input] && $request[$input]->isValid()) {
+        if (isset($request[$input])&& $request[$input]->isValid()) {
        
             // Define um aleatório para o arquivo baseado no timestamps atual
             $name = uniqid(date('HisYmd'));

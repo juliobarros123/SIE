@@ -90,12 +90,12 @@
                                         placeholder="Confirmar senha">
                                 </div>
                                 <div class="mb-4">
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <label class="form-check-label text-muted">
                                             <input type="checkbox" class="form-check-input">
                                             Eu concordo com todos os Termos e Condições
                                         </label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit"

@@ -30,3 +30,8 @@
     <input type="text" class="form-control" id="exampleInputEmail1"
         placeholder="Digita o endereço da empresa" name="endereco"  value="{{ isset($empresa->slug) ? $empresa->endereco : '' }}">
 </div>
+<div class="form-group">
+    <label for="exampleInputEmail1">Foco da empresa:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"
+        placeholder="Digita o foco da empresa" maxlength="30" name="foco"  value="{{ isset($empresa->foco) ? $empresa->foco : '' }}">
+</div>

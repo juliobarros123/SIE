@@ -18,6 +18,7 @@ class Empresa extends Model
         'nif',
         'endereco',
         'propreitario',
+        'foco',
         'slug'
     ];
 

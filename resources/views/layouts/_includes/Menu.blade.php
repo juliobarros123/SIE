@@ -11,7 +11,7 @@
             <span class="ti-view-list"></span>
         </button>
         <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
+            {{-- <li class="nav-item nav-search d-none d-lg-block">
                 <div class="input-group">
                     <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                         <span class="input-group-text" id="search">
@@ -21,7 +21,7 @@
                     <input type="text" class="form-control" id="navbar-search-input" placeholder="Pesquisar agora..."
                         aria-label="search" aria-describedby="search">
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown mr-1">

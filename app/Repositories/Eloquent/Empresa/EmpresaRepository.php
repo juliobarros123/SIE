@@ -101,6 +101,7 @@ public function candidatoAceitePorEmpresasContabilizado(){
         'email' => isset($array['email']) ? $array['email'] : null,
         'nif' => isset($array['nif']) ? $array['nif'] : null,
         'endereco' => isset($array['endereco']) ? $array['endereco'] : null,
+        'foco'=>isset($array['foco']) ? $array['foco'] : null
         // 'propreitario' => isset($id_user) ? $id_user : null,
         
         ]);
