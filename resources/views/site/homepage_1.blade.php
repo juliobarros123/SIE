@@ -16,11 +16,13 @@
                                         <p>O S.I.E está aqui para lhe proporcionar vagas de empregos de diversas empresas e
                                             lhe oferecer os serviços das mais diversas empresas.</p>
                                     </div>
+                                    @if(!Auth::check())
                                     <div class="col-lg-12">
                                         <div class="border-first-button scroll-to-section">
-                                            <a href="#contact">Cadastrar-se</a>
+                                            <a href="{{ route('register') }}">Cadastrar-se</a>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
