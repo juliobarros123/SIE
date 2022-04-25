@@ -11,9 +11,9 @@
                   <h4 class="font-weight-bold mb-0"> Painel administrativo</h4>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                    {{-- <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
                       <i class="ti-clipboard btn-icon-prepend"></i>Report
-                    </button>
+                    </button> --}}
                 </div>
               </div>
             </div>
@@ -118,42 +118,42 @@
                   </div>
                 </div>
               </div>
+              <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
             
+                  <div class="card">
+                    <div class="card-body">
+                      <p class="card-title mb-0">Últimas vagas</p>
+                      <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Função</th>
+                              <th>Empresa</th>
+                              <th>Dada de post</th>
+                              <th>Data limite</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                        
+                          @foreach(vagas_disponiveis()->limit(5)->get() as $vagas)
+                            <tr>
+                              <td>{{$vagas->funcao}}</td>
+                           <td>{{$vagas->nome}}</td>
+                               <td>{{$vagas->created_at}}</td>
+                                 <td>{{$vagas->datalimite}}</td>
+                            </tr>
+                       @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+               
+                </div>
+              
+              </div>
          
           </div>
-          <div class="mt-4 row">
-            <div class="col-md-7 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Últimas vagas</p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>Função</th>
-                          <th>Empresa</th>
-                          <th>Dada de post</th>
-                          <th>Data limite</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                    
-                      @foreach(vagas_disponiveis()->limit(5)->get() as $vagas)
-                        <tr>
-                          <td>{{$vagas->funcao}}</td>
-                       <td>{{$vagas->nome}}</td>
-                           <td>{{$vagas->created_at}}</td>
-                             <td>{{$vagas->datalimite}}</td>
-                        </tr>
-                   @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-          </div>
+        
           {{-- <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">

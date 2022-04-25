@@ -73,11 +73,11 @@ class EmpresaController extends Controller
        
   
            $estado= $this->empresa->update($input, $slug);
-     
+    //  dd(  $estado);
            if($estado){
             $this->loggerData("Editou uma  empresa");
             return redirect()->back()->with('status', '1');
-         return redirect()->route('admin.empresas')->with('update', '1');
+             return redirect()->route('admin.empresas')->with('update', '1');
            }
             
         } catch (\Exception $exception) {

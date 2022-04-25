@@ -19,13 +19,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="/js/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="/admin/css/datatable.css">
-    {{-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.jqueryui.min.css"> 
-        <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.4/css/rowGroup.jqueryui.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.jqueryui.min.js"></script>
-        <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script> --}}
+ 
 
 
 </head>

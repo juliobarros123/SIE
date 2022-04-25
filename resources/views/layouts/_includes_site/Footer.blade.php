@@ -25,9 +25,9 @@
  <div class="container">
    <div class="row">
      <div class="col-lg-12">
-       <p>Copyright © 2022 S.I.E, Todos os direitos reservados.
-       <br><a href="https://templatemo.com" target="_parent" title="free css templates"></a>
-       <br> <a href="https://themewagon.com" target="_blank" title="free css templates"></a> 
+       <p>Copyright © {{ date('Y') }} S.I.E, Todos os direitos reservados.
+       {{-- <br><a href="https://templatemo.com" target="_parent" title="free css templates"></a>
+       <br> <a href="https://themewagon.com" target="_blank" title="free css templates"></a>  --}}
      </p>
      </div>
    </div>
@@ -35,8 +35,8 @@
 </footer> 
 
   <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+ <script src="/site/assets/js/jquery-3-51-slim-min.js"></script>
+<script src="/site/assets/js/bootstrap.bundle.min.js"></script>
   <script src="/site/vendor/jquery/jquery.min.js"></script>
   <script src="/site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/site/assets/js/owl-carousel.js"></script>
