@@ -23,7 +23,7 @@ class CreateEmpresasTable extends Migration
             $table->text('endereco')->nullable();
             $table->foreignId('propreitario')->constrained('users')->onDelete('CASCADE')->onUpgrade('CASCADE');;
             $table->text('slug')->nullable();
-                     $table->text('foco')->nullable();
+            $table->text('foco')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

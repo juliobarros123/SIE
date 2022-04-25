@@ -63,7 +63,11 @@
                                                     placeholder="Digita o endereço da empresa" name="endereco">
                                             </div>
                                             
-                                          
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Foco da empresa:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Digita o foco da empresa" maxlength="30" name="foco"  >
+                                            </div>
 
                                             {{-- <div class="form-check form-check-flat form-check-primary">
                                                 <label class="form-check-label">
@@ -105,6 +109,10 @@
                                         <th>
                                              Propreitário
                                          </th>
+                                         
+                                        <th>
+                                            Foco da empresa
+                                        </th>
                                         <th>
                                           NIF
                                         </th>
@@ -138,6 +146,9 @@
                                            
                                             <td >
                                                 {{$empresa->primeiro_nome}}  {{$empresa->ultimo_nome}}
+                                            </td>
+                                            <td >
+                                                {{$empresa->foco}}
                                             </td>
                                             <td >
                                                 {{$empresa->nif}}

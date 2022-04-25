@@ -174,7 +174,7 @@
                                                 </div>
                                                 <div class="down-content">
                                                     <h4>{{ $item->nome }}</h4>
-                                                    <p>Marketing</p>
+                                                    <p>{{ $item->foco }}</p>
                                                 </div>
                                             </div>
                                        
