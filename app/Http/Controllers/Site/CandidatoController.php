@@ -60,7 +60,7 @@ class CandidatoController extends Controller
         $dados['requisito4'] = $request->requisito4;
            $this->candidato->salvar( $dados,Auth::Id());
             // dd($vaga->id);
-            $empresa=Empresa::find($vaga->id);
+            $empresa=Empresa::find($vaga->id_empresa);
             $url='admin/vagas/candidatos/'.$vaga->slug;
             $this->notificacao->notificacaoInsert('<strong>'.Auth::User()->primeiro_nome.' '.Auth::User()->ultimo_nome.'</strong> inscreveu-se na vaga <strong>'. $vaga->funcao.'</strong>','InscricaoVaga',$url,Auth::User()->id, $empresa->propreitario);
             $this->loggerData("Inscreveu-se na vaga ".$vaga->funcao. ' da empresa');
