@@ -1,9 +1,21 @@
 <div class="form-group">
     <label for="exampleInputUsername1">Nome:</label>
-    <input type="text" class="form-control" id="exampleInputUsername1"
-        placeholder="Digita o nome do servico" name="servico" value="{{ isset($servico->servico) ? $servico->servico : '' }}">
+    <input type="text" class="form-control" id="exampleInputUsername1" required
+        placeholder="Digita o nome do servico" name="perco" value="{{ isset($servico->perco) ? $servico->perco : '' }}">
 </div>
 
+<div class="form-group">
+    <label for="exampleInputUsername1">Preço:</label>
+    <input type="number" class="form-control" id="exampleInputUsername1"
+        placeholder="Digita o preço do serviço" name="servico" value="{{ isset($servico->servico) ? $servico->servico : '' }}">
+</div>
+<div class="form-group">
+    <label for="exampleInputUsername1">Descricão:</label>
+    <textarea name="descricao" id=""  class="form-control"  cols="30" rows="10">
+        {{ isset($servico->descricao) ? $servico->descricao : '' }}
+    </textarea>
+   
+</div>
 
 
 

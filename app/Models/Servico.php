@@ -14,8 +14,9 @@ class Servico extends Model
     protected $fillable = [
         'servico',
         'id_empresa',
-        
-        'slug'
+        'slug',
+        'preco',
+         'descricao'
     ];
 
     protected $dates = ['deleted_at'];
