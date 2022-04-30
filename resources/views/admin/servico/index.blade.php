@@ -133,7 +133,7 @@
         @if (session('status'))
         <script>
             Swal.fire(
-                'servico cadastrada com sucesso!',
+                'Servico cadastrada com sucesso!',
                 '',
                 'success'
             )
@@ -143,7 +143,7 @@
     @if (session('update'))
     <script>
         Swal.fire(
-            'servico editada com sucesso!',
+            'Servico editada com sucesso!',
             '',
             'success'
         )
@@ -153,7 +153,7 @@
 @if (session('delete'))
 <script>
     Swal.fire(
-        'servico eliminada com sucesso!',
+        'Servico eliminada com sucesso!',
         '',
         'success'
     )

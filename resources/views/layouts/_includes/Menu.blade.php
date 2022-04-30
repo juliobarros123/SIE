@@ -3,7 +3,7 @@
 
         <a class="navbar-brand brand-logo mr-5" href="{{ route('sie') }}"><img src="/site/assets/images/logo-v1.png"
                 class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="/admin/images/logo-mini.svg"
+        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="/site/assets/images/logo-v1.png"
                 alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">

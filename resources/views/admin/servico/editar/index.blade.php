@@ -14,7 +14,7 @@
                             <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-end">
                                 <i class="ti-plus" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
                             </div>
-                            <form  action="{{ route('admin.servicos.atualizar', $servico->slug) }}" method="post"
+                            <form  action="{{ route('admin.servicos.actualizar', $servico->slug) }}" method="post"
                                 enctype="multipart/form-data"  >
                            
                                  @method('put')

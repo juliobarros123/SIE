@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="exampleInputUsername1">Nome:</label>
     <input type="text" class="form-control" id="exampleInputUsername1"
-        placeholder="Digita o nome do servico" name="servico" value="{{ isset($servico->funcao) ? $servico->funcao : '' }}">
+        placeholder="Digita o nome do servico" name="servico" value="{{ isset($servico->servico) ? $servico->servico : '' }}">
 </div>
 
 

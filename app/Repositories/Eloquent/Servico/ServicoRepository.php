@@ -39,6 +39,7 @@ class ServicoRepository
 
     public function salvar(array $request)
     {
+        $request['slug']=slug_gerar();
         $empresa = Servico::create($request);
         return $empresa;
     }
@@ -54,6 +55,7 @@ class ServicoRepository
 
     public function update(array $request, $slug)
     {
+    
         $empresa = Servico::where('slug',$slug)->update($request);
         return $empresa;
     }

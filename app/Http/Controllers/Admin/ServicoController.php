@@ -26,7 +26,7 @@ class ServicoController extends Controller
 
     public function  index(){
         $dados['empresas'] = Empresa::where('propreitario', Auth::id())->orderBy('id', 'desc')->get();
-        $dados['servicos']=  $this->servico->all()->get();
+        $dados['servicos']=  $this->servico->all()->where('propreitario', Auth::id())->get();
      return view('admin.servico.index', $dados);
  
     }
@@ -47,7 +47,7 @@ class ServicoController extends Controller
 
 
         try {
-   dd($request);
+  
             $vaga =$this->servico->salvar($request->all());
             $this->loggerData("Adicionou um servico");
             return redirect()->back()->with('status', '1');
@@ -73,15 +73,15 @@ class ServicoController extends Controller
     {
      
         $response['empresas']=Empresa::where('propreitario',Auth::User()->id)->get();
-        $response['servico']=  $this->servico->all()->where('servicos.slug',$slug)->fisrt();
+        $response['servico']=  $this->servico->all()->where('servicos.slug',$slug)->first();
 
-        return view('admin.vaga.editar.index', $response);
+        return view('admin.servico.editar.index', $response);
     }
     public function eliminar($slug)
     {
   
       
-        $servico= Servico::where('slug',$slug);
+        $servico= Servico::where('slug',$slug)->first();
         $this->servico->eliminar($slug);
     
         $this->loggerData("Eliminou serviço ". $servico->servico);
@@ -90,10 +90,10 @@ class ServicoController extends Controller
 
     public function actualizar(Request $input, $slug)
     {
-  
+
         try {
-    
-           $estado=$this->servico->update($input->all(), $slug);
+    // dd($input->all());
+           $estado=$this->servico->update($input->except(['_method',"_token"]), $slug);
 
            if($estado){
          return redirect()->route('admin.servicos')->with('update', '1');

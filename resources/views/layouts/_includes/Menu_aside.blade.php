@@ -32,8 +32,13 @@
                       <span class="menu-title">Vagas</span>
                   </a>
               </li>
-
-
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.servicos') }}">
+                    <i class="ti-pie-chart menu-icon"></i>
+                    <span class="menu-title">Servicos</span>
+                </a>
+            </li>
+            @if (Auth::User()->tipoUtilizador == 'Administrador')
 
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('admin.comentarios') }}">
@@ -41,7 +46,7 @@
                       <span class="menu-title">Feedback</span>
                   </a>
               </li>
-
+@endif
 
 
               <li class="nav-item">
