@@ -120,6 +120,17 @@ Route::middleware('auth:sanctum')->group(function () {
             });
         });
 
+        Route::group(['prefix' => 'servicos/'], function () {
+            Route::get('/', ['as' => 'admin.servicos', 'uses' => 'Admin\ServicoController@index']);
+            Route::get('/criar', ['as' => 'admin.servicos.criar', 'uses' => 'Admin\ServicoController@criar']);
+            Route::post('/cadastrar', ['as' => 'admin.servicos.cadastrar', 'uses' => 'Admin\ServicoController@cadastrar']);
+            Route::put('/actualizar/{slug}', ['as' => 'admin.servicos.actualizar', 'uses' => 'Admin\ServicoController@actualizar']);
+            Route::get('/editar/{slug}', ['as' => 'admin.servicos.editar', 'uses' => 'Admin\ServicoController@editar']);
+            Route::get('/eliminar/{slug}', ['as' => 'admin.servicos.eliminar', 'uses' => 'Admin\ServicoController@eliminar']);
+            Route::get('/purgar/{slug}', ['as' => 'admin.servicos.purgar', 'uses' => 'Admin\ServicoController@purgar']);
+
+        
+        });
         Route::group(['prefix' => 'comentarios/'], function () {
             Route::get('/', ['as' => 'admin.comentarios', 'uses' => 'Admin\ComentarioController@index']);
             Route::get('/{slug_comentario}/aprovar', ['as' => 'admin.comentarios.aprovar', 'uses' => 'Admin\ComentarioController@aprovar']);
