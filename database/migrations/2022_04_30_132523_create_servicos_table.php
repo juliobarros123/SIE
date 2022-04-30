@@ -17,6 +17,8 @@ class CreateServicosTable extends Migration
             $table->id();
             $table->string('servico');
             $table->unsignedBigInteger('id_empresa');
+            $table->string('preco')->nullable();
+            $table->longText('descricao')->nullable();
             $table->foreign('id_empresa')->references('id')->on('empresas')->onDelete('CASCADE')->onUpgrade('CASCADE');
             $table->text('slug')->nullable();
             $table->softDeletes();
