@@ -28,7 +28,7 @@
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
               <li class="scroll-to-section"><a href="#about">Sobre</a></li>
-              {{-- <li class="scroll-to-section"><a href="#services">Serviços</a></li> --}}
+              <li class="scroll-to-section"><a href="{{ url('/servicos') }}">Serviços</a></li>
               <li class="scroll-to-section"><a href="{{ route('site.vagas') }}">Vagas</a></li>
               @if (Auth::check())
               <li class="scroll-to-section"><a href="{{ route('admin.vagas.candidatos.minhas.vagas',['slug_candidato'=>Auth::User()->slug]) }}">Minhas Vagas</a></li>

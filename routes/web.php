@@ -88,6 +88,10 @@ Route::group(['prefix' => 'desafios/quizzes/'], function () {
     Route::get('classificao/avaliacao', ['as' => 'desafios.quizzes.classificao', 'uses' => 'Site\QuizController@classificao']);
 });
 
+Route::group(['prefix' => 'servicos/'], function () {
+    Route::get('', ['as' => 'site.servicos', 'uses' => 'Site\ServicoController@index']);
+  
+});
 Route::group(['prefix' => 'palavra_passe'], function () {
     route::get('recuperar', ['as' => 'palavra_passe.recuperar', 'uses' => 'PalavrarPasseController@recuperar']);
     route::post('redefinir', ['as' => 'palavra_passe.redefinir', 'uses' => 'PalavrarPasseController@redefinir']);
