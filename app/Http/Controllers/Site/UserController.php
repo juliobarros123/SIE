@@ -75,7 +75,7 @@ if($request->password==$request->password_confirm){
             // dd(     $dados);
            
             $user = $this->user->store( $dados);
-
+dd($user);
             // if ($user && $dados['termo'] == 'on') {
                 TermoUtilizador::create([
                     'it_id_utilizador' => $user->id,

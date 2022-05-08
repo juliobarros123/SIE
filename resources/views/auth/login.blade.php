@@ -31,14 +31,14 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="/site/assets/images/logo-v1.png" alt="">
+                <a href="{{ url('/') }}"> <img src="/site/assets/images/logo-v1.png" alt="logo"></a>
               </div>
               <h4>Olá! vamos começar</h4>
               <h6 class="font-weight-light">Faça login para continuar.</h6>
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                  <input type="text"  name="vc_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Nome de usuário">
+                  <input type="text"  name="vc_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Nome de usuário" >
                 </div>
                 <div class="form-group">
                   <input type="password" name="password"  class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Palavra passe">

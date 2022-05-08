@@ -24,11 +24,22 @@
                                         <p>O S.I.E está aqui para lhe proporcionar vagas de empregos de diversas empresas e
                                             lhe oferecer os serviços das mais diversas empresas.</p>
                                     </div>
-                                    {{-- <div class="col-lg-12">
-                                        <div class="border-first-button scroll-to-section">
-                                            <a href="#contact">Cadastrar-se</a>
-                                        </div>
-                                    </div> --}}
+                                    <div class="col-lg-12">
+                                        
+                                            <form  action="{{ route('site.servicos.pesquisar') }}" method="post">
+                                                @csrf
+                                                <div class="d-flex flex-row">
+                                                    <div class="form-outline w-75">
+                                                      <input type="search"  placeholder="Pesquisar serviço " name="servico" class="form-control" />
+                                                     
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary h-100 w-25">
+                                                      <i class="fas fa-search"></i>
+                                                    </button>
+                                                  </div>
+                                            </form>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,8 +86,12 @@
                 <div class="col-lg-5">
                     <div class="section-heading wow fadeInLeft animated" data-wow-duration="1s" data-wow-delay="0.3s"
                         style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-
-                        <h4>Servicos</h4>
+@if (isset($pesquisa))
+<h4>Resultado da pesquisa</h4>
+@else
+<h4>Servicos</h4>
+@endif
+                      
                         <div class="line-dec"></div>
                     </div>
                 </div>

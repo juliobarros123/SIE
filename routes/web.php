@@ -90,6 +90,7 @@ Route::group(['prefix' => 'desafios/quizzes/'], function () {
 
 Route::group(['prefix' => 'servicos/'], function () {
     Route::get('', ['as' => 'site.servicos', 'uses' => 'Site\ServicoController@index']);
+    Route::post('pesquisar', ['as' => 'site.servicos.pesquisar', 'uses' => 'Site\ServicoController@pesquisar']);
   
 });
 Route::group(['prefix' => 'palavra_passe'], function () {
