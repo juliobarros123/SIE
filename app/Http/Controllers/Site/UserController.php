@@ -75,7 +75,7 @@ if($request->password==$request->password_confirm){
             // dd(     $dados);
            
             $user = $this->user->store( $dados);
-dd($user);
+
             // if ($user && $dados['termo'] == 'on') {
                 TermoUtilizador::create([
                     'it_id_utilizador' => $user->id,
@@ -94,8 +94,17 @@ dd($user);
              return redirect()->back()->with('senha', '1');
             }
         } catch (\Exception $exception) {
-dd( $exception);
-            return redirect()->back()->with('error', '1');
+            $user = User::orderBy('id', 'desc')->first();
+            if( $user->email==$request->email){
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            return redirect(RouteServiceProvider::HOME);
+           
+            }else{
+                return redirect()->back()->with('error', '1');
+            }
         }
 
     }

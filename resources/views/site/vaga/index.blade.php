@@ -12,11 +12,31 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h6>Sistema Incubador de Empresa</h6>
-                                        <h2>Vagas disponíveis</h2>
+                                    
+                                        @if (isset($pesquisa))
+<h4>Resultado da pesquisa</h4>
+@else
+<h2>Vagas disponíveis</h2>
+@endif
                                         <p>O S.I.E está aqui para lhe proporcionar vagas de empregos de diversas empresas e
                                             lhe oferecer os serviços das mais diversas empresas.</p>
                                     </div>
-                                    {{-- <div class="col-lg-12">
+                                    <div class="col-lg-12">
+                                        
+                                        <form  action="{{ route('site.vagas.pesquisar') }}" method="post">
+                                            @csrf
+                                            <div class="d-flex flex-row">
+                                                <div class="form-outline w-75">
+                                                  <input type="search"  placeholder="Pesquisar vagas " name="vaga" class="form-control" />
+                                                 
+                                                </div>
+                                                <button type="submit" class="btn  h-100 w-25" style="background: #6f42c1">
+                                                  <i class="fas fa-search"></i>
+                                                </button>
+                                              </div>
+                                        </form>
+                                    
+                                </div>  {{-- <div class="col-lg-12">
                                         <div class="border-first-button scroll-to-section">
                                             <a href="#contact">Cadastrar-se</a>
                                         </div>

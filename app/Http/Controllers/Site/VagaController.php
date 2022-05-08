@@ -14,4 +14,12 @@ class VagaController extends Controller
     
 return view('site.vaga.index',$response);
     }
+
+    public function pesquisar(Request $pesquisar)
+    {
+        $response['vagas'] =  vagas_disponiveis()->where('vagas.funcao', 'like', '%' . $pesquisar->vaga . '%')->get();
+        // dd( $response['vagas'] );
+        $dados['pesquisa']=1;
+        return view('site.vaga.index', $response);
+    }
 }

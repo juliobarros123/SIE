@@ -107,6 +107,8 @@ Route::group(['prefix' => 'palavra_passe'], function () {
 
 Route::group(['prefix' => 'vagas'], function () {
     route::get('', ['as' => 'site.vagas', 'uses' => 'Site\VagaController@vagas']);
+    route::post('pesquisar', ['as' => 'site.vagas.pesquisar', 'uses' => 'Site\VagaController@pesquisar']);
+    
 
 });
 
