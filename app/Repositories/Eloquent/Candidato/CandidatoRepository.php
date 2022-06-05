@@ -97,12 +97,12 @@ class CandidatoRepository
             ->leftJoin('empresas', 'empresas.id', 'vagas.id_empresa')
             ->select('users.profile_photo_path', 'users.primeiro_nome',
              'users.ultimo_nome', 'users.email', 'users.telefone', 'candidatos.*',
-             'vagas.quantidade',    'vagas.funcao',    'vagas.datalimite',    'vagas.capa','empresas.nome','vagas.tipo_vaga');
+             'vagas.quantidade',    'vagas.funcao',    'vagas.datalimite',    'vagas.capa','empresas.nome','vagas.tipo_vaga','vagas.slug as slug_vaga','users.genero');
     }
 
     public function candidatoPorVagaContabilizado()
     {
-        return $this->all()->groupBy('vagas.id')->select('vagas.funcao', 'vagas.tipo_vaga', 'candidatos.estado', DB::raw('count(candidatos.id) as candidatos'));
+        return $this->all()->groupBy('vagas.id')->select('vagas.id','vagas.funcao', 'vagas.tipo_vaga', 'candidatos.estado',DB::raw('count(candidatos.id) as candidatos'));
 
     }
     public function minhas_vagas($slug_candidato){

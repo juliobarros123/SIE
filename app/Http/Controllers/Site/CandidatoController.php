@@ -78,4 +78,10 @@ class CandidatoController extends Controller
         // dd( $vagas);
         return view('site.candidatos.minhas-vagas.index', compact('vagas'));
     }
+    public function sair($slug_vaga){
+        
+        $vagas =$this->candidato->minhas_vagas(Auth::User()->slug)->where('vagas.slug',$slug_vaga)->delete();
+        return redirect()->back()->with('vaga_sair', '1');
+   
+    }
 }

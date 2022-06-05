@@ -150,7 +150,148 @@
         </script>
     @endif
     <script></script>
- 
+    <script>
+        var camposEmpty = [];
+
+        function insertInputsEmpty(camposEmpty, value) {
+            console.log(camposEmpty);
+            if (!elementoExiste(camposEmpty, value)) {
+                camposEmpty.push(value);
+            } else {
+
+            }
+
+
+        }
+
+        function elementoExiste(array, value) {
+            for (let index = 0; index < array.length; index++) {
+                if (array[index] == value) {
+                    return 1
+                }
+
+            }
+
+
+            return 0;
+        }
+        $("#btn-escrever").attr('disabled', true);
+        $("form div input").on('keyup', function() {
+            checkValueInput();
+
+        });
+
+
+        $("form div select").on('change', function() {
+            checkValueSelect();
+
+
+        });
+
+        function campoEmpty(campo) {
+            if (campo.value == "") {
+
+                mudarEstadoBtn(true);
+                return 0
+            } else {
+                return 1;
+            }
+
+        }
+        // function selectEmpty(select) {
+        //     if (input.value == "") {
+
+
+        //         mudarEstadoBtn(true);
+        //         return 0
+        //     }else{
+        //         return 1;
+        //     }
+
+        // }
+
+        function mudarEstadoBtn(estado) {
+            if (estado == true) {
+
+                $("#btn-escrever").attr('disabled', estado);
+            } else {
+                $("#btn-escrever").attr('disabled', estado);
+
+
+            }
+
+        }
+
+        function checkValueSelect() {
+            console.log("chegou");
+            var selects = $("form div select");
+            for (let index = 0; index < selects.length; index++) {
+                const element = selects[index];
+                controlSelectVazio = campoEmpty(element);
+
+                var name = element.getAttribute('name');
+
+                var alert = element.getAttribute('alert');
+
+                if (controlSelectVazio == 0) {
+                    $("label[for=" + name + "]").empty();
+
+                    $("select[name=" + name + "]").before("<label for=" + name + " >" + alert + "</label>");
+
+                } else {
+
+                }
+
+            }
+
+        }
+
+        function checkValueInput() {
+            var controlInputVazio = 0;
+            var inputs = $("form div input");
+            for (let index = 0; index < inputs.length; index++) {
+                const element = inputs[index];
+                controlInputVazio = campoEmpty(element);
+                var name = element.getAttribute('name');
+                var alert = element.getAttribute('alert');
+                if (controlInputVazio == 0) {
+
+
+
+                    $("label[for=" + name + "]").empty();
+
+                    $("input[name=" + name + "]").before("<label for=" + name + " >" + alert + "</label>");
+                       insertInputsEmpty(camposEmpty,name);
+
+                } else {
+                    $("label[for=" + name + "]").empty();
+
+                }
+
+            }
+
+            if (controlInputVazio == 1) {
+                mudarEstadoBtn(false);
+            }
+
+
+
+        }
+        // function campoEmpty(campo) {
+
+        //     valueExcept=campo.getAttribute('valueExcept');
+
+        //     if ( campo.value==valueExcept ) {
+
+
+        //         mudarEstadoBtn(true);
+        //         return 0
+        //     }else{
+        //         return 1;
+        //     }
+
+        // }
+    </script>
     @include('layouts._includes.Footer')
 </body>
 

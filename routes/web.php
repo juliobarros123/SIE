@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{slug_vaga}/inscrever-se', ['as' => 'site.vagas.candidatos.inscrever-se', 'uses' => 'Site\CandidatoController@inscrever_se']);
         Route::post('{slug_vaga}/inscrever-se-agora', ['as' => 'site.vagas.candidatos.inscrever-se-agora', 'uses' => 'Site\CandidatoController@inscrever_se_agora']);
         Route::get('/minhas-vagas/{slug_candidato}', ['as' => 'admin.vagas.candidatos.minhas.vagas', 'uses' => 'Site\CandidatoController@minhas_vagas']);
+        Route::get('/sair/{slug_vaga}', ['as' => 'site.vagas.candidatos.sair', 'uses' => 'Site\CandidatoController@sair']);
         Route::get('/criar', ['as' => 'admin.vagas.criar', 'uses' => 'admin\VagaController@criar']);
         Route::post('/cadastrar', ['as' => 'admin.vagas.cadastrar', 'uses' => 'admin\VagaController@cadastrar']);
         Route::put('/actualizar/{slug}', ['as' => 'admin.vagas.actualizar', 'uses' => 'admin\VagaController@actualizar']);

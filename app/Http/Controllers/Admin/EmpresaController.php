@@ -44,7 +44,8 @@ class EmpresaController extends Controller
             // return response()->json($user);
 
         } catch (\Exception $exception) {
-            return response()->json($exception);
+
+            // return response()->json($exception);
             return redirect()->back()->with('aviso', '1');
         }
     }

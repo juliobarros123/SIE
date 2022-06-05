@@ -17,7 +17,7 @@
 <div class="form-group">
     <label for="exampleInputEmail1">Telefone:</label>
     <input type="number" class="form-control" id="exampleInputEmail1"
-        placeholder="Digita o número de telefone da empresa" name="telefone" maxlength="8" value="{{ isset($empresa->slug) ? $empresa->telefone : '' }}"> 
+        placeholder="Digita o número de telefone da empresa" name="telefone" min="8" max="8"value="{{ isset($empresa->slug) ? $empresa->telefone : '' }}"> 
 </div>
 
 <div class="form-group">

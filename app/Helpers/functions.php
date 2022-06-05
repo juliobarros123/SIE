@@ -2,6 +2,7 @@
 use Keygen\Keygen;
 use App\Repositories\Eloquent\Vaga\VagaRepository;
 use App\Repositories\Eloquent\File\FileRepository;
+use App\Repositories\Eloquent\Candidato\CandidatoRepository;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Empresa;
 use App\Models\Vaga;
@@ -20,6 +21,18 @@ function vagas_disponiveis()
 {
         $vaga=new VagaRepository(new FileRepository);
       return  $vaga->all()->orderBy('vagas.id','desc')->whereDate('vagas.datalimite','>=',now());
+
+}
+function ttlMascCandidatos($id_vaga)
+{
+        $vaga=new CandidatoRepository(new FileRepository);
+      return  $vaga->all()->where('vagas.id',$id_vaga)->where('genero','Masculino')->count();
+
+}
+function ttlFemCandidatos($id_vaga)
+{
+        $vaga=new CandidatoRepository(new FileRepository);
+      return  $vaga->all()->where('vagas.id',$id_vaga)->where('genero','Feminino')->count();
 
 }
 function quantos_dias($timestamps)
@@ -83,6 +96,6 @@ function ttl_candidatos_aceites(){
 }
 
 function notificacoes(){
- return Notificacao::all();
+ return Notificacao::orderBy('id','desc')->get();
 }
 ?>

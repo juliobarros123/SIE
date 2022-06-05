@@ -52,14 +52,15 @@
 
                     <div class="row">
                         @foreach ($vagas as $vaga)
+ 
                             <div class="col-lg-4 blog-col pt-4 ">
                                 <div class="single-blog mt-55 wow fadeInLeftBig blog-post h-100" data-wow-duration="1.3s"
                                     data-wow-delay="0.4s">
                                     <div class="blog-image">
                                         <a href="{{ url("storage/{$vaga->capa}") }}"><img
                                                 src="{{ url("storage/{$vaga->capa}") }}" alt="{{ $vaga->funcao }}"></a>
-                                        <span class="date">{{ $vaga->created_at }} disponível até
-                                            {{ $vaga->datalimite }}</span>
+                                               <span class="date">{{ $vaga->created_at }} disponível até
+                                            {{ $vaga->datalimite }}</span>    
                                     </div>
                                     <div class="blog-content m-2 ">
                                         <ul class="meta">
@@ -76,8 +77,8 @@
                                                     class="text-primary" download><i class="fa-solid fa-download"></i>
                                                     Baixar requisitos</a></li>
                                         </ul>
-                                        <h4 class="blog-title"><a href="vagas-details.html">{{ $vaga->funcao }}</a>
-                                        </h4>
+                                        <h4 class="blog-title"><a href="">{{ $vaga->funcao }}</a>
+                                        </h4> <a href="{{ route('site.vagas.candidatos.sair',['slug_vaga'=>$vaga->slug_vaga ]) }}" class="d-inline item-vaga">Sair</a>
                                         @if ($vaga->estado==0)
                                    
                                         <button href=""
@@ -111,5 +112,14 @@
    
    
 
-
+    
+    @if (session('vaga_sair'))
+    <script>
+        Swal.fire(
+            'Você foi removido desta vaga com sucesso!',
+            '',
+            'success'
+        )
+    </script>
+@endif
 @endsection

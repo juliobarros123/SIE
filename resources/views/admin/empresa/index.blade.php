@@ -33,12 +33,12 @@
                                             <div class="form-group">
                                                 <label for="exampleInputUsername1">Logotipo:</label>
                                                 <input type="file" class="form-control" id="exampleInputUsername1"
-                                                    placeholder="Digita o nome de usuário" name="logotipo">
+                                                    placeholder="Digita o nome de usuário" name="logotipo" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nome:</label>
                                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Digita o nome da empresa" name="nome">
+                                                    placeholder="Digita o nome da empresa" name="nome" required>
                                             </div>
                                           
                                             <div class="form-group">
@@ -49,24 +49,24 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Telefone:</label>
                                                 <input type="number" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Digita o número de telefone da empresa" name="telefone" maxlength="8"> 
+                                                    placeholder="Digita o número de telefone da empresa" name="telefone" max="999999999" min="900000000"> 
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">NIF:</label>
                                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Digita o NIF da empresa" name="nif" maxlength="14">
+                                                    placeholder="Digita o NIF da empresa" name="nif" maxlength="14" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Endereço:</label>
                                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Digita o endereço da empresa" name="endereco">
+                                                    placeholder="Digita o endereço da empresa" name="endereco" required>
                                             </div>
                                             
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Foco da empresa:</label>
                                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Digita o foco da empresa" maxlength="30" name="foco"  >
+                                                    placeholder="Digita o foco da empresa" maxlength="30" name="foco" required  >
                                             </div>
 
                                             {{-- <div class="form-check form-check-flat form-check-primary">

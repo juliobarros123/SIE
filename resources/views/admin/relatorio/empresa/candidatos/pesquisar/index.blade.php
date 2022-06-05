@@ -24,8 +24,9 @@
                                         <label for="exampleSelectGender">Vagas:</label>
                                         <select class="form-control" id="exampleSelectGender" name="id_vaga">
                                             <option selected disabled>Seleciona a vaga:</option>
+                                            @if (Auth::User()->tipoUtilizador == 'Administrador')
                                             <option value="Todas" >Todas</option>
-
+@endif
                                             @foreach ($vagas as $item)
                                                 <option value="{{ $item->id }}">{{ $item->funcao }}</option>
                                             @endforeach

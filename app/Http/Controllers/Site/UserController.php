@@ -27,13 +27,14 @@ use Illuminate\Http\Request;
 use illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\SlugController;
+
 class UserController extends Controller
 {
     use PasswordValidationRules;
 
     protected $user;
-protected $slug_controller;
-    public function __construct(UtilizadorRepository $user,SlugController $slug_controller)
+    protected $slug_controller;
+    public function __construct(UtilizadorRepository $user, SlugController $slug_controller)
     {
         $this->user = $user;
         $this->slug_controller = $slug_controller;
@@ -51,32 +52,32 @@ protected $slug_controller;
 
         return view('auth.registerLogin', compact('uri'));
     }
-     
+
     public function salvar(Request $request)
     {
         // dd($request);
         try {
-if($request->password==$request->password_confirm){
-            // $path = Storage::putFile('userPhoto', $request->file('foto'));
-            // dd( $path);
-            $dados = $request->all();
+            if ($request->password == $request->password_confirm) {
+                // $path = Storage::putFile('userPhoto', $request->file('foto'));
+                // dd( $path);
+                $dados = $request->all();
 
-            $dados['tipoUtilizador'] = 'Visitante';
-            // $dados['profile_photo_path'] = $this->upload_img($request);
+                $dados['tipoUtilizador'] = 'Visitante';
+                // $dados['profile_photo_path'] = $this->upload_img($request);
 
-            // dd("oa", $dados['profile_photo_path'] );
+                // dd("oa", $dados['profile_photo_path'] );
 
-            // dd( $dados['profile_photo_path'] );
-            // Validator::make($dados, [
-            //     // 'vc_nomeUtilizador' => ['required', 'string', 'max:255'],
-            //     'vc_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            //     'password' => $this->passwordRules(),
-            // ])->validate();
-            // dd(     $dados);
-           
-            $user = $this->user->store( $dados);
+                // dd( $dados['profile_photo_path'] );
+                // Validator::make($dados, [
+                //     // 'vc_nomeUtilizador' => ['required', 'string', 'max:255'],
+                //     'vc_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                //     'password' => $this->passwordRules(),
+                // ])->validate();
+                // dd(     $dados);
 
-            // if ($user && $dados['termo'] == 'on') {
+                $user = $this->user->store($dados);
+
+                // if ($user && $dados['termo'] == 'on') {
                 TermoUtilizador::create([
                     'it_id_utilizador' => $user->id,
                 ]);
@@ -86,27 +87,25 @@ if($request->password==$request->password_confirm){
 
                 return redirect(RouteServiceProvider::HOME);
                 // return redirect( 'login' )->with('encarregado', '1' );
-            // } else {
+                // } else {
 
-            //     return redirect()->back()->with('aviso', '1');
-            // }
-            }else{
-             return redirect()->back()->with('senha', '1');
+                //     return redirect()->back()->with('aviso', '1');
+                // }
+            } else {
+                return redirect()->back()->with('senha', '1');
             }
         } catch (\Exception $exception) {
             $user = User::orderBy('id', 'desc')->first();
-            if( $user->email==$request->email){
-            event(new Registered($user));
+            if ($user->email == $request->email) {
+                event(new Registered($user));
 
-            Auth::login($user);
+                Auth::login($user);
 
-            return redirect(RouteServiceProvider::HOME);
-           
-            }else{
+                return redirect(RouteServiceProvider::HOME);
+            } else {
                 return redirect()->back()->with('error', '1');
             }
         }
-
     }
 
     public function buscaUsuario($usuario)
@@ -116,16 +115,12 @@ if($request->password==$request->password_confirm){
         // echo '<script>alert("Welcome to Geeks for Geeks")</script>';
 
         try {
-        $result=User::where('vc_nomeUtilizador', $usuario)->first();
+            $result = User::where('vc_nomeUtilizador', $usuario)->first();
 
-       return $result->vc_nomeUtilizador?response()->json(['user'=>$result->vc_nomeUtilizador]):response()->json(['user'=>'']);
-
-    } catch (\Exception $exception) {
-
-        return response()->json(['user'=>'']);
-    }
-
-        
+            return $result->vc_nomeUtilizador ? response()->json(['user' => $result->vc_nomeUtilizador]) : response()->json(['user' => '']);
+        } catch (\Exception $exception) {
+            return response()->json(['user' => '']);
+        }
     }
     public function upload_img(Request $request)
     {
@@ -142,7 +137,7 @@ if($request->password==$request->password_confirm){
 
             // Faz o upload:
             $upload = $request->foto->storeAs('userPhoto', $nameFile);
-//            $upload = substr($upload, 7, strlen($upload));
+            //            $upload = substr($upload, 7, strlen($upload));
             // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
 
             // Verifica se NÃO deu certo o upload ( Redireciona de volta )
@@ -167,10 +162,10 @@ if($request->password==$request->password_confirm){
             return redirect()->back()->with('edicao_nao_autorizado', 1);
         }
         $c = User::find($id);
-        if ($response['user'] = User::find($id)):
+        if ($response['user'] = User::find($id)) :
             $user = User::find($id);
             return view('site.users.editar.index', compact('user'));
-        else:
+        else :
             return redirect('site/users/cadastrar')->with('teste', '1');
 
         endif;

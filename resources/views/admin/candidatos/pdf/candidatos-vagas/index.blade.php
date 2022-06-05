@@ -12,6 +12,7 @@
             <th>Candidato</th>
             <th>E-mail</th>
             <th>Número</th>
+            <th>Estado</th>
             {{-- <th>Pendentes</th>
             <th>Aceites</th>
             <th>Não eceites</th> --}}
@@ -31,6 +32,18 @@
                 <td>
                     {{ $item->telefone }}
                 </td>
+               
+                <td>
+                    @if ($item->estado==0)
+                                                    Pendente
+                                                    @endif
+                                                    @if($item->estado==1)
+                                                    Reprovado
+                                                    @endif
+                                                    @if($item->estado==2)
+                                                 Aprovado 
+                                                    @endif
+                </td>
                 {{-- <td>
                     {{ $candidatosVagas->where('funcao',$item->funcao)->where('estado',0)->count() }}
                 </td>
@@ -43,6 +56,22 @@
 
             </tr>
         @endforeach
+        @isset($tipo)
+        <tr>
+            <td> <strong>Masculino</strong> </td>
+            <td colspan="3">{{ttlMascCandidatos( $vaga->id)}}</td>
+        </tr>
+        <tr>
+            <td> <strong>Feminino</strong> </td>
+            <td colspan="3">{{ttlFemCandidatos( $vaga->id)}}</td>
+        </tr>
+        <tr>
+            <td> <strong>Total</strong> </td>
+            <td colspan="3">{{ttlMascCandidatos( $vaga->id)+ttlFemCandidatos( $vaga->id)}}</td>
+        </tr>
+        @endisset
+        
+      
         </tbody>
     </table>
-</div>
+</div>  

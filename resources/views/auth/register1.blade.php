@@ -52,44 +52,39 @@
                                 </div>
                                 <div class="form-group">
                                     <input required type="text" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" placeholder="Nome de usuário"
-                                        alert="Precho este campo 1" name="nome">
+                                        id="exampleInputUsername1" placeholder="Nome de usuário" alert="Precho este campo 1" name="nome">
                                 </div>
 
                                 <div class="form-group">
                                     <input required type="text" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" placeholder="Primeiro nome"
-                                        alert="Precho este campo 2" name="primeiro_nome">
+                                        id="exampleInputUsername1" placeholder="Primeiro nome" alert="Precho este campo 2" name="primeiro_nome">
                                 </div>
 
                                 <div class="form-group">
                                     <input required type="text" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" placeholder="Ultimo nome"
-                                        alert="O último nome deve ser preenchido" name="ultimo_nome">
+                                        id="exampleInputUsername1" placeholder="Ultimo nome" alert="Precho este campo 2" name="ultimo_nome">
                                 </div>
                                 <div class="form-group">
                                     <input required type="email" class="form-control form-control-lg"
-                                        id="exampleInputEmail1" placeholder="Email" name="email"
-                                        alert="Precho este campo 3">
+                                        id="exampleInputEmail1" placeholder="Email" name="email" alert="Precho este campo 3">
                                 </div>
 
                                 <div class="form-group">
                                     <input required type="number" class="form-control form-control-lg"
-                                        id="exampleInputEmail1" placeholder="Telefone" name="telefone" maxlength="9"
-                                        alert="Precho este campo 4">
+                                        id="exampleInputEmail1" placeholder="Telefone" name="telefone" maxlength="9" alert="Precho este campo 4">
                                 </div>
                                 <div class="form-group">
-                                    <select required class="form-control form-control-lg" id="exampleFormControlSelect2"
-                                        valueExcept="Gênero:" alert="Precho este campo 5" name="genero">
-                                        <option disabled selected> Gênero: </option>
+                                    <select required class="form-control form-control-lg" id="exampleFormControlSelect2" alert="Precho este campo 5"
+                                        name="genero">
+                                        <option disabled> Gênero: </option>
 
                                         <option value="Masculino">Masculino</option>
                                         <option value="Feminino">Feminino</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input required type="password" name="password" class="form-control form-control-lg"
-                                        alert="Precho este campo 6" id="exampleInputPassword1" placeholder="Senha">
+                                    <input required type="password" name="password" class="form-control form-control-lg" alert="Precho este campo 6"
+                                        id="exampleInputPassword1" placeholder="Senha">
                                 </div>
                                 <div class="form-group">
                                     <input required type="password" name="password_confirm" alert="Precho este campo 7"
@@ -150,7 +145,62 @@
         </script>
     @endif
     <script></script>
- 
+    <script>
+         $("#btn-escrever").attr('disabled', true);
+        $("form div input").on('keyup', function() {
+            var controlInputVazio=0;
+            var inputs = $("form div input");
+            for (let index = 0; index < inputs.length; index++) {
+                const element = inputs[index];
+                controlInputVazio=inputEmpty(element);
+                var   name=element.getAttribute('name');
+                  var   alert=element.getAttribute('alert');
+                if(controlInputVazio==0){
+
+                   
+                
+                  $("label[for="+name+"]").empty();
+                  console.log( element.value) ;
+                   $("input[name="+name+"]").before("<label for="+name+" >"+alert+"</label>");
+                   
+                }else{
+                    $("label[for="+name+"]").empty();
+                }
+
+            }
+            console.log(controlInputVazio);
+            if(controlInputVazio==1){
+                mudarEstadoBtn(false);
+            }
+
+            //    console.log($(this).val());
+
+        });
+
+        function inputEmpty(input) {
+            if (input.value == "") {
+                console.log(input.value == "");
+
+                mudarEstadoBtn(true);
+                return 0
+            }else{
+                return 1;
+            }
+
+        }
+
+        function mudarEstadoBtn(estado) {
+            if (estado == true) {
+
+                $("#btn-escrever").attr('disabled', estado);
+            } else {
+                $("#btn-escrever").attr('disabled', estado);
+
+
+            }
+
+        }
+    </script>
     @include('layouts._includes.Footer')
 </body>
 

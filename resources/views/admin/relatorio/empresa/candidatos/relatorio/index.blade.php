@@ -11,11 +11,17 @@
         <tr>
             <th>Vaga</th>
             <th>Inscritos</th>
+            <th>Masculino</th>
+            <th>Feminino</th>
             {{-- <th>Pendentes</th>
             <th>Aceites</th>
             <th>Não eceites</th> --}}
         </tr>
         </tr>
+      @php
+          $ttlMasc=0;
+          $ttlFem=0;
+      @endphp
         @foreach ($candidatosVagas as $item)
             <tr>
                 <td>
@@ -23,6 +29,18 @@
                 </td>
                 <td>
                     {{ $item->candidatos }}
+                </td>
+                <td>
+                    @php
+                        $ttlMasc+=ttlMascCandidatos( $item->id);
+                    @endphp
+                    {{ttlMascCandidatos( $item->id)}}
+                </td>
+                <td>
+                    @php
+                        $ttlFem+=ttlFemCandidatos( $item->id);
+                    @endphp
+                    {{ttlFemCandidatos( $item->id)}}
                 </td>
                 {{-- <td>
                     {{ $candidatosVagas->where('funcao',$item->funcao)->where('estado',0)->count() }}
@@ -36,6 +54,21 @@
 
             </tr>
         @endforeach
+
+        <tr>
+            <td>
+              Total
+            </td>
+            <td>
+                {{$candidatosVagas->sum('candidatos')}}
+              </td>
+              <td>
+                {{$ttlMasc}}
+              </td>
+              <td>
+                {{$ttlFem}}
+              </td>
+        </tr>
         </tbody>
     </table>
 </div>

@@ -103,7 +103,7 @@ class CandidatoController extends Controller
         $response['estado']="";
         $response['vaga'] = Vaga::where('slug', $slug_vaga)->first();
         $response['candidatos'] = $this->candidato->all()->where('vagas.slug', $slug_vaga)->get();
-        
+        $response['tipo']=0;
         $response["css"] = file_get_contents("admin/css/relatorio/candidatos-vaga/estilo.css");
   
    
